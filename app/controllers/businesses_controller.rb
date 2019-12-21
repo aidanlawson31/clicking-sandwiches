@@ -13,7 +13,7 @@ class BusinessesController < ApplicationController
     if @business.save
       redirect_to @business, notice: "Business created successfully"
     else
-      puts "error"
+      puts "ALALAL #{error.full_messages}"
     end
   end
 
