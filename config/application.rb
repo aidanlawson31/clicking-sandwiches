@@ -10,9 +10,5 @@ module ClickingSandwiches
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
-
-    #User is created before the business, however a user belongs_to a business.
-    #belongs_to_required_by_default = false fixes that.
-    config.active_record.belongs_to_required_by_default = false
   end
 end
