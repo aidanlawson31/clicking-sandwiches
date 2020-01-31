@@ -1,0 +1,19 @@
+<% unless @categories.empty? %>
+  <div class="row row-cols-5">
+    <% @categories.each do |category| %>
+      <div class="card col" style="width: 18rem; margin: 0.5rem;">
+        <div class="card-body">
+          <div class="row">
+            <h5 class="card-title"><%= category.name %></h5>
+          </div> 
+          <hr/>
+          <div class="row">
+            <h5 class="card-title"><%= category.menu.name %></h5>
+          </div> 
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p> You have no categories <p>
+<% end %>

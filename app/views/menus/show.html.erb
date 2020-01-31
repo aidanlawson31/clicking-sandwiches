@@ -1,0 +1,47 @@
+<div class="col">
+  <%= render 'partials/dashboard_nav' %>
+</div>
+<div class="col">
+  <%= simple_form_for @menu do |f| %>
+  <div class="show container">
+    <div class="row">
+      <h1 class="show-header"><%= f.input :name, placeholder: @menu.name %></h1>
+    </div>
+    <hr/>
+    <%= link_to "back", menus_path %>
+    <%= f.button :submit, class: "btn btn-success" %>
+    <%= link_to "Delete Menu", menu_path(@menu), method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure? This action will delete all menu data.' } %>
+  </div>
+  <% end %>
+  <hr/>
+  <h4 style="margin-left: 100px;"><%=@menu.name%> Categories</h4>
+  <% if @menu.categories %> 
+    <% @menu.categories.each do |category| %>
+      <ul class="list-group" style="margin-left: 100px; margin-bottom: 10px; width: 25%;">
+        <li class="list-group-item"><p><%= category.name %></p></li>
+        <li class="list-group-item">
+        <%= link_to "Update Category", edit_category_path(category) %>
+        <%= link_to "Delete Category", category_path(category), method: :DELETE %></li>
+      </ul>
+    <% end %>
+  <% else %>
+    <p>No categories yet! </p>
+  <% end %>
+  <ul class="list-group" style="margin-left: 100px; width: 25%;">
+    <li class="list-group-item"><%= link_to "Create Category", new_category_path %></li>
+  </ul>
+</div>
+<div class="col">
+  <% if @categories %>
+    <% @categories.each do |category| %>
+        <% category.menu_items.each do |menu_item| %>
+        <ul class="list-group" style="margin-left: 100px; margin-bottom: 10px; width: 25%;">
+          <li class="list-group-item"><p><%= menu_item.name %></p></li>
+          <li class="list-group-item"><p><%= menu_item.description %></p></li>
+          <li class="list-group-item"><p><%= menu_item.price %></p></li>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p>No categories yet! </p>
+  <% end %>
+</div>
