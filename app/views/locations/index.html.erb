@@ -1,0 +1,32 @@
+<div class="col">
+  <%= render 'partials/dashboard_nav' %>
+</div>
+<div class="col">
+  <div class="show container">
+    <div class="row">
+      <h1 class="show-header"> Your Locations </h1>
+    </div>
+    <% unless @locations.empty? %>
+    <div class="row row-cols-5">
+      <% @locations.each do |location| %>
+        <div class="card col" style="width: 18rem; margin: 0.5rem;">
+          <div class="card-body">
+            <div class="row">
+              <h5 class="card-title"><%= location.name %></h5>
+            </div> 
+            <hr/>
+            <div class="row">
+              <p class="card-text"><%= location.address %></p>
+            </div>
+            <%= link_to "View Location", location_path(location), class: "btn btn-danger" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <% else %>
+      <p> You have no locations <p>
+    <% end %>
+  <div>
+  <%= image_tag 'add-24px.svg' %>
+  <%= link_to "Add a location", new_location_path, class: "btn btn-danger" %>
+</div>

@@ -1,0 +1,6 @@
+<h1>Create A Menu</h1>
+<%= simple_form_for @menu do |f| %>
+  <%= f.input :name %>
+  <%= f.button :submit %>
+<% end %>
+<%= link_to "back", menus_path %>

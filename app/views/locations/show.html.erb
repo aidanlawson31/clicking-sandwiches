@@ -1,0 +1,21 @@
+
+<div class="col">
+  <%= render 'partials/dashboard_nav' %>
+</div>
+<div class="col">
+<%= simple_form_for @location do |f| %>
+  <div class="show container">
+    <div class="row">
+      <h1 class="show-header"><%= f.input :name, placeholder: @location.name %></h1>
+    </div>
+    <hr/>
+
+    <div class="row">
+      <h4><%= f.input :address, placeholder: @location.address %></h4>
+    </div>
+    <%= link_to "back", locations_path %>
+    <%= f.button :submit, class: "btn btn-danger" %>
+    <%= link_to "Delete", location_path(@location), method: :delete, class: "btn btn-danger" %>
+
+  </div>
+<% end %>
