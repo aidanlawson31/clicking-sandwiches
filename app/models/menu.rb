@@ -1,4 +1,4 @@
 class Menu < ApplicationRecord
-  has_many :categories, dependent: :delete_all
+  has_many :categories, dependent: :destroy
   validates :name, presence: true
 end
