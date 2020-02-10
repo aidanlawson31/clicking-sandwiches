@@ -37,6 +37,37 @@ body {
   padding-top: 20px;
 }
 
+.login-form {
+  /* centering the form */
+  position: fixed; /* or absolute */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* styling the form border */
+  width: 20%;
+  height: 55%;
+  border: 2px solid rgb(208, 230, 255);
+  border-radius: 5px;
+
+  /* styling the form content */
+  padding-top: 3%;
+  text-align: center;
+
+}
+
+label {
+   /* puts form label over input */
+  display: block; 
+}
+
+@media screen and (max-height: 400px) {
+  .login-form {
+    width: 40%;
+    height: 65%;
+  }
+}
+
 /* The navigation menu links */
 .sidenav a {
   padding: 6px 8px 6px 16px;

@@ -22,6 +22,7 @@ class MenuItemsController < ApplicationController
 
   def edit
     @menu_item = MenuItem.find(params[:id])
+    @categories = Category.find(params[:categories])
   end
 
   def update

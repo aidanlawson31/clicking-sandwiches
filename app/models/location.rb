@@ -1,6 +1,6 @@
 class Location < ApplicationRecord
   belongs_to :business
-  has_many   :menus
+  has_and_belongs_to_many :menus
 
   validates :name,    presence: true
   validates :address, presence: true
