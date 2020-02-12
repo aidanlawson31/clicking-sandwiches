@@ -98,6 +98,24 @@ label {
   text-align: center;
 }
 
+.new-menu-form {
+  /* centering the form */
+  position: fixed; /* or absolute */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* styling the form border */
+  width: 30%;
+  height: 40%;
+  border: 2px solid rgb(208, 230, 255);
+  border-radius: 5px;
+
+  /* styling the form content */
+  padding-top: 3%;
+  text-align: center;
+}
+
 @media screen and (max-height: 400px) {
   .login-form {
     width: 40%;

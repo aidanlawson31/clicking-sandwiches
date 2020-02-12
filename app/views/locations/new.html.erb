@@ -1,7 +1,10 @@
-<h1>Create A Location</h1>
-<%= simple_form_for @location do |f| %>
-  <%= f.input :name %>
-  <%= f.input :address %>
-  <%= f.button :submit %>
-<% end %>
-<%= link_to "back", locations_path %>
+<div class="new-menu-form">
+  <h1>Create A Location</h1>
+  <%= simple_form_for @location do |f| %>
+    <%= f.input :name %>
+    <%= f.input :address %>
+    <br>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
+  <%= link_to "back", locations_path %>
+</div>

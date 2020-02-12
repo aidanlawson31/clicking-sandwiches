@@ -3,7 +3,7 @@ class MenusController < ApplicationController
   
   def index
     @menus = Menu.all
-    @locations = current_user.business.locations
+    @menus = current_user.business.menus
   end
 
   def new
@@ -12,8 +12,12 @@ class MenusController < ApplicationController
 
   def create
     @menu = Menu.new(menu_params)
+    @menu.business_id = current_user.business.id
 
     if @menu.save
+      if menu_params[:location_id]
+        @menu.location_menus.create(location_id: menu_params[:location_id])
+      end
       redirect_to menus_path, notice: "menu created successfully"
     else
       render :new
