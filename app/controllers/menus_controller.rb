@@ -11,12 +11,13 @@ class MenusController < ApplicationController
   end
 
   def create
+    @location = params[:menu][:location_id]
     @menu = Menu.new(menu_params)
     @menu.business_id = current_user.business.id
 
     if @menu.save
-      if menu_params[:location_id]
-        @menu.location_menus.create(location_id: menu_params[:location_id])
+      if @location
+        @menu.location_menus.create(location_id: @location)
       end
       redirect_to menus_path, notice: "menu created successfully"
     else
