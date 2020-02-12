@@ -50,7 +50,7 @@
               </div>
               <h1>$<b><%= menu_item.price %></b></h1>
             </div>
-            <%= link_to "Update Menu Item", edit_menu_item_path(menu_item), class: "btn btn-primary" %>
+            <%= link_to "Update Menu Item", edit_menu_item_path(categories: @categories.map{ |category| [category]}), class: "btn btn-primary" %>
             <%= link_to "Delete Menu Item", menu_item_path(menu_item), method: :DELETE, class: "btn btn-danger" %></li>
           </ul>
         <% end %>
