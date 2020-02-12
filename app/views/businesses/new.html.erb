@@ -1,8 +1,12 @@
-<h1>Create A Business</h1>
-<%= simple_form_for @business do |f| %>
-  <%= f.input :name %>
-  <%= f.input :phone_number %>
-  <%= f.input :email, label: "Business Email" %>
-  <%= f.button :submit %>
-<% end %>
-<%= link_to "back", root_path %>
+<div class="new-business-form">
+  <h2>Create A Business</h2>
+  <br>
+  <%= simple_form_for @business do |f| %>
+    <%= f.input :name %>
+    <%= f.input :phone_number %>
+    <%= f.input :email, label: "Business Email" %>
+    <br>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
+  <%= link_to "back", root_path%>
+</div>

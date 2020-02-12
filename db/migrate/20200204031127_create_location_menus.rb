@@ -9,6 +9,6 @@ class CreateLocationMenus < ActiveRecord::Migration[5.2]
   end
 
   def change
-    create_join_table :location, :users
+    create_join_table :location, :menus
   end
 end

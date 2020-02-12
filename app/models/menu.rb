@@ -1,6 +1,6 @@
 class Menu < ApplicationRecord
   has_many :categories, dependent: :destroy
-  has_and_belongs_to_many :locations
+  has_many :location_menus
   
   validates :name, presence: true
 end

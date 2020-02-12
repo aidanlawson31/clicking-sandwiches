@@ -52,9 +52,9 @@ ActiveRecord::Schema.define(version: 2020_02_04_031127) do
     t.index ["menu_id"], name: "index_categories_on_menu_id"
   end
 
-  create_table "location_users", id: false, force: :cascade do |t|
+  create_table "location_menus", id: false, force: :cascade do |t|
     t.bigint "location_id", null: false
-    t.bigint "user_id", null: false
+    t.bigint "menu_id", null: false
   end
 
   create_table "locations", force: :cascade do |t|

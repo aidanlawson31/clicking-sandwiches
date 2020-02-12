@@ -3,6 +3,7 @@ class MenusController < ApplicationController
   
   def index
     @menus = Menu.all
+    @locations = current_user.business.locations
   end
 
   def new

@@ -25,7 +25,7 @@ class LocationsController < ApplicationController
 
   def update
     @location = Location.find(params[:id])
-    @location.location_menus.create(menu_id: menu.id)
+    @location.menus.create(menu_id: menu.id)
 
     if @location.update(location_params)
       redirect_to location_path(@location), notice: "Location updated successfully"
@@ -43,6 +43,7 @@ class LocationsController < ApplicationController
 
   def show
     @location = Location.find(params[:id])
+    @location_menus = @location.location_menus
   end
 
   private

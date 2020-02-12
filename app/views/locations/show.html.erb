@@ -24,15 +24,15 @@
     <div class="row">
       <h1 class="show-header"> Your Menus </h1>
     </div>
-    <% unless @location.location_menus.empty? %>
+    <% unless @location_menus.empty? %>
     <div class="row row-cols-5">
-      <% @location.location_menus.each do |menu| %>
+      <% @location_menus.each do |location_menu| %>
         <div class="card col" style="width: 18rem; margin: 0.5rem;">
           <div class="card-body">
             <div class="row">
-              <h5 class="card-title"><%= menu.name %></h5>
+              <h5 class="card-title"><%= location_menu.menu.name %></h5>
             </div> 
-            <%= link_to "View Menu", menu_path(menu), class: "btn btn-danger" %>
+            <%= link_to "View Menu", menu_path(location_menu.menu), class: "btn btn-danger" %>
           </div>
         </div>
         <%= link_to "Add existing menu", locations_path, class: "btn btn-primary" %>
