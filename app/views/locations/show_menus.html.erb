@@ -1,0 +1,28 @@
+<div class="col">
+  <%= render 'partials/dashboard_nav' %>
+</div>
+<div class="col" style="padding-left:120px;">
+  <h1> Add Menus To <%= @location.name %></h1>
+  <%= simple_form_for :location_menus, url: add_menus_location_path(@location.id), method: :post do |f| %>
+
+    <% unless @menus.empty? %>
+    <div class="row row-cols-5">
+      <% @menus.each do |menu| %>
+        <div class="card col" style="width: 18rem; margin: 0.5rem;">
+          <div class="card-body">
+            <div class="row">
+              <h5 class="card-title"><%= menu.name %></h5>
+            </div> 
+            <td><%= check_box_tag "added_menus[]", menu.id %></td>
+            <%= link_to "View Menu", menu_path(menu), class: "btn btn-danger" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <% else %>
+      <p> You have no menus <p>
+      <%= link_to "Create Menu", new_menu_path, class: "btn btn-danger" %>
+    <% end %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
+</div>

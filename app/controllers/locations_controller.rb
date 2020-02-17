@@ -20,6 +20,28 @@ class LocationsController < ApplicationController
     end
   end
 
+  def add_menus
+    puts "ALALAL #{params}" 
+
+    @location = Location.find(params[:id])
+
+    puts "ALALAL2 #{params}" 
+
+
+    # puts "ALALAL #{location_params[:added_menus]}" 
+
+    # @added_menus.each do |menu|
+    #   menu.location_menu.create(location_id: @location)
+    # end
+
+    # puts "ALALAL #{location_params[:added_menus]}" 
+  end
+
+  def show_menus
+    @location = Location.find(params[:id])
+    @menus = current_user.business.menus
+  end
+
   def edit
   end
 
@@ -43,11 +65,12 @@ class LocationsController < ApplicationController
   def show
     @location = Location.find(params[:id])
     @location_menus = @location.location_menus
+    @menus = current_user.business.menus
   end
 
   private
 
   def location_params
-    params[:location].permit(:name, :address)
+    params[:location].permit(:name, :address, added_menus:[])
   end
 end
