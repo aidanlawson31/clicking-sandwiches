@@ -35,7 +35,8 @@
               <div class="row">
                 <h5 class="card-title"><%= location_menu.menu.name %></h5>
               </div> 
-              <%= link_to "View Menu", menu_path(location_menu.menu), class: "btn btn-danger" %>
+              <%= link_to "View Menu", menu_path(location_menu.menu), class: "btn btn-primary" %>
+              <%= link_to "Remove Menu", remove_menu_location_path(location_menu:location_menu.id), method: :delete, class: "btn btn-danger" %> 
             </div>
           </div>
       <% end %>

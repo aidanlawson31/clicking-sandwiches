@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     member do
       get  'show_menus'
       post 'add_menus'
+      delete 'remove_menu'
     end
   end
 
