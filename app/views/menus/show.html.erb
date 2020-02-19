@@ -7,6 +7,11 @@
     <div class="row">
       <h1 class="show-header"><%= f.input :name, placeholder: @menu.name %></h1>
     </div>
+    <% unless @menu.location_menus.present? %>
+      <p>This menu does not yet have a location. </p>
+      <p>Select a Location: </p>
+    <% end %>
+    <%= f.collection_select :location_menus, @locations, :id, :name, {:prompt => "No location"} %>
     <hr/>
     <%= link_to "back", menus_path %>
     <%= f.button :submit, class: "btn btn-primary" %>

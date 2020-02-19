@@ -7,8 +7,4 @@ class CreateLocationMenus < ActiveRecord::Migration[5.2]
       t.timestamps
     end
   end
-
-  def change
-    create_join_table :location, :users
-  end
 end

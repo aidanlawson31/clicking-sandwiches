@@ -1,6 +1,14 @@
-<h1>Create A Menu</h1>
-<%= simple_form_for @menu do |f| %>
-  <%= f.input :name %>
-  <%= f.button :submit %>
-<% end %>
-<%= link_to "back", menus_path %>
+<div class="new-menu-form">
+  <h1>Create A Menu</h1>
+  <%= simple_form_for @menu do |f| %>
+    <%= f.input :name %>
+    <%= f.input :location_id, as: :hidden, input_html: { value: params[:location_id] } %>
+    <br>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
+  <% if params[:location_id] %>
+    <%= link_to "back", location_path(params[:location_id]) %>
+  <% else %>
+    <%= link_to "back", menus_path %>
+  <% end %>
+</div>
