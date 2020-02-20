@@ -9,23 +9,20 @@
     <% unless @locations.empty? %>
     <div class="row row-cols-5">
       <% @locations.each do |location| %>
-        <div class="card col" style="width: 18rem; margin: 0.5rem;">
+
+        <div class="card" style="width: 18rem;">
           <div class="card-body">
-            <div class="row">
-              <h5 class="card-title"><%= location.name %></h5>
-            </div> 
-            <hr/>
-            <div class="row">
-              <p class="card-text"><%= location.address %></p>
-            </div>
-            <%= link_to "View Location", location_path(location), class: "btn btn-danger" %>
+            <h5 class="card-title"><%= location.name %></h5>
+            <p class="card-text"><%= location.address %></p>
+            <%= link_to "View Location", location_path(location), class: "btn btn-primary" %>
           </div>
         </div>
+
       <% end %>
     </div>
     <% else %>
       <p> You have no locations <p>
     <% end %>
   <div>
-  <%= link_to "Add a location", new_location_path, class: "btn btn-danger" %>
+  <%= link_to "Add a location", new_location_path, class: "btn btn-primary" %>
 </div>

@@ -51,6 +51,26 @@ class LocationsController < ApplicationController
     end
   end
 
+  def add_image
+    @location_image = LocationImage.new(location_image_params)
+    @location = Location.find(params[:id])
+    @location_image.location = @location
+
+    if @location_image.save
+      redirect_to location_path(@location), notice: "Image added successfully"
+    end
+  end
+
+  def remove_image
+    @location = Location.find(params[:id])
+    @location_image = LocationImage.find(params[:location_image])
+
+    if @location_image.destroy
+      redirect_to location_path(@location)
+      flash.now[:notice] = "Menu successfully removed from #{@location.name}"
+    end
+  end
+
   def edit
   end
 
@@ -59,7 +79,6 @@ class LocationsController < ApplicationController
 
     if @location.update(location_params)
       redirect_to location_path(@location), notice: "Location updated"
-      render :show
     end
   end
 
@@ -71,6 +90,9 @@ class LocationsController < ApplicationController
   end
 
   def show
+    @location_image  = LocationImage.new
+    @location_images = LocationImage.all
+
     @location = Location.find(params[:id])
     @location_menus = @location.location_menus
     @menus = current_user.business.menus
@@ -80,5 +102,9 @@ class LocationsController < ApplicationController
 
   def location_params
     params[:location].permit(:name, :address, :location_menu, added_menus:[])
+  end
+
+  def location_image_params
+    params[:location_image].permit(:image, :display_sequence_number)
   end
 end
