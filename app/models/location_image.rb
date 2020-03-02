@@ -3,6 +3,6 @@ class LocationImage < ApplicationRecord
   has_one_attached :image
 
   def sized_image
-    return self.image.variant(resize: '!300x300').processed
+    self.image.variant(resize: '!300x300').processed
   end
 end

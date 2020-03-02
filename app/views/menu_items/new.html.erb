@@ -5,7 +5,9 @@
   <%= f.input :price %>
   <%= f.input :code %>
   <p>Select a category: </p>
-  <%= f.collection_select :category_id, @categories, :id, :name %>
-  <%= f.button :submit %>
+  <%= f.collection_select :category_id, @categories, :id, :name %><br><br>
+  <%= f.file_field :image, accept: 'image/png,image/jpeg' %><br><br>
+  <%= f.hidden_field :display_sequence_number, value: 0 %>
+  <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>
 <%= link_to "back", menus_path %>

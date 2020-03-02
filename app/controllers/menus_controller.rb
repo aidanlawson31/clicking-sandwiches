@@ -15,10 +15,6 @@ class MenusController < ApplicationController
     @menu.business_id = current_user.business.id
 
     if @menu.save
-      # if @location.present?
-      #   @menu.location_menus.create(location_id: @location)
-      #   redirect_to location_path(@location), notice: "menu updated successfully"
-      # end
       redirect_to menus_path, notice: "menu created successfully"
     else
       render :new
@@ -48,12 +44,23 @@ class MenusController < ApplicationController
   def show
     @menu = Menu.find(params[:id])
     @categories = @menu.categories
-    @locations = current_user.business.locations
+    @locations  = current_user.business.locations
+  end
+
+  def sort_menu_items_categories
+    @menu = Menu.find(params[:id])
+    @categories = @menu.categories
+    @category   = @categories.first
+  end
+
+  def save_sort_menu_items_categories
+    @menu = Menu.find(params[:id])
+    @categories = @menu.categories
   end
 
   private
 
   def menu_params
-    params[:menu].permit(:name)
+    params[:menu].permit(:name,	categories_attributes: [ :id, :display_sequence, :name ])
   end
 end

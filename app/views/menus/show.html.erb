@@ -37,8 +37,11 @@
   <div class="col">
     <% if @categories %>
       <% @categories.each do |category| %>
+        <table>
         <% category.menu_items.each do |menu_item| %>
           <ul class="list-group" style="margin-bottom:10px;">
+          <tr>
+          <th>
             <li class="list-group-item"><h2><b><%= menu_item.name %><br></b></h2><hr>
             <div class="row">
               <div class="col-1">
@@ -46,14 +49,22 @@
               </div>
               <div class="col">
                 <b><%= menu_item.category.name %></b><br>
-                <%= menu_item.description %><br>
+                <%= menu_item.description %>
+              </div>
+              <div class="col">
+                <% if menu_item.image.attached? %>
+                  <%= image_tag menu_item.sized_image %>
+                <% end %>
               </div>
               <h1>$<b><%= menu_item.price %></b></h1>
             </div>
-            <%= link_to "Update Menu Item", edit_menu_item_path(categories: @categories.map{ |category| [category]}), class: "btn btn-primary" %>
+            <%= link_to "Update Menu Item", edit_menu_item_path(categories: @categories.map{ |category| [category]}, menu_item: menu_item.id), class: "btn btn-primary" %>
             <%= link_to "Delete Menu Item", menu_item_path(menu_item), method: :DELETE, class: "btn btn-danger" %></li>
           </ul>
+          </th>
+          </tr>
         <% end %>
+        </table>
       <% end %>
     <% else %>
       <p>No menu items yet! </p>
@@ -62,6 +73,7 @@
     <% if @menu.categories.present? %> 
       <div class="menu-itm-btns" style="margin-top: 10px;">
         <%= link_to "Create Menu Item", new_menu_item_path(categories: @categories.map{ |category| [category]}), class: "btn btn-primary" %>
+        <%= link_to "Sort Menu Items",  sort_menu_items_categories_menu_path, class: "btn btn-primary" %>
       </div>
     <% else %>
       <p> Please create a category to create a menu item </p>

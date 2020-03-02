@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_category, only: [:edit, :update, :destroy, :show]
   
   def index
     @categories = Category.all
@@ -21,12 +22,9 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.find(params[:id])
   end
 
   def update
-    @category = Category.find(params[:id])
-
     if @category.update(category_params)
       redirect_to menu_path(@category.menu), notice: "Category updated successfully"
     else
@@ -34,20 +32,21 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def destroy
-    @category = Category.find(params[:id])
-    
+  def destroy    
     @category.destroy
     redirect_to menu_path(@category.menu), notice: 'Category was successfully destroyed.'
   end
 
   def show
-    @category = Category.find(params[:id])
   end
 
   private
 
+  def set_category
+    @category = Category.find(params[:id])
+  end
+
   def category_params
-    params[:category].permit(:name, :menu_id)
+    params[:category].permit(:name, :menu_id, menu_items_attributes: [ :id, :display_sequence, :name, :description, :price ])
   end
 end

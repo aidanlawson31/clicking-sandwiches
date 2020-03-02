@@ -10,7 +10,15 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery3
+//= require jquery-ui/widgets/sortable
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require_tree .
+
+$('#menu-items-list').sortable({ 
+  placeholder: 'ui-state-highlight',
+  update: function(event, ui) {
+    $('#menu-items-list tr').each(function (index) { $(this).find(".display_sequence_number").val(index+1) }); // Update display_sequence after row moved.
+  }
+});
