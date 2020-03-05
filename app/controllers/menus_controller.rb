@@ -48,8 +48,6 @@ class MenusController < ApplicationController
   end
 
   def save_sort_menu_categories
-    puts "ALAL#{menu_sort_params}"
-    puts @menu.inspect
     if @menu.update(menu_sort_params)
       redirect_to menu_path(@menu), notice: 'Categories successfully sorted.'
     else
@@ -64,7 +62,7 @@ class MenusController < ApplicationController
   end
 
   def menu_params
-    params[:menu].permit(:name,	categories_attributes: [ :id, :name, :display_sequence_number ])
+    params[:menu].permit(:name, categories_attributes: [ :id, :name, :display_sequence_number ])
   end
 
   def menu_sort_params

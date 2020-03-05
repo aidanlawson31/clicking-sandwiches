@@ -9,7 +9,7 @@ class MenuItem < ApplicationRecord
   validates :price,       presence: true
 	validates :display_sequence_number, inclusion: 1..10_000
 
-  def sized_image
-    self.image.variant(resize: '!140x100').processed
+  def sized_image(size: 140)
+    image.variant(resize: "#{size}x#{size}").processed if image.attached?
   end
 end

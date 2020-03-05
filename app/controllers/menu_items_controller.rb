@@ -13,8 +13,8 @@ class MenuItemsController < ApplicationController
   end
 
   def create
-    @menu_item             = MenuItem.new(menu_item_params)
-    @menu_item.category_id = params[:category_id]
+    @menu_item                         = MenuItem.new(menu_item_params)
+    @menu_item.category_id             = params[:category_id]
     @menu_item.display_sequence_number = next_display_sequence_number(@menu_item.category_id)
 
     if @menu_item.save
@@ -36,9 +36,7 @@ class MenuItemsController < ApplicationController
     end
   end
 
-  def destroy
-    @menu = @menu_item.category.menu
-    
+  def destroy    
     @menu_item.destroy
     redirect_to menu_path(@menu), notice: 'menu item was successfully destroyed.'
   end

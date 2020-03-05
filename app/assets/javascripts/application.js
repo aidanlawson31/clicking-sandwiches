@@ -16,7 +16,7 @@
 //= require activestorage
 //= require_tree .
 
-// Todo: uncomment this code and remove from layout file soon
+// Todo: uncomment this code and remove <script> js from layout file soon
 
 // $(document).ready(function () {
 //   $('#menu-items-list').sortable({ 

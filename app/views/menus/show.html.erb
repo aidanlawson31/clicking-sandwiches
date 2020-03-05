@@ -27,7 +27,7 @@
           <%= link_to "Update Category Name", edit_menu_category_path(@menu.id, category.id), class: "btn btn-primary btn-sm" %>
           <%= link_to "Delete Category",      menu_category_path(@menu.id, category.id), method: :DELETE, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure? This action will delete all category items.' }  %>
           <%= link_to "Add Menu Item",        new_menu_category_menu_item_path(@menu.id, category.id), class: "btn btn-primary btn-sm" %>
-          <%= link_to "Sort Menu Items",      sort_menu_items_categories_menu_category_path(@menu.id, category.id), class: "btn btn-primary btn-sm" %>
+          <%= link_to "Sort Menu Items",      sort_category_menu_items_menu_category_path(@menu.id, category.id), class: "btn btn-primary btn-sm" %>
         </div>
       </div>
 

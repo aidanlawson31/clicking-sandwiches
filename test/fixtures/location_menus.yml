@@ -2,8 +2,8 @@
 
 one:
   location: one
-  menu: one
+  menu:     one
 
 two:
   location: two
-  menu: two
+  menu:     two

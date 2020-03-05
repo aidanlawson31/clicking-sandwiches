@@ -1,6 +1,6 @@
 <h1> Sort the order of your menu items </h1>
 
-<%= simple_form_for @category, url: save_sort_menu_items_categories_menu_category_path do |f| %>
+<%= simple_form_for @category, url: save_sort_category_menu_items_menu_category_path do |f| %>
   <table class="table">
     <tbody id="menu-items-list">
       <%= f.simple_fields_for :menu_items, wrapper: false do |menu_item_form| %>

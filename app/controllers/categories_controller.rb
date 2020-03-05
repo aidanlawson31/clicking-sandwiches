@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_category, only: [:edit, :update, :destroy, :show, :sort_menu_items_categories, :save_sort_menu_items_categories]
+  before_action :set_category, only: [:edit, :update, :destroy, :show, :sort_category_menu_items, :save_sort_category_menu_items]
   before_action :set_menu
   
   def index
@@ -12,8 +12,8 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category         = Category.new(category_params)
-    @category.menu_id = category_params[:menu_id]
+    @category                         = Category.new(category_params)
+    @category.menu_id                 = category_params[:menu_id]
     @category.display_sequence_number = next_display_sequence_number(@category.menu_id)
 
     if @category.save
@@ -42,10 +42,10 @@ class CategoriesController < ApplicationController
   def show
   end
 
-  def sort_menu_items_categories
+  def sort_category_menu_items
   end
 
-  def save_sort_menu_items_categories
+  def save_sort_category_menu_items
     if @category.update(category_sort_params)
       redirect_to menu_path(@category.menu), notice: 'Menu Items successfully sorted.'
     else

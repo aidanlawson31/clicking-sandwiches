@@ -22,8 +22,8 @@ Rails.application.routes.draw do
 
     resources :categories do
       member do
-        get   'sort_menu_items_categories'
-        patch 'save_sort_menu_items_categories'
+        get   'sort_category_menu_items'
+        patch 'save_sort_category_menu_items'
       end
 
       resources :menu_items
