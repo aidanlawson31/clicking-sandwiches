@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_12_061602) do
+ActiveRecord::Schema.define(version: 2020_02_23_040454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,16 @@ ActiveRecord::Schema.define(version: 2020_02_12_061602) do
     t.bigint "menu_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "display_sequence_number"
     t.index ["menu_id"], name: "index_categories_on_menu_id"
+  end
+
+  create_table "location_images", force: :cascade do |t|
+    t.bigint "location_id"
+    t.integer "display_sequence_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_location_images_on_location_id"
   end
 
   create_table "location_menus", force: :cascade do |t|
@@ -78,6 +87,7 @@ ActiveRecord::Schema.define(version: 2020_02_12_061602) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "code"
+    t.integer "display_sequence_number"
     t.index ["category_id"], name: "index_menu_items_on_category_id"
     t.index ["code"], name: "index_menu_items_on_code"
   end
@@ -107,6 +117,7 @@ ActiveRecord::Schema.define(version: 2020_02_12_061602) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "categories", "menus"
+  add_foreign_key "location_images", "locations"
   add_foreign_key "location_menus", "locations"
   add_foreign_key "location_menus", "menus"
   add_foreign_key "locations", "businesses"

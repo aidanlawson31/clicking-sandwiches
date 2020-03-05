@@ -1,5 +1,6 @@
 class MenusController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_menu, only: [:update, :destroy, :show, :sort_menu_categories, :save_sort_menu_categories]
   
   def index
     @menus = Menu.all
@@ -15,10 +16,6 @@ class MenusController < ApplicationController
     @menu.business_id = current_user.business.id
 
     if @menu.save
-      # if @location.present?
-      #   @menu.location_menus.create(location_id: @location)
-      #   redirect_to location_path(@location), notice: "menu updated successfully"
-      # end
       redirect_to menus_path, notice: "menu created successfully"
     else
       render :new
@@ -29,8 +26,6 @@ class MenusController < ApplicationController
   end
 
   def update
-    @menu = Menu.find(params[:id])
-
     if @menu.update(menu_params)
       redirect_to menu_path(@menu), notice: "menu updated successfully"
     else
@@ -39,21 +34,38 @@ class MenusController < ApplicationController
   end
 
   def destroy
-    @menu = Menu.find(params[:id])
     
     @menu.destroy
     redirect_to menus_path, notice: 'menu was successfully destroyed.'
   end
 
   def show
-    @menu = Menu.find(params[:id])
     @categories = @menu.categories
-    @locations = current_user.business.locations
+    @locations  = current_user.business.locations
+  end
+
+  def sort_menu_categories
+  end
+
+  def save_sort_menu_categories
+    if @menu.update(menu_sort_params)
+      redirect_to menu_path(@menu), notice: 'Categories successfully sorted.'
+    else
+      render :sort_menu_categories
+    end
   end
 
   private
 
+  def set_menu
+    @menu = Menu.find(params[:id])
+  end
+
   def menu_params
-    params[:menu].permit(:name)
+    params[:menu].permit(:name, categories_attributes: [ :id, :name, :display_sequence_number ])
+  end
+
+  def menu_sort_params
+    params[:menu].permit(categories_attributes: [:id, :name, :display_sequence_number ])
   end
 end

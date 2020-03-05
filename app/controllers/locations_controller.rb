@@ -1,5 +1,6 @@
 class LocationsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_location, only: [:add_menus, :show_menus, :remove_menu, :add_image, :remove_image, :update, :destroy, :show]
   
   def index
     @locations = current_user.business.locations
@@ -10,7 +11,7 @@ class LocationsController < ApplicationController
   end
 
   def create
-    @location = Location.new(location_params)
+    @location             = Location.new(location_params)
     @location.business_id = current_user.business.id
 
     if @location.save
@@ -21,7 +22,6 @@ class LocationsController < ApplicationController
   end
 
   def add_menus
-    @location = Location.find(params[:id])
     @added_menus = params[:added_menus]
 
     if @added_menus
@@ -34,18 +34,33 @@ class LocationsController < ApplicationController
   end
 
   def show_menus
-    @location = Location.find(params[:id])
-
     @menus = current_user.business.menus.select do |menu|
       LocationMenu.find_by(menu_id: menu.id, location_id: @location.id).present? ? false : true
     end
   end
 
   def remove_menu
-    @location = Location.find(params[:id])
     @location_menu = LocationMenu.find(params[:location_menu])
 
     if @location.location_menus.delete(@location_menu)
+      redirect_to location_path(@location)
+      flash.now[:notice] = "Menu successfully removed from #{@location.name}"
+    end
+  end
+
+  def add_image
+    @location_image          = LocationImage.new(location_image_params)
+    @location_image.location = @location
+
+    if @location_image.save
+      redirect_to location_path(@location), notice: "Image added successfully"
+    end
+  end
+
+  def remove_image
+    @location_image = LocationImage.find(params[:location_image])
+
+    if @location_image.destroy
       redirect_to location_path(@location)
       flash.now[:notice] = "Menu successfully removed from #{@location.name}"
     end
@@ -55,30 +70,34 @@ class LocationsController < ApplicationController
   end
 
   def update
-    @location = Location.find(params[:id])
-
     if @location.update(location_params)
       redirect_to location_path(@location), notice: "Location updated"
-      render :show
     end
   end
 
-  def destroy
-    @location = Location.find(params[:id])
-    
+  def destroy    
     @location.destroy
     redirect_to locations_path, notice: 'Location was successfully destroyed.'
   end
 
   def show
-    @location = Location.find(params[:id])
-    @location_menus = @location.location_menus
-    @menus = current_user.business.menus
+    @location_image  = LocationImage.new
+    @location_images = LocationImage.all
+    @location_menus  = @location.location_menus
+    @menus           = current_user.business.menus
   end
 
   private
 
+  def set_location
+    @location = Location.find(params[:id])
+  end
+
   def location_params
     params[:location].permit(:name, :address, :location_menu, added_menus:[])
+  end
+
+  def location_image_params
+    params[:location_image].permit(:image, :display_sequence_number)
   end
 end

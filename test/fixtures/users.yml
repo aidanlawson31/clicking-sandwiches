@@ -1,7 +1,7 @@
 user_one:
-  email: jsmitty@gmail.com
+  email:    jsmitty@gmail.com
   business: sandwhiches
 
 user_two:
-  email: dvid123@gmail.com
+  email:    dvid123@gmail.com
   business: burgers

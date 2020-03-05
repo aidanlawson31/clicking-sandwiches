@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name:        MyString
   description: MyText
-  price: 1.5
-  category: one
+  price:       1.5
+  category:    one
 
 two:
-  name: MyString
+  name:        MyString
   description: MyText
-  price: 1.5
-  category: two
+  price:       1.5
+  category:    two
