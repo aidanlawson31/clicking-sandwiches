@@ -2,7 +2,7 @@
   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
     Edit A Category
   </button>
-  <%= simple_form_for @category do |f| %>
+  <%= simple_form_for @category, url: menu_category_path(@menu.id, @category.id)do |f| %>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -14,10 +14,7 @@
           </div>
           <div class="modal-body">
             <%= f.input :name %>
-            <div class="row">
-              <p>Select a menu: </p>
-              <%= f.collection_select :menu_id, Menu.all, :id, :name %>
-            </div>
+            <%= f.hidden_field :menu_id, value: @menu.id %>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

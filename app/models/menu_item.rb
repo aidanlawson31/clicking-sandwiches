@@ -1,6 +1,5 @@
 class MenuItem < ApplicationRecord
   belongs_to :category
-
   has_one_attached :image
 
   default_scope { order(:display_sequence_number) }

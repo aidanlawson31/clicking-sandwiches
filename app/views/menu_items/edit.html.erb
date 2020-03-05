@@ -1,12 +1,11 @@
 <h1>Edit A Menu Item</h1>
-<%= simple_form_for @menu_item do |f| %>
+<%= simple_form_for @menu_item, url: menu_category_menu_item_path(@menu.id, @category.id) do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :price %>
   <%= f.input :code %>
-  <p>Select a category: </p>
-  <%= f.collection_select :category_id, @categories, :id, :name %><br><br>
   <%= f.file_field :image, accept: 'image/png,image/jpeg' %><br><br>
-  <%= f.button :submit %>
+  <%= f.hidden_field :display_sequence_number, value: @menu_item.display_sequence_number %>
+  <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>
 <%= link_to "back", menus_path %>

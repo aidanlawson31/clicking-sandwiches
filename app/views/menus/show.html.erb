@@ -1,82 +1,61 @@
-<div class="col">
-  <%= render 'partials/dashboard_nav' %>
-</div>
-<div class="col">
-  <%= simple_form_for @menu do |f| %>
-  <div class="show container">
-    <div class="row">
-      <h1 class="show-header"><%= f.input :name, placeholder: @menu.name %></h1>
-    </div>
-    <hr/>
-    <%= link_to "back", menus_path %>
-    <%= f.button :submit, class: "btn btn-primary" %>
-    <%= link_to "Delete Menu", menu_path(@menu), method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure? This action will delete all menu items.' } %>
-  </div>
-  <% end %>
-  <hr/>
-  <div class="row">
-    <div class="col">
-      <h4 style="margin-left: 100px;"><%=@menu.name%> Categories</h4>
-      <% if @menu.categories %> 
-        <% @menu.categories.each do |category| %>
-          <ul class="list-group" style="margin-left: 100px; margin-bottom: 10px; ">
-            <li class="list-group-item"><p><%= category.name %></p></li>
-            <li class="list-group-item">
-            <%= link_to "Update Category", edit_category_path(category), class: "btn btn-primary" %>
-            <%= link_to "Delete Category", category_path(category), method: :DELETE, class: "btn btn-danger", data: { confirm: 'Are you sure? This action will delete all category items.' }  %></li>
-          </ul>
-        <% end %>
-      <% else %>
-        <p>No categories yet! </p>
-      <% end %>
-    <div class="category-btns" style="margin-left: 100px;">
-      <%= link_to "Create Category", new_category_path, class: "btn btn-primary" %>
-    </div>
-  </div>
+<div class="container">
 
-  <div class="col">
-    <% if @categories %>
-      <% @categories.each do |category| %>
-        <table>
-        <% category.menu_items.each do |menu_item| %>
-          <ul class="list-group" style="margin-bottom:10px;">
-          <tr>
-          <th>
-            <li class="list-group-item"><h2><b><%= menu_item.name %><br></b></h2><hr>
-            <div class="row">
-              <div class="col-1">
-                <h1><b><%= menu_item.code %></b></h1><br>
-              </div>
-              <div class="col">
-                <b><%= menu_item.category.name %></b><br>
-                <%= menu_item.description %>
-              </div>
-              <div class="col">
-                <% if menu_item.image.attached? %>
-                  <%= image_tag menu_item.sized_image %>
-                <% end %>
-              </div>
-              <h1>$<b><%= menu_item.price %></b></h1>
-            </div>
-            <%= link_to "Update Menu Item", edit_menu_item_path(categories: @categories.map{ |category| [category]}, menu_item: menu_item.id), class: "btn btn-primary" %>
-            <%= link_to "Delete Menu Item", menu_item_path(menu_item), method: :DELETE, class: "btn btn-danger" %></li>
-          </ul>
-          </th>
-          </tr>
-        <% end %>
-        </table>
-      <% end %>
-    <% else %>
-      <p>No menu items yet! </p>
-    <% end %>
-  
-    <% if @menu.categories.present? %> 
-      <div class="menu-itm-btns" style="margin-top: 10px;">
-        <%= link_to "Create Menu Item", new_menu_item_path(categories: @categories.map{ |category| [category]}), class: "btn btn-primary" %>
-        <%= link_to "Sort Menu Items",  sort_menu_items_categories_menu_path, class: "btn btn-primary" %>
+  <%= simple_form_for @menu do |f| %>
+    <div class="show container">
+      <div class="row">
+        <h1 class="show-header"><%= f.input :name, placeholder: @menu.name %></h1>
       </div>
-    <% else %>
-      <p> Please create a category to create a menu item </p>
+      <hr/>
+      <%= link_to "back", menus_path %>
+      <%= f.button :submit, class: "btn btn-primary btn-sm" %>
+      <%= link_to "Delete Menu", menu_path(@menu), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure? This action will delete all menu items.' } %>
+    </div>
+  <% end %>
+
+  <hr/>
+
+  <h4><%=@menu.name%> Categories</h4>
+  <%= link_to "Create Category", new_menu_category_path(@menu.id), class: "btn btn-primary btn-sm", style: "margin-bottom:1%;" %>
+  <%= link_to "Sort Categories", sort_menu_categories_menu_path(@menu.id), class: "btn btn-primary btn-sm" %>
+  <% if @menu.categories %> 
+    <% @menu.categories.each do |category| %>
+      <div class="row menu-show-category" style="margin-bottom: 1%; margin-top: 1%;">
+        <div class="col">
+          <p><%= category.name %></p>
+        </div>
+        <div class="row">
+          <%= link_to "Update Category Name", edit_menu_category_path(@menu.id, category.id), class: "btn btn-primary btn-sm" %>
+          <%= link_to "Delete Category",      menu_category_path(@menu.id, category.id), method: :DELETE, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure? This action will delete all category items.' }  %>
+          <%= link_to "Add Menu Item",        new_menu_category_menu_item_path(@menu.id, category.id), class: "btn btn-primary btn-sm" %>
+          <%= link_to "Sort Menu Items",      sort_menu_items_categories_menu_category_path(@menu.id, category.id), class: "btn btn-primary btn-sm" %>
+        </div>
+      </div>
+
+      <% category.menu_items.each do |menu_item| %>
+        <div class="row menu-show-menu-item">
+          <div class="col-1">
+            <%= menu_item.code %>
+          </div>
+          <div class="col">
+            Name: <%= menu_item.name %><br>
+            Category: <%= menu_item.category.name %><br>
+            Description: <%= menu_item.description %>
+          </div>
+          <div class="col">
+            <% if menu_item.image.attached? %>
+              <%= image_tag menu_item.sized_image %>
+            <% end %>
+          </div>
+          <div class="col">
+            <%= link_to "Delete Menu Item", menu_category_menu_item_path(@menu.id, menu_item.category.id, menu_item.id), method: :DELETE, class: "btn btn-danger btn-sm" %>
+            <%= link_to "Update Menu Item", edit_menu_category_menu_item_path(@menu.id, menu_item.category.id, menu_item.id), class: "btn btn-primary btn-sm" %>
+          </div>
+          $<%= menu_item.price %>
+        </div>
+      <% end %>
     <% end %>
-  </div>
+  <% else %>
+    <p>No categories yet! </p>
+  <% end %>
+
 </div>

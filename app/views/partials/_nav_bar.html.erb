@@ -1,8 +1,15 @@
 <ul class="nav justify-content-end">
   <li class="nav-item"><%= link_to "Clicking Sandwhiches", root_path, class: "nav-link active" %></li>
   <% if user_signed_in? && current_user.business %>
-    <li class="nav-item">
-      <%= link_to "My business", business_path(current_user.business), class: "nav-link active" %>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Dashboard
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <%= link_to "My Business", business_path(current_user.business), class: "nav-link active" %>
+        <%= link_to "Locations", locations_path, class: "nav-link active" %>
+        <%= link_to "Menus",     menus_path , class: "nav-link active" %>
+      </div>
     </li>
     <li class="nav-item">
       <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link active" %>

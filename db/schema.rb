@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2020_02_23_040454) do
     t.bigint "menu_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "display_sequence_number"
     t.index ["menu_id"], name: "index_categories_on_menu_id"
   end
 
