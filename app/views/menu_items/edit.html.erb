@@ -8,4 +8,4 @@
   <%= f.hidden_field :display_sequence_number, value: @menu_item.display_sequence_number %>
   <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>
-<%= link_to "back", menus_path %>
+<%= link_to "back", menu_path(@menu) %>

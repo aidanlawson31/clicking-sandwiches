@@ -16,7 +16,7 @@
 
   <h4><%=@menu.name%> Categories</h4>
   <%= link_to "Create Category", new_menu_category_path(@menu.id), class: "btn btn-primary btn-sm", style: "margin-bottom:1%;" %>
-  <%= link_to "Sort Categories", sort_menu_categories_menu_path(@menu.id), class: "btn btn-primary btn-sm" %>
+  <%= link_to "Sort Categories", sort_menu_categories_menu_path(@menu.id), class: "btn btn-primary btn-sm", style: "margin-bottom:1%;" %>
   <% if @menu.categories %> 
     <% @menu.categories.each do |category| %>
       <div class="row menu-show-category" style="margin-bottom: 1%; margin-top: 1%;">
@@ -37,9 +37,11 @@
             <%= menu_item.code %>
           </div>
           <div class="col">
-            Name: <%= menu_item.name %><br>
-            Category: <%= menu_item.category.name %><br>
-            Description: <%= menu_item.description %>
+            <div class="row menu-item-name">
+              <%= menu_item.name %><br>
+            </div>
+            <b>Category: <%= menu_item.category.name %><br></b>
+            <%= menu_item.description %>
           </div>
           <div class="col">
             <% if menu_item.image.attached? %>

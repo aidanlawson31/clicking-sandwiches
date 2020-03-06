@@ -13,6 +13,27 @@ abbr[title="required"] {
   display: none;
 }
 
+.nav {
+  background-color: #1C4D7E;
+
+  a {
+    color: white;
+  }
+}
+
+.drop-down-link {
+  color: #1C4D7E !important;
+}
+
+.nav-item {
+  color: #1C4D7E;
+}
+
+.menu-item-name {
+  background-color: #1C4D7E;
+  color: white;
+}
+
 .home {
   background-image: url('../images/ben-karpinski-aJAfKxscG3k-unsplash.jpg');
   height: 100%;
@@ -30,6 +51,19 @@ abbr[title="required"] {
   width: 400px;
 }
 
+.btn-primary {
+  background-color: #1C4D7E;
+  color:#FFF;
+  border-color: #1C4D7E;
+}
+ 
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+  background-color: #2F3E48;
+  color:#FFF;
+  border-color: #31347B;
+}
+
+
 .show-header {
   color: #000000;
   padding: 10px;
@@ -45,13 +79,13 @@ abbr[title="required"] {
   /* styling the form border */
   width: 20%;
   height: 55%;
-  border: 2px solid rgb(208, 230, 255);
+  border: 2px solid #1C4D7E;
   border-radius: 5px;
 
   /* styling the form content */
   padding-top: 3%;
+  padding-bottom: 25%;
   text-align: center;
-
 }
 
 .sign-up-form {
@@ -64,7 +98,7 @@ abbr[title="required"] {
   /* styling the form border */
   width: 30%;
   height: 60%;
-  border: 2px solid rgb(208, 230, 255);
+  border: 2px solid #1C4D7E;
   border-radius: 5px;
 
   /* styling the form content */
@@ -88,7 +122,7 @@ label {
   /* styling the form border */
   width: 50%;
   height: 55%;
-  border: 2px solid rgb(208, 230, 255);
+  border: 2px solid #1C4D7E;
   border-radius: 5px;
 
   /* styling the form content */
@@ -106,7 +140,7 @@ label {
   /* styling the form border */
   width: 30%;
   height: 40%;
-  border: 2px solid rgb(208, 230, 255);
+  border: 2px solid #1C4D7E;
   border-radius: 5px;
 
   /* styling the form content */

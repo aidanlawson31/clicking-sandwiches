@@ -1,12 +1,14 @@
 <div class="container">
   <div class="new-menu-form">
     <%= simple_form_for @category, url: menu_categories_path(@menu.id)do |f| %>
-      <h5>Create Category</h5>
+      <h4>Create Category</h4><br>
       <%= f.input :name %>
       <%= f.hidden_field :menu_id, value: params[:menu_id] %>
       <%= f.hidden_field :display_sequence_number, value: 0 %>
       <div>
+      <br><br>
         <%= f.button :submit, class:"btn btn-primary" %>
+        <br>
       </div>
     <% end %>
   </div>
