@@ -5,6 +5,7 @@
       <div class="row">
         <h1 class="show-header"><%= f.input :name, placeholder: @menu.name %></h1>
       </div>
+        <%= f.text_area :description %>
       <hr/>
       <%= link_to "back", menus_path %>
       <%= f.button :submit, class: "btn btn-primary btn-sm" %>

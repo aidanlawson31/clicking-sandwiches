@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row customer-menu-title">
+    <h1><%= @menu.name %></h1>
+  </div>
+  <div class="row menu-description">
+    <p><%= @menu.description %></p>
+  </div>
+  
+  <div style="margin-top: 25%; margin-bottom: 5%;">
+  <%= link_to "Back to menus", public_location_path(@business.business_url, @location.location_url) %>
+    <% if @menu.categories %> 
+      <% @menu.categories.each do |category| %>
+        <div class="row menu-show-category" style="margin-bottom: 1%; margin-top: 1%;">
+          <div class="col">
+            <p><%= category.name %></p>
+          </div>
+        </div>
+
+        <% category.menu_items.each do |menu_item| %>
+          <div class="row menu-show-menu-item">
+            <div class="col-1">
+              <%= menu_item.code %>
+            </div>
+            <div class="col">
+              <div class="row menu-item-name">
+                <%= menu_item.name %><br>
+              </div>
+              <b>Category: <%= menu_item.category.name %><br></b>
+              <%= menu_item.description %>
+            </div>
+            <div class="col">
+              <% if menu_item.image.attached? %>
+                <%= image_tag menu_item.sized_image %>
+              <% end %>
+            </div>
+            $<%= menu_item.price %>
+          </div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p>No categories yet! </p>
+    <% end %>
+  </div>
+</div>

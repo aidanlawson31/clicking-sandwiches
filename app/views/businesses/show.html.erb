@@ -1,23 +1,33 @@
 <div class="col">
+  <%= simple_form_for @business do |f| %>
   <div class="show container">
     <div class="row">
       <h1 class="show-header"> Your Business </h1>
     </div>
 
     <div class="row">
-      <h4>Business name: <%= @business.name %></h4>
+      <h4> <%= f.input :name, placeholder: @business.name %></h4>
     </div> 
 
     <hr/>
 
     <div class="row">
-      <h4>Business Email: <%= @business.email %></h4>
+      <h4> <%= f.input :email, placeholder: @business.email %></h4>
     </div>
 
     <hr/>
 
+
     <div class="row">
-      <h4>Phone Number: <%= @business.phone_number %></h4>
+      <h4> <%= f.input :phone_number, placeholder: @business.phone_number %></h4>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <h4> <%= f.input :business_url, placeholder: @business.business_url %></h4>
     </div>
   <div>
+  <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
 </div>

@@ -1,5 +1,6 @@
 class BusinessesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_business, only: [:edit, :update, :destroy]
 
   def new
     @business = Business.new
@@ -20,8 +21,8 @@ class BusinessesController < ApplicationController
   end
 
   def update
-    if @business.update(business_parans)
-      redirect_to my_business_path(current_user), notice: "Business updated successfully"
+    if @business.update(business_params)
+      redirect_to business_path(@business), notice: "Business updated successfully"
     else
       render :edit 
     end
@@ -38,7 +39,11 @@ class BusinessesController < ApplicationController
 
   private
 
+  def set_business
+    @business = Business.find(params[:id])
+  end
+
   def business_params
-    params[:business].permit(:name, :email, :phone_number)
+    params[:business].permit(:name, :email, :phone_number, :business_url)
   end
 end

@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-
-  root 'pages#home'
   devise_for :users
   resources  :businesses
 
@@ -29,4 +27,8 @@ Rails.application.routes.draw do
       resources :menu_items
     end
   end
+
+  get ':business_url',                         to: 'public_locations#index', as: :public_locations
+  get ':business_url/:location_url',           to: 'public_locations#show',  as: :public_location
+  get ':business_url/:location_url/:menu_url', to: 'public_menus#show',      as: :public_menu
 end
