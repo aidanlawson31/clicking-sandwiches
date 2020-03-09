@@ -1,0 +1,46 @@
+<h1 style="text-align:center; margin-top:30px;"><%= @business.name %>'s Page</h1>
+
+<div class="col">
+  <div class="show container">
+    <div class="row">
+      <h1 class="show-header">Locations</h1>
+    </div>
+    <% unless @locations.empty? %>
+    <div class="row row-cols-5">
+      <% @locations.each do |location| %>
+        <div class="card col" style="width: 18rem; margin: 0.5rem;">
+        
+          <% if location.location_images %>
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <% location.location_images.each do |image| %>
+                  <div class="carousel-item active">
+                    <%= image_tag image.sized_image(size: 200) %>
+                  </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+
+          <div class="card-body">
+            <div class="row">
+              <h5 class="card-title"><%= location.name %></h5>
+            </div> 
+            <%= link_to "View location", public_location_path(@business.business_url, location.location_url), class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <% else %>
+      <p> <%= @business.name %> does not have any locations posted yet! <p>
+    <% end %>
+  <div>
+</div>

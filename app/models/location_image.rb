@@ -1,5 +1,5 @@
 class LocationImage < ApplicationRecord
-  belongs_to :location
+  belongs_to       :location
   has_one_attached :image
 
   def sized_image(size: 300)

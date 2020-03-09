@@ -1,0 +1,30 @@
+<div class="col">
+  <div class="show container">
+    <div class="row">
+      <h1 class="show-header"><%= @location.name %></h1>
+    </div>
+    <% if @business.locations.count > 1 %>
+      <%= link_to "Back to #{@business.name}'s page", public_locations_path(@business.business_url) %>
+    <% end %>
+
+    <% if @location.location_menus %>
+    <div class="row row-cols-5">
+      <% @location.location_menus.each do |location_menu| %>
+        <div class="card col" style="width: 18rem; margin: 0.5rem;">
+          <div class="card-body">
+            <div class="row">
+              <h5 class="card-title"><%= location_menu.menu.name %></h5>
+            </div> 
+            <%= link_to "View Menu", public_menu_path(@location.business.business_url, 
+                                                      @location.location_url, 
+                                                      location_menu.menu.menu_url), 
+                                                      class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <% else %>
+      <p> this location has not had any menus posted for it yet! <p>
+    <% end %>
+  <div>
+</div>

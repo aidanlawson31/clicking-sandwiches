@@ -10,14 +10,14 @@
               <h5 class="card-title"><%= menu.name %></h5>
             </div> 
             <td><%= check_box_tag "added_menus[]", menu.id %></td>
-            <%= link_to "View Menu", menu_path(menu), class: "btn btn-danger" %>
+            <%= link_to "View Menu", menu_path(menu), class: "btn btn-primary" %>
           </div>
         </div>
       <% end %>
     </div>
     <% else %>
       <p> You have no menus <p>
-      <%= link_to "Create Menu", new_menu_path, class: "btn btn-danger" %>
+      <%= link_to "Create Menu", new_menu_path, class: "btn btn-primary" %>
     <% end %>
     <%= f.button :submit, class: "btn btn-primary" %>
   <% end %>
