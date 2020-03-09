@@ -9,7 +9,7 @@
       <h4><%= f.input :address, placeholder: @location.address %></h4>
     </div>
     <%= link_to "back", locations_path %>
-    <%= f.button :submit, class: "btn btn-primary" %>
+    <%= f.button :submit, class: "btn btn-primary", data: { disable_with: "Saving..." } %>
     <%= link_to "Delete Location", location_path(@location), method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure you want to delete this location?'} %>
   </div>
 <% end %>

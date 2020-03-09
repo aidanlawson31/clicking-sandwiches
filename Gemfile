@@ -19,6 +19,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem "mini_magick"
 gem 'devise'
 gem 'simple_form'
+gem 'jquery-minicolors-rails' # colour picker
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

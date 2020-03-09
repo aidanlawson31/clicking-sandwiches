@@ -18,7 +18,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <%= f.button :submit %>
+            <%= f.button :submit, data: { disable_with: "Saving..." } %>
           </div>
         </div>
       </div>
