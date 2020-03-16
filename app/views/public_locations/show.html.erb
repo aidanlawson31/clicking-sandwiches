@@ -7,20 +7,22 @@
       <%= link_to "Back to #{@business.name}'s page", public_locations_path(@business.business_url) %>
     <% end %>
 
-    <% if @location.location_menus %>
+    <% if @business.locations %>
     <div class="row row-cols-5">
-      <% @location.location_menus.each do |location_menu| %>
-        <div class="card col" style="width: 18rem; margin: 0.5rem;">
-          <div class="card-body">
-            <div class="row">
-              <h5 class="card-title"><%= location_menu.menu.name %></h5>
-            </div> 
-            <%= link_to "View Menu", public_menu_path(@location.business.business_url, 
-                                                      @location.location_url, 
-                                                      location_menu.menu.menu_url), 
-                                                      class: "btn btn-primary" %>
+      <% @business.locations.each do |location| %>
+        <% location.location_menus.each do |location_menu| %>
+          <div class="card col" style="width: 18rem; margin: 0.5rem;">
+            <div class="card-body">
+              <div class="row">
+                <h5 class="card-title"><%= location_menu.menu.name %></h5>
+              </div> 
+              <%= link_to "View Menu", public_menu_path(@location.business.business_url, 
+                                                        @location.location_url, 
+                                                        location_menu.menu.menu_url), 
+                                                        class: "btn btn-primary" %>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
     <% else %>

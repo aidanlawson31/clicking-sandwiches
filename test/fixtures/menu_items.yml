@@ -1,13 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name:        MyString
-  description: MyText
-  price:       1.5
-  category:    one
+  name:                    'some item'
+  code:                    '1'
+  description:             'some item description'
+  price:                   '1.5'
+  category:                one
+  display_sequence_number: '1'
+  created_at:              <%= DateTime.now %>
+  updated_at:              <%= DateTime.now %>
 
 two:
-  name:        MyString
-  description: MyText
-  price:       1.5
-  category:    two
+  name:                    'some item'
+  code:                    '2'
+  description:             'some item description'
+  price:                   '1.5'
+  category:                two
+  display_sequence_number: '2'
+  created_at:              <%= DateTime.now %>
+  updated_at:              <%= DateTime.now %>

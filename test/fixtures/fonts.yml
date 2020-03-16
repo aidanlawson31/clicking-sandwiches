@@ -1,7 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name:       'Arial'
+  created_at: <%= DateTime.now %>
+  updated_at: <%= DateTime.now %>
 
 two:
-  name: MyString
+  name:       'Font two'
+  created_at: <%= DateTime.now %>
+  updated_at: <%= DateTime.now %>

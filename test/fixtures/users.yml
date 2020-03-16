@@ -1,7 +1,13 @@
 user_one:
-  email:    jsmitty@gmail.com
-  business: sandwhiches
+  email:      'jsmitty@gmail.com'
+  business:   one
+  admin:      true
+  created_at: <%= DateTime.now %>
+  updated_at: <%= DateTime.now %>
 
 user_two:
-  email:    dvid123@gmail.com
-  business: burgers
+  email:      'dvid123@gmail.com'
+  business:   two
+  admin:      true
+  created_at: <%= DateTime.now %>
+  updated_at: <%= DateTime.now %>

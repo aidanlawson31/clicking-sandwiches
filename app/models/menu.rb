@@ -11,6 +11,7 @@ class Menu < ApplicationRecord
   validates :menu_url, presence: true
 
   def convert_menu_url
+    return unless self.name
     self.menu_url = self.name.downcase.parameterize
   end
 end

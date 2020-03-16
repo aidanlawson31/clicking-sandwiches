@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  location: one
-  menu:     one
+  location:   one
+  menu:       one
+  created_at: <%= DateTime.now %>
+  updated_at: <%= DateTime.now %>
 
 two:
-  location: two
-  menu:     two
+  location:   two
+  menu:       two
+  created_at: <%= DateTime.now %>
+  updated_at: <%= DateTime.now %>

@@ -1,9 +1,15 @@
-sandwhiches:
-  name: sanwhiches
-  phone_number: 1
-  email: jsmitty@gmail.com
+one:
+  name:         'sanwhiches'
+  phone_number: '1'
+  email:        'jsmitty@gmail.com'
+  business_url: 'sanwhiches'
+  created_at:   <%= DateTime.now %>
+  updated_at:   <%= DateTime.now %>
 
-burgers:
-  name: burgers
-  phone_number: 1
-  email: dvid123@gmail.com
+two:
+  name:         'burgers'
+  phone_number: '1'
+  email:        'jsmitty@gmail.com'
+  business_url: 'burgers'
+  created_at:   <%= DateTime.now %>
+  updated_at:   <%= DateTime.now %>

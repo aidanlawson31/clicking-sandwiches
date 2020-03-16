@@ -24,7 +24,7 @@ class BusinessesController < ApplicationController
     if @business.update(business_params)
       redirect_to business_path(@business), notice: "Business updated successfully"
     else
-      render :edit 
+      render :show 
     end
   end
 

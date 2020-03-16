@@ -1,6 +1,6 @@
 class BusinessDisplayAttribute < ApplicationRecord
   belongs_to :business
-  has_one    :font
+  belongs_to :font
 
   validates :primary_color,    presence: true
   validates :secondary_color,  presence: true
