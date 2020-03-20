@@ -18,10 +18,11 @@ class Business < ApplicationRecord
 
   def create_display_attributes 
     create_business_display_attribute(
+      business_id: self.id,
       font_id: Font.default.id,
-      primary_color: "white",
-      secondary_color: "blue",
-      background_color: "light-blue"
+      primary_color: "#000",
+      secondary_color: "#fff",
+      background_color: "#F9FAFB"
      )
   end
 end

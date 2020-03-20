@@ -1,10 +1,8 @@
 class PublicLocationsController < ApplicationController
-  before_action :set_location, only: :show
   before_action :set_business
+  before_action :set_location, only: :show
 
   def show
-    puts "ALAL#{@business.locations.first}"
-    puts "ALAL2#{@business.locations}"
   end
 
   def index
@@ -17,7 +15,7 @@ class PublicLocationsController < ApplicationController
   private
 
   def set_location
-    @location = Location.find_by(location_url: params[:location_url])
+    @location = @business.locations.find_by(location_url: params[:location_url])
     render :location_not_found unless @location
   end
 

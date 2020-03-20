@@ -35,9 +35,23 @@ class BusinessesController < ApplicationController
 
   def show
     @business = current_user.business
+    @business_display_attribute = @business.business_display_attribute
+    @fonts = Font.all
   end
 
   private
+
+  def reset_options(business_display_attribute, business)
+    business_display_attribute.business_id      = business.id
+    business_display_attribute.font_id          = Font.default.id
+    business_display_attribute.primary_color    = "#000"
+    business_display_attribute.secondary_color  = "#fff"
+    business_display_attribute.background_color = "#F9FAFB"
+
+    if business_display_attribute.save
+      redirect_to business_path(business) 
+    end
+  end
 
   def set_business
     @business = Business.find(params[:id])

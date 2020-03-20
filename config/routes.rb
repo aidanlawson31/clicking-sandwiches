@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources  :businesses
+  resources  :business_display_attributes
+
+  resources  :businesses do
+    member do
+      patch 'reset_options'
+    end
+  end
 
   resources :locations do
     member do

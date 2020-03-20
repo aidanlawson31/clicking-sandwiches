@@ -1,20 +1,31 @@
+<div class="backround" style="
+background-color: <%= @business.business_display_attribute.background_color %>;
+font-family: '<%= @business.business_display_attribute.font %>';
+">
+
 <div class="col">
   <div class="show container">
     <div class="row">
-      <h1 class="show-header"><%= @location.name %></h1>
+      <h1 class="show-header" style="color: <%= @business.business_display_attribute.primary_color %>"><%= @location.name %></h1>
     </div>
     <% if @business.locations.count > 1 %>
       <%= link_to "Back to #{@business.name}'s page", public_locations_path(@business.business_url) %>
     <% end %>
 
-    <% if @business.locations %>
+    <p style="color: <%= @business.business_display_attribute.primary_color %>"><%= @location.address %></p><br>
+    <% if @location.phone_number %>
+    <p style="color: <%= @business.business_display_attribute.primary_color %>"><%= @location.phone_number %></p>
+    <% else %>
+    <p style="color: <%= @business.business_display_attribute.primary_color %>"><%= @business.phone_number %></p>
+    <% end %>
+
+    <% if @location.location_menus %>
     <div class="row row-cols-5">
-      <% @business.locations.each do |location| %>
-        <% location.location_menus.each do |location_menu| %>
-          <div class="card col" style="width: 18rem; margin: 0.5rem;">
+        <% @location.location_menus.each do |location_menu| %>
+          <div class="card col" style="width: 18rem; margin: 0.5rem; background-color: <%= @business.business_display_attribute.secondary_color %>">
             <div class="card-body">
               <div class="row">
-                <h5 class="card-title"><%= location_menu.menu.name %></h5>
+                <h5 class="card-title" style="color: <%= @business.business_display_attribute.primary_color %>"><%= location_menu.menu.name %></h5>
               </div> 
               <%= link_to "View Menu", public_menu_path(@location.business.business_url, 
                                                         @location.location_url, 
@@ -23,10 +34,11 @@
             </div>
           </div>
         <% end %>
-      <% end %>
     </div>
     <% else %>
-      <p> this location has not had any menus posted for it yet! <p>
+      <p style="color: <%= @business.business_display_attribute.primary_color %>"> this location has not had any menus posted for it yet! <p>
     <% end %>
   <div>
+</div>
+
 </div>

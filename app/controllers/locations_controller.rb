@@ -94,7 +94,7 @@ class LocationsController < ApplicationController
   end
 
   def location_params
-    params[:location].permit(:name, :address, :location_menu, :location_url, added_menus:[])
+    params[:location].permit(:name, :address, :phone_number, :location_menu, :location_url, added_menus:[])
   end
 
   def location_image_params

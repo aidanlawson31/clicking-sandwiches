@@ -20,6 +20,7 @@ gem "mini_magick"
 gem 'devise'
 gem 'simple_form'
 gem 'jquery-minicolors-rails' # colour picker
+gem 'fancybox-rails' # enlarging images
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

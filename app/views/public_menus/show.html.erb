@@ -1,25 +1,31 @@
+<div class="backround" style="
+background-color: <%= @business.business_display_attribute.background_color %>;
+font-family: '<%= @business.business_display_attribute.font %>';
+height: 100%;
+">
+
 <div class="container">
   <div class="row customer-menu-title">
-    <h1><%= @menu.name %></h1>
+    <h1 style="color: <%= @business.business_display_attribute.primary_color %>%"><%= @menu.name %></h1>
   </div>
   <div class="row menu-description">
-    <p><%= @menu.description %></p>
+    <p style="color: <%= @business.business_display_attribute.primary_color %>%"><%= @menu.description %></p>
   </div>
   
-  <div style="margin-top: 25%; margin-bottom: 5%;">
+  <div style="padding-top: 25%; padding-bottom: 5%;">
   <%= link_to "Back to menus", public_location_path(@business.business_url, @location.location_url) %>
     <% if @menu.categories %> 
       <% @menu.categories.each do |category| %>
         <div class="row menu-show-category" style="margin-bottom: 1%; margin-top: 1%;">
           <div class="col">
-            <p><%= category.name %></p>
+            <p style="color: <%= @business.business_display_attribute.primary_color %>%"><%= category.name %></p>
           </div>
         </div>
 
         <% category.menu_items.each do |menu_item| %>
           <div class="row menu-show-menu-item">
             <div class="col-1">
-              <%= menu_item.code %>
+              <p style="color: <%= @business.business_display_attribute.primary_color %>%"><%= menu_item.code %></p>
             </div>
             <div class="col">
               <div class="row menu-item-name">
@@ -41,4 +47,6 @@
       <p>No categories yet! </p>
     <% end %>
   </div>
+</div>
+
 </div>

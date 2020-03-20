@@ -6,6 +6,7 @@ class Menu < ApplicationRecord
   accepts_nested_attributes_for :categories, allow_destroy: true
 
   before_validation :convert_menu_url
+  before_validation { self.name = self.name.capitalize }
 
   validates :name,     presence: true, uniqueness: { scope: :business }
   validates :menu_url, presence: true

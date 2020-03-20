@@ -3,6 +3,7 @@
   <%= simple_form_for @location do |f| %>
     <%= f.input :name %>
     <%= f.input :address %>
+    <%= f.input :phone_number %><p>(optional)</p>
     <%= f.hidden_field :location_url %>
     <br>
     <%= f.button :submit, class: "btn btn-primary", data: { disable_with: "Saving..." } %>

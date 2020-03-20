@@ -15,6 +15,10 @@
 //= require rails-ujs
 //= require activestorage
 //= require_tree .
+//= require jquery.minicolors
+//= require jquery.minicolors.simple_form
+//= require fancybox
+
 
 // Todo: uncomment this code and remove <script> js from layout file soon
 
