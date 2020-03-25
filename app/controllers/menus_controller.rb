@@ -62,7 +62,8 @@ class MenusController < ApplicationController
   end
 
   def menu_params
-    params[:menu].permit(:name, :description, :menu_url, categories_attributes: [ :id, :name, :display_sequence_number ])
+    params[:menu].permit(:display_name, :internal_name, 
+      :description, :menu_url, categories_attributes: [ :id, :name, :display_sequence_number ])
   end
 
   def menu_sort_params

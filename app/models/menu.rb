@@ -6,13 +6,14 @@ class Menu < ApplicationRecord
   accepts_nested_attributes_for :categories, allow_destroy: true
 
   before_validation :convert_menu_url
-  before_validation { self.name = self.name.capitalize }
+  before_validation { self.display_name = self.display_name.capitalize }
 
-  validates :name,     presence: true, uniqueness: { scope: :business }
+  validates :display_name,  presence: true, uniqueness: { scope: :location_menus }
+  validates :internal_name, presence: true, uniqueness: { scope: :business }
   validates :menu_url, presence: true
 
   def convert_menu_url
-    return unless self.name
-    self.menu_url = self.name.downcase.parameterize
+    return unless self.display_name
+    self.menu_url = self.display_name.downcase.parameterize
   end
 end

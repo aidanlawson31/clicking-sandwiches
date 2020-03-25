@@ -1,7 +1,8 @@
 <div class="new-menu-form">
   <h1>Create A Menu</h1>
   <%= simple_form_for @menu do |f| %>
-    <%= f.input :name %>
+    <%= f.input :display_name %>
+    <%= f.input :internal_name %>
     <%= f.input :location_id, as: :hidden, input_html: { value: params[:location_id] } %>
     <br>
     <%= f.text_area :description %>

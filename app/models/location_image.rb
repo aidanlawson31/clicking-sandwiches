@@ -4,5 +4,6 @@ class LocationImage < ApplicationRecord
 
   def sized_image(size: 300)
     image.variant(resize: "!#{size}x#{size}").processed if image.attached?
+    image = image ? image : "no_image.png"
   end
 end

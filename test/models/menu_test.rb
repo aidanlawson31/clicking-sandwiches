@@ -16,7 +16,7 @@ class MenuTest < ActiveSupport::TestCase
   end
 
   test "name is required" do
-    @menu.name = nil
+    @menu.internal_name = nil
     refute @menu.valid?
   end
 end
