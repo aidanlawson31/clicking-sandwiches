@@ -6,8 +6,6 @@ class BusinessDisplayAttributesController < ApplicationController
   end
   
   def update
-    @business = @business_display_attribute.business
-
     if @business_display_attribute.update(business_display_attribute_params)
       redirect_to business_path(@business)
     end
@@ -17,6 +15,7 @@ class BusinessDisplayAttributesController < ApplicationController
 
   def set_business_display_attribute
     @business_display_attribute = BusinessDisplayAttribute.find(params[:id])
+    @business = @business_display_attribute.business
   end
 
   def business_display_attribute_params
