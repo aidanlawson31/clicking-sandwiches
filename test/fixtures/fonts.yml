@@ -1,13 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  location:   one
-  menu:       one
+  name:       'Arial'
   created_at: <%= DateTime.now %>
   updated_at: <%= DateTime.now %>
 
 two:
-  location:   two
-  menu:       two
+  name:       'Font two'
   created_at: <%= DateTime.now %>
   updated_at: <%= DateTime.now %>

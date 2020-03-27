@@ -10,6 +10,7 @@ class Location < ApplicationRecord
   validates :location_url, presence: true
 
   def convert_location_url
+    return unless self.name
     self.location_url = self.name.downcase.parameterize
   end
 end

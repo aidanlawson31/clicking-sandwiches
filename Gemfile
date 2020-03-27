@@ -19,6 +19,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem "mini_magick"
 gem 'devise'
 gem 'simple_form'
+gem 'jquery-minicolors-rails' # colour picker
+gem 'fancybox-rails' # enlarging images
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -35,6 +37,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
+  gem 'rack-test'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

@@ -6,6 +6,6 @@
   <%= f.input :code %>
   <%= f.file_field :image, accept: 'image/png,image/jpeg' %><br><br>
   <%= f.hidden_field :display_sequence_number, value: 0 %>
-  <%= f.button :submit, class: "btn btn-primary" %>
+  <%= f.button :submit, class: "btn btn-primary", data: { disable_with: "Saving..." } %>
 <% end %>
 <%= link_to "back", menus_path %>

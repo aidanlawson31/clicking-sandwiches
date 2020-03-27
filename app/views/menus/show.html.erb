@@ -3,8 +3,9 @@
   <%= simple_form_for @menu do |f| %>
     <div class="show container">
       <div class="row">
-        <h1 class="show-header"><%= f.input :name, placeholder: @menu.name %></h1>
+        <h1 class="show-header"><%= f.input :display_name, placeholder: @menu.display_name %></h1>
       </div>
+        <h1 class="show-header"><%= f.input :internal_name, placeholder: @menu.internal_name %></h1>
         <%= f.text_area :description %>
       <hr/>
       <%= link_to "back", menus_path %>
@@ -15,7 +16,7 @@
 
   <hr/>
 
-  <h4><%=@menu.name%> Categories</h4>
+  <h4><%=@menu.display_name%> Categories</h4>
   <%= link_to "Create Category", new_menu_category_path(@menu.id), class: "btn btn-primary btn-sm", style: "margin-bottom:1%;" %>
   <%= link_to "Sort Categories", sort_menu_categories_menu_path(@menu.id), class: "btn btn-primary btn-sm", style: "margin-bottom:1%;" %>
   <% if @menu.categories %> 

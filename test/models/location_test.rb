@@ -2,22 +2,43 @@ require 'test_helper'
 
 class LocationTest < ActiveSupport::TestCase
   def setup
-    @location = Location.new(name: 'North Sydney', address: 'Walker St', business: Business.new)
+    @business = businesses(:one)
+    @location = 
+      Location.new(
+        name: "some location",
+        address: "some address",
+        business_id: @business.id,
+        location_url: "some-location"
+      )
   end
 
   test 'valid location' do
     assert @location.valid?
   end
 
-  test 'invalid without name' do
+  test 'name is required' do
     @location.name = nil
-    refute @location.valid?, 'location is valid without a email'
-    assert_not_nil @location.errors[:name], 'no validation error for email present'
+    refute @location.valid?, 'location is valid without a name'
   end
 
-  test 'invalid without address' do
+  test "name is unique for locations in the business" do
+    @location.name        = "some name"
+    assert @location.save
+    @second_location      = @location.dup
+    @second_location.id   = nil
+    refute @second_location.valid?
+    @second_location.name = "something else"
+    assert @second_location.valid?
+  end
+
+  test 'address is required' do
     @location.address = nil
     refute @location.valid?
-    assert_not_nil @location.errors[:address]
+  end
+
+  test "location url is converted" do
+    @location.name = "some location"
+    @location.valid?
+    assert @location.location_url == "some-location"
   end
 end

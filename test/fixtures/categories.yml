@@ -1,9 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  menu: one
+  name:                    'Category two'
+  menu:                    one
+  display_sequence_number: '1'
+  created_at:              <%= DateTime.now %>
+  updated_at:              <%= DateTime.now %>
 
 two:
-  name: MyString
-  menu: two
+  name:                    'Category one'
+  menu:                    two
+  display_sequence_number: '2'
+  created_at:              <%= DateTime.now %>
+  updated_at:              <%= DateTime.now %>

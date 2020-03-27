@@ -2,22 +2,26 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   def setup
-    @user = User.new(email: 'john@smitty.com', password: 'qwerty123')
+    @business = businesses(:one)
+    @user =
+      User.new(
+        email:       "example@example",
+        password:    "password",
+        business_id: @business.id
+      )
   end
 
   test 'valid user' do
     assert @user.valid?
   end
 
-  test 'invalid without email' do
-    @user.password = nil
-    refute @user.valid?, 'user is valid without a email'
-    assert_not_nil @user.errors[:email], 'no validation error for email present'
+  test 'doesnt save without email' do
+    @user.email = nil
+    refute @user.save
   end
 
-  test 'invalid without password' do
-    @user.email = nil
-    refute @user.valid?
-    assert_not_nil @user.errors[:password]
+  test 'doesnt save without password' do
+    @user.password = nil
+    refute @user.save
   end
 end
