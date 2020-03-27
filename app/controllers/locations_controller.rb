@@ -54,6 +54,8 @@ class LocationsController < ApplicationController
 
     if @location_image.save
       redirect_to location_path(@location), notice: "Image added successfully"
+    else
+      redirect_to location_path(@location), notice: "Image wasn't added before upload"
     end
   end
 

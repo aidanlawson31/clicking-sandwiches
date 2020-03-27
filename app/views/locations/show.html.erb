@@ -25,7 +25,7 @@
       </div>
       
       <%= simple_form_for @location_image, url: add_image_location_path do |f| %>
-        <%= f.file_field :image, accept: 'image/png,image/jpeg' %>
+        <%= f.file_field :image, accept: 'image/png,image/jpeg', input_html: { required: true } %>
         <%= f.hidden_field :display_sequence_number, value: 1 %>
         <div class="row" style="margin-top: 10px;">
           <%= f.button :submit, "Upload Image", class:"btn btn-primary btn-sm", style: "margin-right: 10px;" %>
