@@ -24,7 +24,7 @@ font-family: '<%= @business.business_display_attribute.font %>';
             <div class="row">
               <h5 style="color: <%= @business.business_display_attribute.primary_color %>"><%= location.name %></h5>
             </div> 
-            <%= link_to "View location", public_location_path(@business.business_url, location.location_url), class: "btn btn-primary_color" %>
+            <%= link_to "View location", public_location_path(@business.business_url, location.location_url), class: "btn btn-primary" %>
           </div>
         </div>
       <% end %>

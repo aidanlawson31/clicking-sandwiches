@@ -4,19 +4,12 @@ class Business < ApplicationRecord
   has_many :menus
   has_one  :business_display_attribute
   
-  before_validation :convert_business_url
-
   validates :name,         presence: true
-  validates :business_url, presence: true, uniqueness: true
+  validates :business_url, presence: true, uniqueness: true, format: { with: /\A[a-z\d][a-z\d-]*[a-z\d]\z/i, message: 'only letters, numbers, and dashes.' }
   
   after_create :create_display_attributes
 
-  def convert_business_url
-    return unless self.business_url # For tests, preventing "undefined method `downcase' for nil:NilClass" when setting name to nil
-    self.business_url = self.business_url.downcase.parameterize
-  end
-
-  def create_display_attributes 
+  def create_display_attributes
     create_business_display_attribute(
       business_id: self.id,
       font_id: Font.default.id,

@@ -20,7 +20,7 @@ class BusinessesController < ApplicationController
   def edit
   end
 
-  def update
+  def update    
     if @business.update(business_params)
       redirect_to business_path(@business), notice: "Business updated successfully"
     else
@@ -39,8 +39,6 @@ class BusinessesController < ApplicationController
     @fonts = Font.all
   end
 
-  private
-
   def reset_options(business_display_attribute, business)
     business_display_attribute.business_id      = business.id
     business_display_attribute.font_id          = Font.default.id
@@ -53,8 +51,11 @@ class BusinessesController < ApplicationController
     end
   end
 
+  private
+
   def set_business
     @business = Business.find(params[:id])
+    @business_display_attribute = @business.business_display_attribute
   end
 
   def business_params
