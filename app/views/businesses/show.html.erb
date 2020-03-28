@@ -1,7 +1,7 @@
 <div class="container" style="padding-bottom:100px; padding-top:10px;">
   <%= simple_form_for @business do |f| %>
     <h3 style="text-align:center;"> Your Business Details</h3>
-    <div class="row" style="margin-bottom:20px;">
+    <div class="row" style="margin-bottom:20px; ">
       <div class="col">
         <%= f.input :name %>
         <%= f.input :email %>
@@ -36,7 +36,6 @@
         <%= f.input :background_color, as: :minicolors, input_html: {data: {
               minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
         <%= f.association :font, collection: @fonts %>
-
       </div>
     </div>
     <%#= link_to "Reset Customization Options", reset_options_business_path(@business_display_attribute, @business) %>

@@ -2,36 +2,35 @@
 background-color: <%= @business.business_display_attribute.background_color %>;
 font-family: '<%= @business.business_display_attribute.font %>';
 ">
-<h1 style="text-align:center; padding-top:30px; color: <%= @business.business_display_attribute.primary_color %>;"><%= @business.name %>'s Page</h1>
+<div class="container">
+  <h1 style="text-align:center; padding-top:30px; color: <%= @business.business_display_attribute.primary_color %>;"><%= @business.name %>'s Page</h1>
+    <h1 style="color: <%= @business.business_display_attribute.primary_color %>">Locations</h1>
 
-<div class="col">
-  <div class="show container">
-    <div class="row">
-      <h1 style="color: <%= @business.business_display_attribute.primary_color %>">Locations</h1>
-    </div>
-    <% unless @locations.empty? %>
-    <div class="row row-cols-5">
-      <% @locations.each do |location| %>
-        <div class="card col" style="width: 18rem; margin: 0.5rem; background-color: <%= @business.business_display_attribute.secondary_color %>" >
-
-          <% if location.location_images.first %>
-            <%# <% location.location_images.each do |image| %> 
-              <%= list_image(location.location_images.first.sized_image(size: 200), alt: 'Location Image') %>
-            <%# <% end %>
-          <% end %>
-
-          <div class="card-body">
-            <div class="row">
-              <h5 style="color: <%= @business.business_display_attribute.primary_color %>"><%= location.name %></h5>
-            </div> 
-            <%= link_to "View location", public_location_path(@business.business_url, location.location_url), class: "btn btn-primary" %>
+      <% unless @locations.empty? %>
+        <% @locations.each do |location| %>
+          <div class="row" style="width: 100%; background-color: <%= @business.business_display_attribute.secondary_color %>">
+            <div class="col" style="margin: 0.5rem;" >
+              <% if location.location_images %>
+                <% location.location_images.each do |image| %>
+                  <%= list_image(image.sized_image(size: 200), alt: 'Location Image') %>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="col">
+              <h5 style="margin-top: 5px; color: <%= @business.business_display_attribute.primary_color %>"><%= location.name %></h5>
+              <h5 style="margin-top: 5px; color: <%= @business.business_display_attribute.primary_color %>"><%= location.phone_number %></h5>
+              <h5 style="margin-top: 5px; color: <%= @business.business_display_attribute.primary_color %>"><%= location.address %></h5>
+              <%= link_to "View location", public_location_path(@business.business_url, location.location_url), class: "btn btn-sm btn-primary" %>
+            </div>
+            <div class="col">
+              <p>Map Here</p>
+            </div>
           </div>
-        </div>
-      <% end %>
+       <% end %>
+      </div>
+      <% else %>
+        <p> <%= @business.name %> does not have any locations posted yet! <p>
+     <% end %>
     </div>
-    <% else %>
-      <p> <%= @business.name %> does not have any locations posted yet! <p>
-    <% end %>
-  <div>
-</div>
+  </div>
 </div>

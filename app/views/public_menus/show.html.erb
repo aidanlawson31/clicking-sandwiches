@@ -9,7 +9,7 @@ height: 100%;
     <h1 style="color: <%= @business.business_display_attribute.primary_color %>%"><%= @menu.display_name %></h1>
   </div>
   <div class="row menu-description">
-    <p style="color: <%= @business.business_display_attribute.primary_color %>%"><%= @menu.description %></p>
+    <p style="color: <%= @business.business_display_attribute.primary_color %>%"><%= @menu.description.html_safe %></p>
   </div>
   
   <div style="padding-top: 25%; padding-bottom: 5%;">
@@ -32,7 +32,7 @@ height: 100%;
                 <%= menu_item.name %><br>
               </div>
               <b>Category: <%= menu_item.category.name %><br></b>
-              <%= menu_item.description %>
+              <%= menu_item.description.html_safe %>
             </div>
             <div class="col">
               <% if menu_item.image.attached? %>
