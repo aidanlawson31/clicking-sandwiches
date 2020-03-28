@@ -5,7 +5,7 @@
     <%= f.input :internal_name %>
     <%= f.input :location_id, as: :hidden, input_html: { value: params[:location_id] } %>
     <br>
-    <%= f.text_area :description %>
+    <%= f.input :description, as: :trix_editor %>
     <%= f.hidden_field :menu_url %>
     <br>
     <%= f.button :submit, class: "btn btn-primary", data: { disable_with: "Saving..." } %>

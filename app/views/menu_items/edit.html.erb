@@ -1,7 +1,7 @@
 <h1>Edit A Menu Item</h1>
 <%= simple_form_for @menu_item, url: menu_category_menu_item_path(@menu.id, @category.id) do |f| %>
   <%= f.input :name %>
-  <%= f.input :description %>
+  <%= f.input :description, as: :trix_editor %>
   <%= f.input :price %>
   <%= f.input :code %>
   <%= f.file_field :image, accept: 'image/png,image/jpeg' %><br><br>

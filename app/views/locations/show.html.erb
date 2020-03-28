@@ -45,7 +45,7 @@
           <div class="card-body">
             <h5 class="card-title"><%= location_menu.menu.display_name %></h5>
             <h5 class="card-title"><%= location_menu.menu.internal_name %></h5>
-            <p class="card-text"><%= location_menu.menu.description %></p>
+            <p class="card-text"><%= location_menu.menu.description.html_safe %></p>
             <%= link_to "View Menu",   menu_path(location_menu.menu), class: "btn btn-primary" %>
             <%= link_to "Remove Menu", remove_menu_location_path(location_menu:location_menu.id), method: :delete, class: "btn btn-danger" %> 
           </div>
