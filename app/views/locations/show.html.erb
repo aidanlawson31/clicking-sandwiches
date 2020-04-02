@@ -33,26 +33,35 @@
         </div>
       <% end %>
     </div>
-  </div>
- 
-  <% if @menus.present? %>
-    <%= link_to "Add existing menu", show_menus_location_path, class: "btn btn-primary" %>
-  <% end %>
-  <% unless @location.location_menus.empty? %>
-    <% @location.location_menus.each do |location_menu| %>
-      <div class="row row-cols-2">
-        <div class="card location-card">
-          <div class="card-body">
-            <h5 class="card-title"><%= location_menu.menu.display_name %></h5>
-            <h5 class="card-title"><%= location_menu.menu.internal_name %></h5>
-            <p class="card-text"><%= location_menu.menu.description.html_safe %></p>
-            <%= link_to "View Menu",   menu_path(location_menu.menu), class: "btn btn-primary" %>
-            <%= link_to "Remove Menu", remove_menu_location_path(location_menu:location_menu.id), method: :delete, class: "btn btn-danger" %> 
+  </div><hr>
+  <div class="row">
+    <div class="col">
+      <% if @menus.present? %>
+        <%= link_to "Add existing menu", show_menus_location_path, class: "btn btn-primary btn-sm" %>
+      <% end %>
+      <% unless @location.location_menus.empty? %>
+        <% @location.location_menus.each do |location_menu| %>
+          <div class="row row-cols-2">
+            <div class="card location-card">
+              <div class="card-body">
+                <h5 class="card-title"><%= location_menu.menu.display_name %></h5>
+                <h5 class="card-title"><%= location_menu.menu.internal_name %></h5>
+                <p class="card-text"><%= location_menu.menu.description.html_safe %></p>
+                <%= link_to "View Menu",   menu_path(location_menu.menu), class: "btn btn-primary" %>
+                <%= link_to "Remove Menu", remove_menu_location_path(location_menu:location_menu.id), method: :delete, class: "btn btn-danger" %> 
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    <% end %>
-  <% else %>
-    <p> You have no menus <p>
-  <% end %>
+        <% end %>
+      <% else %>
+        <p> You have no menus <p>
+      <% end %>
+    </div>
+    <div class="col">
+      <iframe width="300" height="300" frameborder="0" style="border:0"
+      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBT-uhb9vkG8pk5wdO4byx10SD37PmgLH0&q=<%= @location.latitude %>,<%= @location.longitude %>"
+      allowfullscreen>
+      </iframe>
+    </div>
+  </div>
 </div>

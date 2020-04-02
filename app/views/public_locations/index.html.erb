@@ -1,6 +1,6 @@
 <div class="backround" style="
 background-color: <%= @business.business_display_attribute.background_color %>;
-font-family: '<%= @business.business_display_attribute.font %>';
+font-family: '<%= @business.business_display_attribute.font.name %>';
 ">
 <div class="container">
   <h1 style="text-align:center; padding-top:30px; color: <%= @business.business_display_attribute.primary_color %>;"><%= @business.name %>'s Page</h1>
@@ -23,7 +23,10 @@ font-family: '<%= @business.business_display_attribute.font %>';
               <%= link_to "View location", public_location_path(@business.business_url, location.location_url), class: "btn btn-sm btn-primary" %>
             </div>
             <div class="col">
-              <p>Map Here</p>
+              <iframe width="200" height="200" frameborder="0" style="border:0"
+              src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['MAPS_API_KEY'] %>&q=<%= location.latitude %>,<%= location.longitude %>"
+              allowfullscreen>
+              </iframe>
             </div>
           </div>
        <% end %>

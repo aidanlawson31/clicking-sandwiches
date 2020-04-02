@@ -9,6 +9,9 @@ class Location < ApplicationRecord
   validates :address,      presence: true
   validates :location_url, presence: true
 
+  geocoded_by      :address
+  after_validation :geocode
+
   def convert_location_url
     return unless self.name
     self.location_url = self.name.downcase.parameterize
