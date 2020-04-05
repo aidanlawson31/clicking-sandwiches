@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_location, only: [:add_menus, :show_menus, :remove_menu, :add_image, :remove_image, :update, :destroy, :show]
+  before_action :set_location, only: [:add_menu, :show_menus, :remove_menu, :add_image, :remove_image, :update, :destroy, :show]
   
   def index
     @locations = current_user.business.locations
@@ -21,21 +21,24 @@ class LocationsController < ApplicationController
     end
   end
 
-  def add_menus
-    @added_menus = params[:added_menus]
+  def add_menu
+    @added_menu = Menu.find(params[:location_menus][:added_menu])
 
-    if @added_menus
-      @added_menus.each do |menu|
-        @location.location_menus.create(menu_id: menu)
-      end
+    if @added_menu
+      @location.location_menus.create(menu_id: @added_menu.id)
       flash.now[:notice] = "Menus successfully added to location."
     end
-    redirect_to location_path(@location)
+    redirect_to show_menus_location_path(@location)
   end
 
   def show_menus
     @menus = current_user.business.menus.select do |menu|
       LocationMenu.find_by(menu_id: menu.id, location_id: @location.id).present? ? false : true
+    end
+
+    @location_menus_names = []
+    @location.location_menus.each do |location_menu|
+        @location_menus_names << location_menu.menu.display_name.titleize
     end
   end
 
@@ -96,7 +99,7 @@ class LocationsController < ApplicationController
   end
 
   def location_params
-    params[:location].permit(:name, :address, :phone_number, :location_menu, :location_url, added_menus:[])
+    params[:location].permit(:name, :address, :phone_number, :location_menu, :location_url, :added_menu)
   end
 
   def location_image_params

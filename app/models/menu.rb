@@ -8,10 +8,10 @@ class Menu < ApplicationRecord
   accepts_nested_attributes_for :categories, allow_destroy: true
 
   before_validation :convert_menu_url
-  before_validation { self.display_name = self.display_name.capitalize }
+  before_validation { self.display_name = self.display_name.titleize }
   before_validation :sanitize_text
 
-  validates :display_name,  presence: true, uniqueness: { scope: :location_menus }
+  validates :display_name,  presence: true
   validates :internal_name, presence: true, uniqueness: { scope: :business }
   validates :menu_url, presence: true
 
