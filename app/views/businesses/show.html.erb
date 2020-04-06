@@ -12,6 +12,7 @@
       <div class="col">
         <%= f.input :business_url %><br>
       </div>
+      <%= f.input :description, as: :trix_editor %>
     </div>
     <%= f.button :submit, class: "btn btn-sm btn-primary", data: { disable_with: "Saving..." } %>
   <% end %>

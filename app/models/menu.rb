@@ -1,6 +1,4 @@
 class Menu < ApplicationRecord
-  include ActionView::Helpers::SanitizeHelper
-
   belongs_to :business
   has_many   :categories,     dependent: :destroy
   has_many   :location_menus, dependent: :destroy
