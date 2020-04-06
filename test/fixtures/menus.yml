@@ -1,7 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name:        'Time Menu'
+  display_name:        'Time Menu'
+  internal_name: 'time-menu'
   description: 'time menu description'
   business:    one
   menu_url:    'time-menu'
@@ -9,7 +10,8 @@ one:
   updated_at:  <%= DateTime.now %>
 
 two:
-  name:        'Time Menu'
+  display_name:  'Time Menu'
+  internal_name: 'different-time-menu'
   description: 'time menu description'
   business:    two
   menu_url:    'time-menu'
