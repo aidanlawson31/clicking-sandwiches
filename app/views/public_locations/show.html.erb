@@ -21,6 +21,7 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
       padding-left:10px;
       background-color: <%= @business.business_display_attribute.secondary_color%>">
         <p style="color: <%= @business.business_display_attribute.primary_color %>">Address: <%= @location.address %></p>
+        <p style="color: <%= @business.business_display_attribute.primary_color %>">Open: <%= @location.open %></p>
         <% if @location.phone_number %>
         <p style="color: <%= @business.business_display_attribute.primary_color %>">Phone Number: <%= @location.phone_number %></p>
         <% else %>

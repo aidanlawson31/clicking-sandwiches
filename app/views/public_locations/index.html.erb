@@ -4,12 +4,12 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
 ">
   <div class="container" style="text-align:center;">
     <h1 style="padding-top:30px; margin-bottom: 50px; color: <%= @business.business_display_attribute.primary_color %>;"><%= @business.name %>'s Page</h1>
-    <p syle="color: <%= @business.business_display_attribute.primary_color %>"><%= @business.description.html_safe %></p> 
+    <p style="color: <%= @business.business_display_attribute.primary_color %>"><%= @business.description.html_safe %></p> 
 
     <h3 style="color: <%= @business.business_display_attribute.primary_color %>">Locations</h3>
     <% unless @locations.empty? %>
       <% @locations.each do |location| %>
-        <div class="row" style="width: 100%; background-color: <%= @business.business_display_attribute.secondary_color %>">
+        <div class="row" style="margin: 10px; padding: 10px; width: 100%; background-color: <%= @business.business_display_attribute.secondary_color %>">
           <div class="col" style="margin: 0.5rem;" >
             <% if location.location_images %>
               <% location.location_images.each do |image| %>
@@ -21,6 +21,9 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
             <h5 style="padding-top: 30px; color: <%= @business.business_display_attribute.primary_color %>"><%= location.name %></h5>
             <h5 style="margin-top: 5px; color: <%= @business.business_display_attribute.primary_color %>"><%= location.phone_number %></h5>
             <h5 style="margin-top: 5px; color: <%= @business.business_display_attribute.primary_color %>"><%= location.address %></h5>
+            <% if location.open %>
+            <h5 style="margin-top: 5px; color: <%= @business.business_display_attribute.primary_color %>">open: <%= location.open %></h5>
+            <% end %>
             <%= link_to "View location", public_location_path(@business.business_url, location.location_url), class: "btn btn-sm btn-primary" %>
           </div>
           <div class="col">

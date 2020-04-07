@@ -3,9 +3,10 @@
   <div class="row">
     <div class="col">
       <%= simple_form_for @location do |f| %>
-        <%= f.input :name, placeholder: @location.name %>
-        <%= f.input :address, placeholder: @location.address %>
-        <%= f.input :phone_number, placeholder: @location.phone_number %>
+        <%= f.input :name %>
+        <%= f.input :address %>
+        <%= f.input :phone_number %>
+        <%= f.input :open %>
         <br>
         <%= link_to "back", locations_path %>
         <%= f.button :submit, class: "btn btn-primary btn-sm", data: { disable_with: "Saving..." } %>
