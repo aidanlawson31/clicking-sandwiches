@@ -22,24 +22,18 @@ class LocationsController < ApplicationController
   end
 
   def add_menu
-    @added_menu = Menu.find(params[:location_menus][:added_menu])
+    @added_menu = Menu.find(params[:menu_id])
 
     if @added_menu
       @location.location_menus.create(menu_id: @added_menu.id)
       flash.now[:notice] = "Menus successfully added to location."
     end
-    redirect_to show_menus_location_path(@location)
+    setup_add_menus
+    render file: "locations/add_menu.js.erb"
   end
 
   def show_menus
-    @menus = current_user.business.menus.select do |menu|
-      LocationMenu.find_by(menu_id: menu.id, location_id: @location.id).present? ? false : true
-    end
-
-    @location_menus_names = []
-    @location.location_menus.each do |location_menu|
-        @location_menus_names << location_menu.menu.display_name.titleize
-    end
+    setup_add_menus
   end
 
   def remove_menu
@@ -93,6 +87,17 @@ class LocationsController < ApplicationController
   end
 
   private
+
+  def setup_add_menus
+    @location_menus_names = []
+    @location.location_menus.each do |location_menu|
+        @location_menus_names << location_menu.menu.display_name.titleize
+    end
+    
+    @menus = current_user.business.menus.select do |menu|
+      LocationMenu.find_by(menu_id: menu.id, location_id: @location.id).present? ? false : true
+    end
+  end
 
   def set_location
     @location = Location.find(params[:id])
