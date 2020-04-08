@@ -16,7 +16,7 @@ class MenusController < ApplicationController
     @menu.business_id = current_user.business.id
 
     if @menu.save
-      redirect_to menus_path, notice: "menu created successfully"
+      redirect_to menu_path(@menu), notice: "menu created successfully"
     else
       render :new
     end
