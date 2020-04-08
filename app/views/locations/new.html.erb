@@ -1,9 +1,10 @@
-<div class="" style="padding-bottom: 21%">
+<div class="container" style="text-align:center;">
   <h1>Create A Location</h1>
   <%= simple_form_for @location do |f| %>
     <%= f.input :name %>
     <%= f.input :address %>
-    <%= f.input :phone_number %><p>(optional)</p>
+    <%= f.input :phone_number, label: "Phone Number" %>
+    <%= f.input :open, label: "Opening Times" %>
     <%= f.hidden_field :location_url %>
     <br>
     <%= f.button :submit, class: "btn btn-primary", data: { disable_with: "Saving..." } %>

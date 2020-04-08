@@ -1,11 +1,14 @@
-<h1>Create A Menu Item</h1>
-<%= simple_form_for @menu_item, url: menu_category_menu_items_path(@menu.id, @category.id) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description, as: :trix_editor %>
-  <%= f.input :price %>
-  <%= f.input :code %>
-  <%= f.file_field :image, accept: 'image/png,image/jpeg' %><br><br>
-  <%= f.hidden_field :display_sequence_number, value: 0 %>
-  <%= f.button :submit, class: "btn btn-primary", data: { disable_with: "Saving..." } %>
-<% end %>
-<%= link_to "back", menus_path %>
+<div class="container">
+  <h1>Create A Menu Item</h1>
+  <%= simple_form_for @menu_item, url: menu_category_menu_items_path(@menu.id, @category.id) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description, as: :trix_editor %>
+    <%= f.input :price %>
+    <%= f.input :code %><br>
+    <p>Upload an image of the dish</p>
+    <%= f.file_field :image, accept: 'image/png,image/jpeg' %><br><br>
+    <%= f.hidden_field :display_sequence_number, value: 0 %>
+    <%= f.button :submit, class: "btn btn-primary", data: { disable_with: "Saving..." } %>
+    <%= link_to "back", menus_path %>
+  <% end %>
+</div>

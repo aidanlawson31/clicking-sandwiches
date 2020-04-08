@@ -1,4 +1,4 @@
-<div class="new-menu-form">
+<div class="container">
   <h1>Create A Menu</h1>
   <%= simple_form_for @menu do |f| %>
     <%= f.input :display_name %>
@@ -8,11 +8,18 @@
     <%= f.input :description, as: :trix_editor %>
     <%= f.hidden_field :menu_url %>
     <br>
-    <%= f.button :submit, class: "btn btn-primary", data: { disable_with: "Saving..." } %>
+    <% if params[:location_id] %>
+      <%= link_to "back", location_path(params[:location_id]) %>
+    <% else %>
+      <%= link_to "back", menus_path %>
+      <%= f.button :submit, class: "btn btn-primary", data: { disable_with: "Saving..." } %>
+    <% end %>
   <% end %>
-  <% if params[:location_id] %>
-    <%= link_to "back", location_path(params[:location_id]) %>
-  <% else %>
-    <%= link_to "back", menus_path %>
-  <% end %>
+  <hr>
+  <h1>Attach A Menu</h1>
+  <p>Name:</p>
+  <p>Upload File:</p>
+  <%#= simple_form_for @attached_menu do |f| %>
+  <%#= f.input :name %>
+  <%#= f.file_field :menu %>
 </div>

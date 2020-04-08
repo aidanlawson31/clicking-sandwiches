@@ -22,6 +22,8 @@ gem 'simple_form'
 gem 'jquery-minicolors-rails' # colour picker
 gem 'fancybox-rails' # enlarging images
 gem 'trix-rails', require: 'trix'   # Rich text editor
+gem 'geocoder'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :locations do
     member do
       get    'show_menus'
-      post   'add_menus'
+      post   'add_menu'
       post   'add_image'
       delete 'remove_menu'
       delete 'remove_image'

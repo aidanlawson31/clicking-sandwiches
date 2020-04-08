@@ -1,6 +1,4 @@
 class MenuItem < ApplicationRecord
-  include ActionView::Helpers::SanitizeHelper
-
   belongs_to :category
   has_one_attached :image
 

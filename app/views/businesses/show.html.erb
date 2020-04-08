@@ -1,72 +1,45 @@
-<div class="col">
+<div class="container" style="padding-bottom:100px; padding-top:10px;">
   <%= simple_form_for @business do |f| %>
-  <div class="show container">
-    <div class="row">
-      <h1 class="show-header"> Your Business Details</h1>
+    <h3 style="text-align:center;"> Your Business Details</h3>
+    <div class="row" style="margin-bottom:20px; ">
+      <div class="col">
+        <%= f.input :name %>
+        <%= f.input :email %>
+      </div>
+      <div class="col">
+        <%= f.input :phone_number %>
+      </div>
+      <div class="col">
+        <%= f.input :business_url %><br>
+      </div>
+      <%= f.input :description, as: :trix_editor %>
     </div>
-
-    <div class="row">
-      <h4> <%= f.input :name, placeholder: @business.name %></h4>
-    </div> 
-
-    <hr/>
-
-    <div class="row">
-      <h4> <%= f.input :email, placeholder: @business.email %></h4>
-    </div>
-
-    <hr/>
-
-
-    <div class="row">
-      <h4> <%= f.input :phone_number, placeholder: @business.phone_number %></h4>
-    </div>
-
-    <hr>
-
-    <div class="row">
-      <h4> <%= f.input :business_url, placeholder: @business.business_url %></h4>
-    </div>
-  <div>
-  <%= f.button :submit, class: "btn btn-primary", data: { disable_with: "Saving..." } %>
+    <%= f.button :submit, class: "btn btn-sm btn-primary", data: { disable_with: "Saving..." } %>
   <% end %>
-    <div class="col">
-    <h1>Preview Customization</h1>
-  <iframe src="http://localhost:3000/<%= @business.business_url %>" style="width: 100%; height: 500px;"
-      <p>Placeholder text; only shows up if the page DOESN'T render!</p>>
+  <br>
+
+  <h4>Preview Customization</h4>
+  <iframe src="http://localhost:3000/<%= @business.business_url %>" id="business-iframe">
+      <p>Placeholder text; only shows up if the page DOESN'T render!</p>
   </iframe>
-</div>
-  <div class="show container">
-    <%= simple_form_for @business_display_attribute do |f| %>
-    <div class="row">
-      <h1 class="show-header"> Your Business Customization</h1>
+
+  <%= simple_form_for @business_display_attribute do |f| %>
+    <h4> Your Business Customization</h4>
+    <div class="row" style="margin-bottom:20px;">
+      <div class="col">
+        <%= f.input :primary_color, as: :minicolors, input_html: {data: {
+              minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
+        <%= f.input :secondary_color, as: :minicolors, input_html: {data: {
+              minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
+
+      </div>
+      <div class="col">
+        <%= f.input :background_color, as: :minicolors, input_html: {data: {
+              minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
+        <%= f.association :font, collection: @fonts %>
+      </div>
     </div>
-    <div class="row">
-      <h4> <%= f.input :primary_color, as: :minicolors, input_html: {data: {
-          minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%></h4>
-    </div> 
-
-    <hr/>
-
-    <div class="row">
-      <h4> <%= f.input :secondary_color, as: :minicolors, input_html: {data: {
-          minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%></h4>
-    </div>
-
-    <hr/>
-
-    <div class="row">
-      <h4> <%= f.input :background_color, as: :minicolors, input_html: {data: {
-          minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%></h4>
-    </div>
-
-    <hr>
-
-    <div class="row">
-      <h4> <%= f.association :font, collection: @fonts %> </h4>
-    </div>
-  <div>
-  <%= link_to "Reset Customization Options", reset_options_business_path(@business_display_attribute, @business) %>
-  <%= f.button :submit, class: "btn btn-primary", data: { disable_with: "Saving..." } %>
+    <%#= link_to "Reset Customization Options", reset_options_business_path(@business_display_attribute, @business) %>
+    <%= f.button :submit, class: "btn btn-sm btn-primary", data: { disable_with: "Saving..." } %>
   <% end %>
 </div>
