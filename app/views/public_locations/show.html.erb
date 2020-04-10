@@ -10,12 +10,6 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
     <h5 style=" color: <%= @business.business_display_attribute.primary_color %>" ><%= @business.name %> Location</h5><br>
   </div>
 
-  <% if @business.locations.count < 2 %>
-    <div style="margin-bottom:49px;">
-        <%= @business.description.html_safe%>
-    </div>
-  <% end %>
-
   <div class="row">
     <div class="col">
       <% if @business.locations.count > 1 %>
@@ -33,6 +27,11 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
         <% else %>
         <p style="color: <%= @business.business_display_attribute.primary_color %>">Phone Number: <%= @business.phone_number %></p>
         <% end %>
+          <% if @business.locations.count < 2 %>
+    <div style="margin-bottom:49px;">
+        <%= @business.description.html_safe%>
+    </div>
+  <% end %>
       </div>
     </div>
     <div class="col gallery">
