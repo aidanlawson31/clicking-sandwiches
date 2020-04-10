@@ -1,0 +1,17 @@
+<% @menus.each do |menu| %>
+  <div class='card col' style='width: 18rem; margin: 0.5rem;'>
+    <div class="card-body">
+      <div class="row">
+        <h5 class="card-title"><%= menu.display_name %></h5>
+      </div>
+      <div class="row">
+        <p><%= menu.internal_name %></p>
+      </div>
+      <% unless @location_menus_names.include?(menu.display_name) %>
+        <%= link_to "Add menu", add_menu_location_path(@location.id, menu_id: menu.id), method: :post, class: "btn btn-primary", remote: true %>
+      <% else %>
+        <p>Display Name Taken </p>
+      <% end %>
+    </div>
+  </div>
+<% end %>
