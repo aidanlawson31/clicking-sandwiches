@@ -32,7 +32,8 @@ class MenuItemsController < ApplicationController
     if @menu_item.update(menu_item_params)
       redirect_to menu_path(@menu_item.category.menu), notice: "menu item updated successfully"
     else
-      render :new
+      render :edit
+      puts "ALAL #{@menu_item.errors.full_messages}"
     end
   end
 
@@ -65,8 +66,7 @@ class MenuItemsController < ApplicationController
 
   def menu_item_params
     params[:menu_item].permit( 
-      :name, :description, 
-      :price, :code, :category_id, 
-      :image, :display_sequence_number)
+      :name, :description, :price, :code, :category_id, :image, :display_sequence_number,
+      :item_options, menu_item_options_attributes: [:id, :name, :price, :_destroy])
   end
 end

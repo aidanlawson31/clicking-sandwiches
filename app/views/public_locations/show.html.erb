@@ -29,25 +29,27 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
         <% end %>
           <% if @business.locations.count < 2 %>
     <div style="margin-bottom:49px;">
-        <%= @business.description.html_safe%>
+        <span style="color:<%= @business.business_display_attribute.primary_color %>" data-trix-color><%= @business.description.html_safe%></span>
     </div>
   <% end %>
       </div>
     </div>
-    <div class="col gallery">
-      <% if @location.location_images.count < 4 %>
-        <% @location.location_images.each do |image| %>
-          <div class="row">
-            <%= list_image(image.sized_image(size: 200), alt: 'Location Image') %>
+    <div class="col">
+      <div class="gallery">
+        <% if @location.location_images.count < 4 %>
+          <div class="row row-cols-3">
+            <% @location.location_images.each do |image| %>
+              <%= list_image(image.sized_image(size: 200), alt: 'Location Image') %>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="row row-cols-3">
+            <% @location.location_images.each do |image| %>
+              <%= list_image(image.sized_image(size: 200), alt: 'Location Image') %>
+            <% end %>
           </div>
         <% end %>
-      <% else %>
-        <div class="row row-cols-3">
-          <% @location.location_images.each do |image| %>
-            <%= list_image(image.sized_image(size: 200), alt: 'Location Image') %>
-          <% end %>
-        </div>
-      <% end %>
+      <div>
     </div>
   </div>
   <div class="row" style="padding-top:20px;">
