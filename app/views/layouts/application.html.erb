@@ -17,19 +17,26 @@
     <%= yield %>
 
     <script>
-      $('#menu-items-list').sortable({ 
-        placeholder: 'ui-state-highlight',
-        update: function(event, ui) {
-          $('#menu-items-list tr').each(function (index) { $(this).find(".display_sequence_number").val(index+1) }); // Update display_sequence after row moved.
-        }
-      });
+    $('#menu-items-list').sortable({ 
+      placeholder: 'ui-state-highlight',
+      update: function(event, ui) {
+        $('#menu-items-list tr').each(function (index) { $(this).find(".display_sequence_number").val(index+1) }); // Update display_sequence after row moved.
+      }
+    });
 
-       $('#categories-list').sortable({ 
-        placeholder: 'ui-state-highlight',
-        update: function(event, ui) {
-          $('#categories-list tr').each(function (index) { $(this).find(".display_sequence_number").val(index+1) }); // Update display_sequence after row moved.
-        }
-      });
+    $('#categories-list').sortable({ 
+      placeholder: 'ui-state-highlight',
+      update: function(event, ui) {
+        $('#categories-list tr').each(function (index) { $(this).find(".display_sequence_number").val(index+1) }); // Update display_sequence after row moved.
+      }
+    });
+  
+    $('#menu_item_options').sortable({ 
+      placeholder: 'ui-state-highlight',
+      update: function(event, ui) {
+        $('#menu_item_options tr').each(function (index) { $(this).find(".display_sequence_number").val(index+1) }); // Update display_sequence after row moved.
+      }
+    });
 
     $('.minicolors').minicolors({ theme: 'bootstrap' })
     

@@ -50,8 +50,6 @@ class CategoriesController < ApplicationController
       redirect_to menu_path(@category.menu), notice: 'Menu Items successfully sorted.'
     else
       redirect_to menu_path(params[:menu_id])
-      puts "ALAL #{@category.errors.full_messages}"
-      puts "#{params}"
     end
   end
 
