@@ -30,8 +30,25 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
               <div class="row menu-item-name">
                 <%= menu_item.name %><br>
               </div>
-              <b>Category: <%= menu_item.category.name %><br></b>
               <%= menu_item.description.html_safe %>
+              <% if menu_item.item_options %>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Options</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% menu_item.menu_item_options.each do |option| %>
+                    <tr>
+                      <td><%= option.name %></td>
+                      <td>$<%= option.price %></td>
+                    </tr>
+                  <% end %>
+                <tbody>
+              </table>
+            <% end %>
             </div>
             <div class="col">
               <% if menu_item.image.attached? %>

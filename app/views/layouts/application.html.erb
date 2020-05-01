@@ -12,8 +12,12 @@
   </head>
 
   <body>
-    <%= render 'partials/nav_bar' %>
-    
+    <% if controller_name != 'public_locations' && 'public_menus' %>
+      <%= render 'layouts/admin_nav_bar' %>
+    <% else %>
+      <%= render 'layouts/public_nav_bar' %>
+    <% end %>
+
     <%= yield %>
 
     <script>

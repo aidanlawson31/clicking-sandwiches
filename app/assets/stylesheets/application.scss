@@ -30,6 +30,16 @@ input {
   }
 }
 
+.nav-public {
+  background-color: white;
+  border: 2px solid black;
+  margin-bottom: 0px;
+  
+  a {
+    color: black;
+  }
+}
+
 .drop-down-link {
   color: #1C4D7E !important;
 }

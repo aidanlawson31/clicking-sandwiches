@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+  helper_method :current_business
 
   protected
 
@@ -16,5 +17,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:admin, :email, :password)}
 
     devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:admin, :email, :password, :current_password)}
+  end
+
+  def current_business
+    if current_user
+      return current_user.business
+    else
+      return Business.find_by(business_url: params[:business_url])
+    end
   end
 end

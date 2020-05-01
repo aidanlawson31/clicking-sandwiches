@@ -7,33 +7,35 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
 
   <div style="text-align:center;">
     <h1 class="show-header" style="color: <%= @business.business_display_attribute.primary_color %>"><%= @location.name %></h1>
-    <h5 style=" color: <%= @business.business_display_attribute.primary_color %>" ><%= @business.name %> Location</h5><br>
+    <h5 style="color: <%= @business.business_display_attribute.primary_color %>" ><%= @business.name %> Location</h5><br>
   </div>
 
-  <div class="row">
+  <div class="row" style="width: 100%">
     <div class="col">
       <% if @business.locations.count > 1 %>
         <%= link_to "Back to #{@business.name}'s page", public_locations_path(@business.business_url), class: "btn btn-primary btn-sm" %>
       <% end %>
-      <div class="card" style="height:82%; 
-      margin-top:5px; 
-      padding-top:10px; 
-      padding-left:10px;
-      background-color: <%= @business.business_display_attribute.secondary_color%>">
+      <div class="card" style="
+        margin-top:5px; 
+        padding-top:10px; 
+        padding-left:10px;
+        background-color: <%= @business.business_display_attribute.secondary_color%>">
         <p style="color: <%= @business.business_display_attribute.primary_color %>">Address: <%= @location.address %></p>
         <p style="color: <%= @business.business_display_attribute.primary_color %>">Open: <%= @location.open %></p>
-        <% if @location.phone_number %>
+      <% if @location.phone_number %>
         <p style="color: <%= @business.business_display_attribute.primary_color %>">Phone Number: <%= @location.phone_number %></p>
-        <% else %>
+      <% else %>
         <p style="color: <%= @business.business_display_attribute.primary_color %>">Phone Number: <%= @business.phone_number %></p>
-        <% end %>
-          <% if @business.locations.count < 2 %>
-    <div style="margin-bottom:49px;">
-        <span style="color:<%= @business.business_display_attribute.primary_color %>" data-trix-color><%= @business.description.html_safe%></span>
+      <% end %>
+      <% if @business.locations.count < 2 %>
+        <div style="margin-bottom:49px;">
+          <span style="color:<%= @business.business_display_attribute.primary_color %>" data-trix-color><%= @business.description.html_safe%></span>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-      </div>
-    </div>
+  </div>
+  
+  <% unless @location.location_images.count == 0 %>
     <div class="col">
       <div class="gallery">
         <% if @location.location_images.count < 4 %>
@@ -49,9 +51,11 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
             <% end %>
           </div>
         <% end %>
-      <div>
+        <div>
+      </div>
     </div>
-  </div>
+  <% end %>
+
   <div class="row" style="padding-top:20px;">
     <div class="col">
     <% if @location.location_menus %>
