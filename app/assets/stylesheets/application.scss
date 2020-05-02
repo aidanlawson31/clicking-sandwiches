@@ -34,7 +34,7 @@ input {
   background-color: white;
   border: 2px solid black;
   margin-bottom: 0px;
-  
+
   a {
     color: black;
   }
@@ -74,6 +74,10 @@ input {
   background-color: #1C4D7E;
   color:#FFF;
   border-color: #1C4D7E;
+}
+
+.custom-btn {
+  background-color: #1C4D7E;
 }
  
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
