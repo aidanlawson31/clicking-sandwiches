@@ -19,6 +19,7 @@
 //= require jquery.minicolors.simple_form
 //= require fancybox
 //= require trix
+//= require cocoon
 
 // Todo: uncomment this code and remove <script> js from layout file soon
 

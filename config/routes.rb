@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root       'business#show'
   devise_for :users
   resources  :business_display_attributes
 

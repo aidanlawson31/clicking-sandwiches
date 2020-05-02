@@ -24,6 +24,7 @@ gem 'fancybox-rails' # enlarging images
 gem 'trix-rails', require: 'trix'   # Rich text editor
 gem 'geocoder'
 gem 'dotenv-rails'
+gem "cocoon"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

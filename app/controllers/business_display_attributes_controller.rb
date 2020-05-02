@@ -19,6 +19,7 @@ class BusinessDisplayAttributesController < ApplicationController
   end
 
   def business_display_attribute_params
-    params[:business_display_attribute].permit(:business_id, :primary_color, :secondary_color, :background_color, :font_id)
+    params[:business_display_attribute].permit(:business_id, :primary_color, :secondary_color, :background_color, :font_id, :heading_colour, :general_text_colour, :nav_bar_colour, :business_icon, :favicon
+    )
   end
 end

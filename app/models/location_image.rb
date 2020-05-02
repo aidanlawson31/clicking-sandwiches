@@ -1,8 +1,6 @@
 class LocationImage < ApplicationRecord
   belongs_to       :location
   has_one_attached :image
-
-  validate :attached_image
   
   def attached_image
     unless image.attached?

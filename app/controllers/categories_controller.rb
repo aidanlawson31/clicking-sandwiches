@@ -49,7 +49,7 @@ class CategoriesController < ApplicationController
     if @category.update(category_sort_params)
       redirect_to menu_path(@category.menu), notice: 'Menu Items successfully sorted.'
     else
-      render :sort_menu_items_categories
+      redirect_to menu_path(params[:menu_id])
     end
   end
 
@@ -71,10 +71,10 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    params[:category].permit(:name, :menu_id, menu_items_attributes: [ :id, :display_sequence_number, :name, :description, :price ])
+    params[:category].permit(:name, :menu_id, menu_items_attributes: [ :id, :display_sequence_number, :name, :description, :price, :item_options ])
   end
 
   def category_sort_params
-    params[:category].permit(menu_items_attributes: [:id, :name, :code, :display_sequence_number])
+    params[:category].permit(menu_items_attributes: [:id, :name, :code, :display_sequence_number ])
   end
 end
