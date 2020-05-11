@@ -12,12 +12,14 @@ class Business < ApplicationRecord
   after_create :create_display_attributes
 
   def create_display_attributes
-    create_business_display_attribute(
-      business_id: self.id,
+    self.create_business_display_attribute(
       font_id: Font.default.id,
       primary_color: "#000",
       secondary_color: "#fff",
-      background_color: "#F9FAFB"
+      background_color: "#F9FAFB",
+      heading_color: "#000",     
+      nav_bar_color: "#fff",     
+      general_text_color: "#000" 
      )
   end
 
