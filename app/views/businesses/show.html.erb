@@ -18,17 +18,10 @@
   <% end %>
   <br>
 
-  <% if root_url == "clicking-sandwiches.herokuapp.com" %>
-    <h4>Preview Customization</h4>
-    <iframe src="http://clicking-sandwiches.herokuapp.com/<%= @business.business_url %>" id="business-iframe">
+  <h4>Preview Customization</h4>
+  <iframe src="<%= public_locations_path(@business.business_url) %>" id="business-iframe">
       <p>Placeholder text; only shows up if the page DOESN'T render!</p>
-    </iframe>
-  <% else %>
-    <h4>Preview Customization</h4>
-    <iframe src="http://localhost:3000/<%= @business.business_url %>" id="business-iframe">
-        <p>Placeholder text; only shows up if the page DOESN'T render!</p>
-    </iframe>
-  <% end %> 
+  </iframe>å
 
   <%= simple_form_for @business_display_attribute do |f| %>
     <h4> Your Business Customization</h4>

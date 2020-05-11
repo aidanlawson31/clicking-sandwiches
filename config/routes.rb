@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  root       'business#show'
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
+  
   devise_for :users
   resources  :business_display_attributes
 
