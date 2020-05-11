@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_01_074706) do
+ActiveRecord::Schema.define(version: 2020_05_09_011754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,9 +44,9 @@ ActiveRecord::Schema.define(version: 2020_05_01_074706) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "font_id"
-    t.string "heading_colour"
-    t.string "nav_bar_colour"
-    t.string "general_text_colour"
+    t.string "heading_color"
+    t.string "nav_bar_color"
+    t.string "general_text_color"
     t.index ["business_id"], name: "index_business_display_attributes_on_business_id"
     t.index ["font_id"], name: "index_business_display_attributes_on_font_id"
   end
