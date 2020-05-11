@@ -18,7 +18,7 @@
   <% end %>
   <br>
 
-  <% if Rails.env == "production" %>
+  <% if root_url == "clicking-sandwiches.herokuapp.com" %>
     <h4>Preview Customization</h4>
     <iframe src="http://clicking-sandwiches.herokuapp.com/<%= @business.business_url %>" id="business-iframe">
       <p>Placeholder text; only shows up if the page DOESN'T render!</p>

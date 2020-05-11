@@ -19,27 +19,27 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
 
   <div class="row">
     <div class="col">
-    <div class="row">
-      <div class="card" style="
-        padding-top: 10px;
-        width: 100%;
-        padding-left:10px;
-        padding-right:10px;
-        margin-bottom:10px;
-        background-color: <%= @business.business_display_attribute.secondary_color%>">
-        <p style="color: <%= @business.business_display_attribute.general_text_color %>">Address: <%= @location.address %></p>
-        <p style="color: <%= @business.business_display_attribute.general_text_color %>">Open: <%= @location.open %></p>
-      <% if @location.phone_number %>
-        <p style="color: <%= @business.business_display_attribute.general_text_color %>">Phone Number: <%= @location.phone_number %></p>
-      <% else %>
-        <p style="color: <%= @business.business_display_attribute.general_text_color %>">Phone Number: <%= @business.phone_number %></p>
-      <% end %>
-      <% if @business.locations.count < 2 %>
-        <div style="margin-bottom:49px;">
-          <span style="color:<%= @business.business_display_attribute.general_text_color %>" data-trix-color><%= @business.description.html_safe%></span>
-        </div>
-      <% end %>
-    </div> 
+      <div class="row" style="width: 100%;">
+        <div class="card" style="
+          padding-top: 10px;
+          padding-left:10px;
+          width: 100%;
+          padding-right:10px;
+          margin-bottom:10px;
+          background-color: <%= @business.business_display_attribute.secondary_color%>">
+          <p style="color: <%= @business.business_display_attribute.general_text_color %>">Address: <%= @location.address %></p>
+          <p style="color: <%= @business.business_display_attribute.general_text_color %>">Open: <%= @location.open %></p>
+        <% if @location.phone_number %>
+          <p style="color: <%= @business.business_display_attribute.general_text_color %>">Phone Number: <%= @location.phone_number %></p>
+        <% else %>
+          <p style="color: <%= @business.business_display_attribute.general_text_color %>">Phone Number: <%= @business.phone_number %></p>
+        <% end %>
+        <% if @business.locations.count < 2 %>
+          <div style="margin-bottom:49px;">
+            <span style="color:<%= @business.business_display_attribute.general_text_color %>" data-trix-color><%= @business.description.html_safe%></span>
+          </div>
+        <% end %>
+      </div> 
     </div>
 
     <% if @location.location_menus %>
