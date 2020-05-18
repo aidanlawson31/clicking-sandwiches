@@ -1,4 +1,6 @@
-<div class="backround" style="
+
+<div class="background" style="
+
 background-color: <%= @business.business_display_attribute.background_color %>;
 font-family: '<%= @business.business_display_attribute.font.name %>';
 ">
@@ -7,15 +9,15 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
   <%= list_image(@business.business_display_attribute.business_icon, alt: "Image") %>
 </div>
 <% end %>
-  <div class="container" style="text-align:center;">
-    <h1 style="margin-bottom: 50px; padding-top: 30px; color: <%= @business.business_display_attribute.heading_color %>;"><%= @business.name %>'s Page</h1>
-    <div style="margin-bottom: 50px; color: <%= @business.business_display_attribute.general_text_color %> !important"><%= @business.description.html_safe %></div> 
+  <div class="container" id="index-container">
+    <h1 id="index-heading" style="color: <%= @business.business_display_attribute.heading_color %>;"><%= @business.name %>'s Page</h1>
+    <div id="index-description" style="margin-bottom: 50px; color: <%= @business.business_display_attribute.general_text_color %> !important"><%= @business.description.html_safe %></div> 
 
-    <h3 style="color: <%= @business.business_display_attribute.general_text_color %>">Locations</h3>
+    <h3  id="index-description" style="color: <%= @business.business_display_attribute.general_text_color %>">Locations</h3>
     <% unless @locations.empty? %>
       <% @locations.each do |location| %>
         <div class="card" style="margin:5px;  background-color: <%= @business.business_display_attribute.secondary_color %>">
-          <div class="row" style=" padding: 10px; width: 100%;">
+          <div class="row" style="padding: 10px; width: 100%;">
             <div class="col" style="margin: 0.5rem;" >
               <% if location.location_images %>
                 <% location.location_images.each do |image| %>
@@ -24,16 +26,16 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
               <% end %>
             </div>
             <div class="col">
-              <h5 style="padding-top: 30px; color: <%= @business.business_display_attribute.general_text_color %>"><%= location.name %></h5>
-              <h5 style="margin-top: 5px; color: <%= @business.business_display_attribute.general_text_color %>"><%= location.phone_number %></h5>
-              <h5 style="margin-top: 5px; color: <%= @business.business_display_attribute.general_text_color %>"><%= location.address %></h5>
+              <h5 id="index-card" style="padding-top: 30px; color: <%= @business.business_display_attribute.general_text_color %>"><%= location.name %></h5>
+              <h5 id="index-card" style="margin-top: 5px; color: <%= @business.business_display_attribute.general_text_color %>"><%= location.phone_number %></h5>
+              <h5 id="index-card" style="margin-top: 5px; color: <%= @business.business_display_attribute.general_text_color %>"><%= location.address %></h5>
               <% if location.open %>
-              <h5 style="margin-top: 5px; color: <%= @business.business_display_attribute.general_text_color %>">open: <%= location.open %></h5>
+              <h5 id="index-card" style="margin-top: 5px; color: <%= @business.business_display_attribute.general_text_color %>">open: <%= location.open %></h5>
               <% end %>
               <%= link_to "View location", public_location_path(@business.business_url, location.location_url), class: "btn btn-sm btn-primary custom-btn", style: "background-color: #{@business.business_display_attribute.primary_color}; border-color: #{@business.business_display_attribute.primary_color}" %>
             </div>
             <div class="col">
-              <iframe width="200" height="200" frameborder="0" style="border:10"
+              <iframe id="index-iframe" width="200" height="200" frameborder="0" style="border:10"
               src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['MAPS_API_KEY'] %>&q=<%= location.latitude %>,<%= location.longitude %>"
               allowfullscreen>
               </iframe>
@@ -43,7 +45,7 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
       <% end %>
     </div>
     <% else %>
-      <p> <%= @business.name %> does not have any locations posted yet! <p>
+      <p id="index-description"> <%= @business.name %> does not have any locations posted yet! <p>
     <% end %>
   </div>
 </div>

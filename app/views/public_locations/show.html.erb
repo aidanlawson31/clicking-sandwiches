@@ -1,13 +1,15 @@
-<div class="backround" style="
+
+
+<div class="background" style="
 background-color: <%= @business.business_display_attribute.background_color %>;
 font-family: '<%= @business.business_display_attribute.font.name %>';
 ">
 
-<div class="container" style="padding-top: 10px;">
+<div class="container" id="show-container" style="padding-top: 10px;">
   <% if @business.locations.count > 1 %>
-    <%= link_to "Back to #{@business.name}'s page", public_locations_path(@business.business_url), class: "btn btn-primary btn-sm btn-custom", style:"background-color: #{@business.business_display_attribute.primary_color}; border-color: #{@business.business_display_attribute.primary_color};" %>
+    <%= link_to "Back to #{@business.name}'s page", public_locations_path(@business.business_url), class: "btn custom-btn btn-primary btn-sm btn-custom", style:"background-color: #{@business.business_display_attribute.primary_color}; border-color: #{@business.business_display_attribute.primary_color};" %>
     <div style="text-align:center;">
-      <h1 class="show-header" style="color: <%= @business.business_display_attribute.heading_color %>"><%= @location.name %></h1>
+      <h1 class="show-header" id="show-heading" style="color: <%= @business.business_display_attribute.heading_color %>"><%= @location.name %></h1>
       <h5 style="color: <%= @business.business_display_attribute.heading_color %>" ><%= @business.name %> Location</h5><br>
     </div>
   <% else %>
@@ -17,77 +19,84 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
     </div>
   <% end %>
 
-  <div class="row">
-    <div class="col">
-      <div class="row" style="width: 100%;">
-        <div class="card" style="
-          padding-top: 10px;
-          padding-left:10px;
-          width: 100%;
-          padding-right:10px;
-          margin-bottom:10px;
-          background-color: <%= @business.business_display_attribute.secondary_color%>">
-          <p style="color: <%= @business.business_display_attribute.general_text_color %>">Address: <%= @location.address %></p>
-          <p style="color: <%= @business.business_display_attribute.general_text_color %>">Open: <%= @location.open %></p>
-        <% if @location.phone_number %>
-          <p style="color: <%= @business.business_display_attribute.general_text_color %>">Phone Number: <%= @location.phone_number %></p>
-        <% else %>
-          <p style="color: <%= @business.business_display_attribute.general_text_color %>">Phone Number: <%= @business.phone_number %></p>
-        <% end %>
-        <% if @business.locations.count < 2 %>
-          <div style="margin-bottom:49px;">
-            <span style="color:<%= @business.business_display_attribute.general_text_color %>" data-trix-color><%= @business.description.html_safe%></span>
-          </div>
-        <% end %>
-      </div> 
+  <div class="show-description">
+    <div class="row">
+      <div class="col">
+        <div class="row" style="width: 100%;">
+          <div class="card" style="
+            padding-top: 10px;
+            padding-left:10px;
+            width: 100%;
+            padding-right:10px;
+            margin-bottom:10px;
+            background-color: <%= @business.business_display_attribute.secondary_color%>">
+            <p style="color: <%= @business.business_display_attribute.general_text_color %>">Address: <%= @location.address %></p>
+            <p style="color: <%= @business.business_display_attribute.general_text_color %>">Open: <%= @location.open %></p>
+          <% if @location.phone_number %>
+            <p style="color: <%= @business.business_display_attribute.general_text_color %>">Phone Number: <%= @location.phone_number %></p>
+          <% else %>
+            <p style="color: <%= @business.business_display_attribute.general_text_color %>">Phone Number: <%= @business.phone_number %></p>
+          <% end %>
+          <% if @business.locations.count < 2 %>
+            <div style="margin-bottom:49px;">
+              <span style="color:<%= @business.business_display_attribute.general_text_color %>" data-trix-color><%= @business.description.html_safe%></span>
+            </div>
+          <% end %>
+        </div> 
+      </div>
     </div>
+  </div>
 
+  <div class="pub-show-menus">
     <% if @location.location_menus %>
       <h2 style="color: <%= @business.business_display_attribute.heading_color %>">Menus</h2>
       <% @location.location_menus.each do |location_menu| %>
         <div class="row" style="width: 100%;">
-      <div class="card" style="
-        padding-top: 10px;
-        width: 100%;
-        padding-left:10px;
-        margin-bottom:10px;
-        background-color: <%= @business.business_display_attribute.secondary_color%>">
+          <div class="card" style="
+            padding-top: 10px;
+            width: 100%;
+            padding-left:10px;
+            margin-bottom:10px;
+            background-color: <%= @business.business_display_attribute.secondary_color%>">
             <h5 class="card-title" style="color: <%= @business.business_display_attribute.general_text_color %>"><%= location_menu.menu.display_name %></h5>
 
             <%= link_to "View Menu", public_menu_path(@location.business.business_url, 
                                                       @location.location_url, 
                                                       location_menu.menu.menu_url), 
-                                                      class: "btn btn-primary btn-sm", style: "background-color: #{@business.business_display_attribute.primary_color}; border-color: #{@business.business_display_attribute.primary_color}" %>
+                                                      class: "btn custom-btn btn-primary btn-sm", style: "background-color: #{@business.business_display_attribute.primary_color}; border-color: #{@business.business_display_attribute.primary_color}" %>
 
             <span style="color: <%= @business.business_display_attribute.general_text_color %>"><%= location_menu.menu.description.html_safe %></span>
           </div>
         </div>
       <% end %>
-    <% else %>
-      <p style="color: <%= @business.business_display_attribute.general_text_color %>"> this location has not had any menus posted for it yet! <p>
-    <% end %>
+      <% else %>
+        <p style="color: <%= @business.business_display_attribute.general_text_color %>"> this location has not had any menus posted for it yet! <p>
+      <% end %>
+    </div>
   </div>
 
-  <% unless @location.location_images.count == 0 %>
-    <div class="col">
-      <div class="gallery">
-        <% if @location.location_images.count < 4 %>
-          <div class="row row-cols-3">
-            <% @location.location_images.each do |image| %>
-              <%= list_image(image.sized_image(size: 200), alt: 'Location Image') %>
-            <% end %>
-          </div>
-        <% else %>
-          <div class="row row-cols-3">
-            <% @location.location_images.each do |image| %>
-              <%= list_image(image.sized_image(size: 200), alt: 'Location Image') %>
-            <% end %>
-          </div>
-        <% end %>
-        <div>
+  <div class="show-location-images">
+    <% unless @location.location_images.count == 0 %>
+      <div class="col">
+        <div class="gallery">
+          <% if @location.location_images.count < 4 %>
+            <div class="row row-cols-3">
+              <% @location.location_images.each do |image| %>
+                <%= list_image(image.sized_image(size: 200), alt: 'Location Image') %>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="row row-cols-3">
+              <% @location.location_images.each do |image| %>
+                <%= list_image(image.sized_image(size: 200), alt: 'Location Image') %>
+              <% end %>
+            </div>
+          <% end %>
+          <div>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 
   <div class="row imap-location-show">
     <iframe width="530" height="530" frameborder="0" style="border:0"

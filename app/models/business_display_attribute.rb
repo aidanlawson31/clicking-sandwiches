@@ -26,4 +26,3 @@ class BusinessDisplayAttribute < ApplicationRecord
     favicon.purge_later
   end
 end
- 

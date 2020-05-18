@@ -12,11 +12,7 @@
   </head>
 
   <body>
-    <% if controller_name != 'public_locations' && 'public_menus' %>
-      <%= render 'layouts/admin_nav_bar' %>
-    <% else %>
-      <%= render 'layouts/public_nav_bar' %>
-    <% end %>
+    <%= render 'layouts/admin_nav_bar' %>
 
     <%= yield %>
 

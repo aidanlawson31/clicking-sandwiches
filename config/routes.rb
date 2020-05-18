@@ -8,7 +8,11 @@ Rails.application.routes.draw do
 
   resources  :businesses do
     member do
-      patch 'reset_options'
+      get   'access_admins'
+      post  'create_user'
+      patch 'remove_admin_privileges'
+      patch 'grant_admin_privileges'
+      delete 'remove_user'
     end
   end
 

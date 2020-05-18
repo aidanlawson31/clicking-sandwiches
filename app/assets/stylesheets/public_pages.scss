@@ -6,6 +6,7 @@
   *= require trix
   *= require_tree .
 */
+
 .background,
 html,
 body {
@@ -283,12 +284,21 @@ label {
   and (max-device-width: 375px) 
  { 
 
-  #index-container {
+  #index-container,
+  #show-container {
     min-width: 100%;
     margin-right: 0;
     margin-left: 0;
     padding-left: 0;
-    padding-right: 0
+    padding-right: 0;
+  }
+
+  #show-container {
+    display: flex;
+  }
+
+  #index-container {
+    text-align: center;
   }
 
   .nav-public, 
@@ -297,17 +307,14 @@ label {
     font-size: 40px;
   }
 
-  #index-container {
-    text-align: center;
-  }
-
   .custom-btn {
     height: 50px;
     width: 200px;
     font-size: 25px;
   }
 
-  #index-heading {
+  #index-heading,
+  #show-heading {
     margin-bottom: 50px;
     padding-top: 30px;
     font-size: 60px;

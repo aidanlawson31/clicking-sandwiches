@@ -1,7 +1,8 @@
 class BusinessesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_business, only: [:edit, :update, :destroy]
-
+  before_action :set_business, only: [:edit, :update, :destroy, :add_admins]
+  before_action :set_user, only: [:remove_admin_privileges, :grant_admin_privileges, :remove_user]
+  
   def new
     @business = Business.new
   end
@@ -39,19 +40,64 @@ class BusinessesController < ApplicationController
     @fonts = Font.all
   end
 
-  def reset_options(business_display_attribute, business)
-    business_display_attribute.business_id      = business.id
-    business_display_attribute.font_id          = Font.default.id
-    business_display_attribute.primary_color    = "#000"
-    business_display_attribute.secondary_color  = "#fff"
-    business_display_attribute.background_color = "#F9FAFB"
+  def access_admins
+    @user = User.new
+    @business = current_business
+  end
 
-    if business_display_attribute.save
-      redirect_to business_path(business) 
+  def create_user
+    raise ArgumentError, 'You must be an admin to access this method' unless current_user.admin
+    @user = User.new(user_params)
+    @user.business_id = params[:id]
+    if @user.save
+      redirect_to access_admins_business_path(params[:id])
+    else
+      redirect_to access_admins_business_path(params[:id])
+      flash.now[:notice] == "#{@user.errors.full_messages}"
     end
   end
 
+  def remove_admin_privileges
+    raise ArgumentError, 'You must be an admin to access this method' unless current_user.admin
+    @user.admin = false
+    if @user.save 
+      redirect_to access_admins_business_path(params[:id])
+    else
+      redirect_to access_admins_business_path(params[:id])
+      flash.now[:notice] == "#{@user.errors.full_messages}"
+    end
+  end
+
+  def grant_admin_privileges
+    raise ArgumentError, 'You must be an admin to access this method' unless current_user.admin
+    @user.admin = true
+    if @user.save 
+      redirect_to access_admins_business_path(params[:id])
+    else
+      redirect_to access_admins_business_path(params[:id])
+      flash.now[:notice] == "#{@user.errors.full_messages}"
+    end
+  end
+
+  def remove_user
+    raise ArgumentError, 'You must be an admin to access this method' unless current_user.admin
+    if @user.destroy
+      redirect_to access_admins_business_path(params[:id])
+    else
+      redirect_to access_admins_business_path(params[:id])
+      flash.now[:notice] == "#{@user.errors.full_messages}"
+    end
+  end
+  
   private
+
+  def user_params
+    params[:user].permit(:admin, :first_name, :last_name, :email, :password, :password_confirmation)
+  end
+
+  def set_user 
+    @user = User.find(params[:id])
+  end
 
   def set_business
     @business = Business.find(params[:id])

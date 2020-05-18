@@ -1,15 +1,15 @@
 <ul class="nav justify-content-end">
-  <li class="nav-item"></li>
   <% if user_signed_in? && current_user.business %>
-    <%= link_to current_user.business.name, public_locations_path(current_user.business.business_url), class: "nav-link active" %>
+    <%= link_to "#{current_user.business.name} Public Pages", public_locations_path(current_user.business.business_url), class: "nav-item nav-link active" %>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Dashboard
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <%= link_to "My Business", business_path(current_user.business), class: "drop-down-link nav-link active" %>
-        <%= link_to "Locations",   locations_path, class: "drop-down-link nav-link active" %>
-        <%= link_to "Menus",       menus_path , class: "drop-down-link nav-link active" %>
+        <%= link_to "My Business",       business_path(current_user.business),       class: "drop-down-link nav-link active" %>
+        <%= link_to "Access and Admins", access_admins_business_path(current_business), class: "drop-down-link nav-link active" %>
+        <%= link_to "Locations",         locations_path, class: "drop-down-link nav-link active" %>
+        <%= link_to "Menus",             menus_path ,    class: "drop-down-link nav-link active" %>
       </div>
     </li>
     <li class="nav-item">
