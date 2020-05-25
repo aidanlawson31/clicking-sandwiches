@@ -88,13 +88,10 @@ class LocationsController < ApplicationController
   end
 
   def save_sort_image
-    puts "ALAL #{location_sort_params}"
     if @location.update(location_sort_params)
-      puts "ALAL PASSES #{@location.errors.full_messages}"
       redirect_to location_path(@location), notice: 'Images successfully sorted.'
     else
       redirect_to location_path(@location), notice: 'Something went wrong.'
-      puts "ALAL FAILS #{@location.errors.full_messages}"
     end
   end
 

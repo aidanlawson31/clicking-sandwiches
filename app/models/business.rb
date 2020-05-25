@@ -28,7 +28,6 @@ class Business < ApplicationRecord
   private
 
   def sanitize_text
-    sanitized_description = sanitize(description)
-    self.description = sanitized_description.gsub("\n", '') if sanitized_description
+    self.description = Utility.sanitize_rich_text(description)
 	end
 end
