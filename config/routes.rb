@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get    'show_menus'
       post   'add_menu'
       post   'add_image'
+      patch  'save_sort_image'
       delete 'remove_menu'
       delete 'remove_image'
     end

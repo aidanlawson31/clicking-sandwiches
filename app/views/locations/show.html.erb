@@ -14,24 +14,25 @@
       <% end %>
     </div>
     <div class="col">
-
-      <div class="row row-cols-4">
-        <% @location.location_images.each do |location_image| %>
-            <% if location_image.image.attached? %>
-              <%= link_to image_tag(location_image.sized_image(size: 100)), location_image.sized_image(size: 300), class: "fancybox" %> 
-              <br>
-              <%= link_to "Delete Image", remove_image_location_path(location_image: location_image.id), method: :delete %>
+      <h2 style="margin-top: 10px;">Location Images<span data-toggle="tooltip" data-placement="right" title="Images that belong to this location. The order of the images here will be the order of the images on your public pages."><%= image_tag "tooltip" %></span></h2>
+      <% if @location.location_images.exists? %>
+        <%= simple_form_for @location, url: save_sort_image_location_path do |f| %>
+          <ul id="location-images-list">
+            <%= f.simple_fields_for :location_images, wrapper: false do |image_form| %>
+              <li>
+                <%= image_form.hidden_field :display_sequence_number, class: 'display_sequence_number' %>
+                <%= list_image(image_form.object.sized_image(size: 150), alt: "location image") %>
+              </li>
             <% end %>
+            <%= f.button :submit, "Save Image Order", class: "btn btn-primary" %>
+          </ul>
         <% end %>
-      </div>
-      
+      <% end %>
+    
       <%= simple_form_for @location_image, url: add_image_location_path do |f| %>
-        <%= f.file_field :image, accept: 'image/png,image/jpeg', input_html: { required: true } %>
-        <%= f.hidden_field :display_sequence_number, value: 1 %>
-        <div class="row" style="margin-top: 10px;">
-          <%= f.button :submit, "Upload Image", class:"btn btn-primary btn-sm", style: "margin-right: 10px;" %>
-          <%= link_to "change display order", class: "btn btn-primary" %>
-        </div>
+          <%= f.file_field :image, accept: 'image/png,image/jpeg', input_html: { required: true } %>
+          <%= f.hidden_field :display_sequence_number, value: 1 %>
+          <%= f.button :submit, "Upload Image", class: "btn btn-primary", data: { disable_with: "Saving..." } %>
       <% end %>
     </div>
   </div><hr>

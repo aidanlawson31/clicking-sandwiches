@@ -24,6 +24,26 @@ div.business-banner {
   justify-content: center;
 }
 
+#location-images-list { 
+  list-style-type: none; 
+  margin: 0; 
+  padding: 0; 
+  width: 100%; 
+}
+
+#location-images-list li { 
+  padding: 1px; 
+  float: left; 
+  width: 150px; 
+  height: 150px; 
+  text-align: center; 
+}
+
+#location-image-form {
+  margin-top:20px;
+  padding-top:20px;
+}
+
 // Removes Asterisk from simpleforms
 abbr[title="required"] {
   display: none;
