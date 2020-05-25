@@ -57,7 +57,7 @@
       <div class="col">
         <%= f.input :background_color, as: :minicolors, input_html: {data: {
               minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
-        <%= f.association :font, collection: @fonts %>
+        <%= f.association :font, collection: @fonts, include_blank: false %>
         <%= f.input :general_text_color, as: :minicolors, input_html: {data: {
           minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"} %>
       </div>

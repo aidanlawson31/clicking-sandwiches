@@ -22,6 +22,7 @@
               <li>
                 <%= image_form.hidden_field :display_sequence_number, class: 'display_sequence_number' %>
                 <%= list_image(image_form.object.sized_image(size: 150), alt: "location image") %>
+                <%= link_to "Delete Image", remove_image_location_path(), class: "btn btn-sm btn-primary" %>
               </li>
             <% end %>
             <%= f.button :submit, "Save Image Order", class: "btn btn-primary" %>
@@ -32,7 +33,7 @@
       <%= simple_form_for @location_image, url: add_image_location_path do |f| %>
           <%= f.file_field :image, accept: 'image/png,image/jpeg', input_html: { required: true } %>
           <%= f.hidden_field :display_sequence_number, value: 1 %>
-          <%= f.button :submit, "Upload Image", class: "btn btn-primary", data: { disable_with: "Saving..." } %>
+          <%= f.button :submit, "Upload Image", class: "btn btn-primary", data: { disable_with: "Saving..." }, :id => "location-image-submit" %>
       <% end %>
     </div>
   </div><hr>
