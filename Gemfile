@@ -20,7 +20,6 @@ gem "mini_magick"
 gem 'devise'
 gem 'simple_form'
 gem 'jquery-minicolors-rails' # colour picker
-gem 'fancybox-rails' # enlarging images
 gem 'trix-rails', require: 'trix'   # Rich text editor
 gem 'geocoder'
 gem 'dotenv-rails'
