@@ -1,6 +1,7 @@
 class PublicMenusController < ApplicationController
   before_action :setup
   layout 'public_pages'
+  
   def show
   end
 

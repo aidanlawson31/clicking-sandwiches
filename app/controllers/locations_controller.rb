@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_location, only: [:add_menu, :show_menus, :remove_menu, :add_image, :remove_image, :save_sort_image, :update, :destroy, :show]
+  before_action :set_location, only: [:add_menu, :show_menus, :remove_menu, :add_image, :save_sort_image, :update, :destroy, :show]
   
   def index
     @locations = current_user.business.locations
@@ -58,11 +58,12 @@ class LocationsController < ApplicationController
   end
 
   def remove_image
-    @location_image = LocationImage.find(params[:location_image])
+    @location_image = LocationImage.find(params[:id])
+    @location = @location_image.location
 
     if @location_image.destroy
       redirect_to location_path(@location)
-      flash.now[:notice] = "Menu successfully removed from #{@location.name}"
+      flash.now[:notice] = "Image successfully removed from #{@location.name}"
     end
   end
 

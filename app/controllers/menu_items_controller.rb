@@ -1,7 +1,7 @@
 class MenuItemsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_menu_item, only: [:edit, :update, :destroy, :show]
   before_action :set_menu
+  before_action :set_menu_item, only: [:edit, :update, :destroy, :show]
   
   def index
     @menu_items = MenuItem.all
@@ -13,6 +13,7 @@ class MenuItemsController < ApplicationController
   end
 
   def create
+    @category  = Category.find(params[:category_id])
     @menu_item                         = MenuItem.new(menu_item_params)
     @menu_item.category_id             = params[:category_id]
     @menu_item.display_sequence_number = next_display_sequence_number(@menu_item.category_id)

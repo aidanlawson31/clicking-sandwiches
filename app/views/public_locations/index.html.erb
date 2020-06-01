@@ -10,7 +10,7 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
 </div>
 <% end %>
   <div class="container" id="index-container">
-    <h1 id="index-heading" style="color: <%= @business.business_display_attribute.heading_color %>;"><%= @business.name %>'s Page</h1>
+    <h1 id="index-heading" style="color: <%= @business.business_display_attribute.heading_color %>;"><%= @business.name %></h1>
     <div id="index-description" style="margin-bottom: 50px; color: <%= @business.business_display_attribute.general_text_color %> !important"><%= @business.description.html_safe %></div> 
 
     <h3  id="index-description" style="color: <%= @business.business_display_attribute.general_text_color %>">Locations</h3>

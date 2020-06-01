@@ -3,38 +3,43 @@
   <div class="row">
     <div class="col">
       <%= simple_form_for @location do |f| %>
-        <%= f.input :name %>
-        <%= f.input :address %>
-        <%= f.input :phone_number %>
-        <%= f.input :open %>
-        <br>
-        <%= link_to "back", locations_path %>
-        <%= f.button :submit, class: "btn btn-primary btn-sm", data: { disable_with: "Saving..." } %>
-        <%= link_to "Delete Location", location_path(@location), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure you want to delete this location?'} %>
-      <% end %>
+        <div class="max-width-inputs">
+          <%= f.input :name %>
+          <%= f.input :address %>
+          <%= f.input :phone_number %>
+          <%= f.input :open %>
+          <br>
+          <%= link_to "back", locations_path %>
+          <%= f.button :submit, class: "btn btn-primary btn-sm", data: { disable_with: "Saving..." } %>
+          <%= link_to "Delete Location", location_path(@location), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure you want to delete this location?'} %>
+        <% end %>
+      </div>
     </div>
     <div class="col">
-      <h2 style="margin-top: 10px;">Location Images<span data-toggle="tooltip" data-placement="right" title="Images that belong to this location. The order of the images here will be the order of the images on your public pages."><%= image_tag "tooltip" %></span></h2>
-      <% if @location.location_images.exists? %>
-        <%= simple_form_for @location, url: save_sort_image_location_path do |f| %>
-          <ul id="location-images-list">
-            <%= f.simple_fields_for :location_images, wrapper: false do |image_form| %>
-              <li>
-                <%= image_form.hidden_field :display_sequence_number, class: 'display_sequence_number' %>
-                <%= list_image(image_form.object.sized_image(size: 150), alt: "location image") %>
-                <%= link_to "Delete Image", remove_image_location_path(), class: "btn btn-sm btn-primary" %>
-              </li>
-            <% end %>
-            <%= f.button :submit, "Save Image Order", class: "btn btn-primary" %>
-          </ul>
+      <div class="edit-gallery">
+        <h2 style="margin-top: 10px;">Location Images<span data-toggle="tooltip" data-placement="right" title="Images that belong to this location. The order of the images here will be the order of the images on your public pages."><%= image_tag "tooltip" %></span></h2>
+        <% if @location.location_images.exists? %>
+          <%= simple_form_for @location, url: save_sort_image_location_path do |f| %>
+            <ul id="location-images-list">
+              <%= f.simple_fields_for :location_images, wrapper: false do |image_form| %>
+                <li style="margin-bottom: 40px;">
+                  <%= image_form.hidden_field :display_sequence_number, class: 'display_sequence_number' %>
+                  <%= list_image(image_form.object.sized_image(size: 150), alt: "location image") %>
+                  <%= link_to "Delete Image", remove_image_location_path(image_form.object), method: :delete, class: "btn btn-sm btn-primary" %>
+                </li>
+              <% end %>
+              <%= f.button :submit, "Save Image Order", class: "btn btn-primary" %>
+            </ul>
+          <% end %>
         <% end %>
-      <% end %>
-    
-      <%= simple_form_for @location_image, url: add_image_location_path do |f| %>
-          <%= f.file_field :image, accept: 'image/png,image/jpeg', input_html: { required: true } %>
-          <%= f.hidden_field :display_sequence_number, value: 1 %>
-          <%= f.button :submit, "Upload Image", class: "btn btn-primary", data: { disable_with: "Saving..." }, :id => "location-image-submit" %>
-      <% end %>
+      </div>
+      <div style="margin-top:40px;">
+        <%= simple_form_for @location_image, url: add_image_location_path do |f| %>  
+            <%= f.file_field :image, accept: 'image/png,image/jpeg', input_html: { required: true } %>
+            <%= f.hidden_field :display_sequence_number, value: 1 %>
+            <%= f.button :submit, "Upload Image", class: "btn btn-primary", data: { disable_with: "Saving..." }, :id => "location-image-submit" %>
+        <% end %>
+      </div>
     </div>
   </div><hr>
   <div class="row">
@@ -44,24 +49,22 @@
       <% end %>
       <% unless @location.location_menus.empty? %>
         <% @location.location_menus.each do |location_menu| %>
-          <div class="row row-cols-2">
-            <div class="card location-card">
-              <div class="card-body">
-                <h5 class="card-title"><%= location_menu.menu.display_name %></h5>
-                <h5 class="card-title"><%= location_menu.menu.internal_name %></h5>
-                <p class="card-text"><%= location_menu.menu.description.html_safe %></p>
-                <%= link_to "View Menu",   menu_path(location_menu.menu), class: "btn btn-primary" %>
-                <%= link_to "Remove Menu", remove_menu_location_path(location_menu:location_menu.id), method: :delete, class: "btn btn-danger", data: { disable_with: "Deleting..." } %> 
-              </div>
+          <div class="card location-card">
+            <div class="card-body">
+              <h5 class="card-title"><%= location_menu.menu.display_name %></h5>
+              <h5 class="card-title">Internal name: <%= location_menu.menu.internal_name %></h5>
+              <p class="card-text"><%= location_menu.menu.description.html_safe %></p>
+              <%= link_to "View Menu",   menu_path(location_menu.menu), class: "btn btn-primary" %>
+              <%= link_to "Remove Menu", remove_menu_location_path(location_menu:location_menu.id), method: :delete, class: "btn btn-danger", data: { disable_with: "Deleting..." } %> 
             </div>
           </div>
         <% end %>
       <% else %>
-        <p> You have no menus <p>
+        <p>You havent attached a menu yet!<p>
       <% end %>
     </div>
     <div class="col">
-      <iframe width="300" height="300" frameborder="0" style="border:0"
+      <iframe width="400" height="400" frameborder="0" style="border:0"
       src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBT-uhb9vkG8pk5wdO4byx10SD37PmgLH0&q=<%= @location.latitude %>,<%= @location.longitude %>"
       allowfullscreen>
       </iframe>

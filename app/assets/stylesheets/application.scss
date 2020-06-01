@@ -229,7 +229,7 @@ label {
   and (-webkit-min-device-pixel-ratio: 1) {
 
   .location-card {
-    width:  300px;
+    width:  100%;
     height: 300px;
     text-align: center;
     margin-left:   5px;
@@ -254,7 +254,7 @@ label {
   and (-webkit-min-device-pixel-ratio: 1) {
 
   .location-card {
-    width:  250px;
+    width:  100%;
     height: 250px;
     text-align: center;
     margin-left:   5px;
@@ -344,4 +344,17 @@ label {
     height: 250px;
     width: 250px;
   }
+}
+
+.edit-gallery {
+  margin-bottom: 10px;
+  height:80%;
+}
+
+.max-width-inputs input[type=submit] {
+    width: 150px;
+}
+
+.max-width-inputs input {
+  width: 100%;
 }

@@ -35,20 +35,21 @@ class BusinessesController < ApplicationController
   end
 
   def show
-    @business = current_user.business
+    @business                   = current_user.business
     @business_display_attribute = @business.business_display_attribute
-    @fonts = Font.all
+    @fonts                      = Font.all
   end
 
   def access_admins
-    @user = User.new
+    @user     = User.new
     @business = current_business
   end
 
   def create_user
     raise ArgumentError, 'You must be an admin to access this method' unless current_user.admin
-    @user = User.new(user_params)
+    @user             = User.new(user_params)
     @user.business_id = params[:id]
+
     if @user.save
       redirect_to access_admins_business_path(params[:id])
     else
@@ -60,6 +61,7 @@ class BusinessesController < ApplicationController
   def remove_admin_privileges
     raise ArgumentError, 'You must be an admin to access this method' unless current_user.admin
     @user.admin = false
+
     if @user.save 
       redirect_to access_admins_business_path(params[:id])
     else
@@ -71,6 +73,7 @@ class BusinessesController < ApplicationController
   def grant_admin_privileges
     raise ArgumentError, 'You must be an admin to access this method' unless current_user.admin
     @user.admin = true
+
     if @user.save 
       redirect_to access_admins_business_path(params[:id])
     else
@@ -81,6 +84,7 @@ class BusinessesController < ApplicationController
 
   def remove_user
     raise ArgumentError, 'You must be an admin to access this method' unless current_user.admin
+    
     if @user.destroy
       redirect_to access_admins_business_path(params[:id])
     else
