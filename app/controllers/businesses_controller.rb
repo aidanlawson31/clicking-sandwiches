@@ -40,7 +40,7 @@ class BusinessesController < ApplicationController
     @fonts                      = Font.all
   end
 
-  def access_admins
+  def user_access
     @user     = User.new
     @business = current_business
   end
@@ -51,21 +51,22 @@ class BusinessesController < ApplicationController
     @user.business_id = params[:id]
 
     if @user.save
-      redirect_to access_admins_business_path(params[:id])
+      redirect_to user_access_business_path(params[:id])
     else
-      redirect_to access_admins_business_path(params[:id])
+      redirect_to user_access_business_path(params[:id])
       flash.now[:notice] == "#{@user.errors.full_messages}"
     end
   end
 
   def remove_admin_privileges
-    raise ArgumentError, 'You must be an admin to access this method' unless current_user.admin
+    raise ArgumentError, 'You must be an admin to access this method'    unless current_user.admin
+
     @user.admin = false
 
     if @user.save 
-      redirect_to access_admins_business_path(params[:id])
+      redirect_to user_access_business_path(params[:id])
     else
-      redirect_to access_admins_business_path(params[:id])
+      redirect_to user_access_business_path(params[:id])
       flash.now[:notice] == "#{@user.errors.full_messages}"
     end
   end
@@ -75,20 +76,20 @@ class BusinessesController < ApplicationController
     @user.admin = true
 
     if @user.save 
-      redirect_to access_admins_business_path(params[:id])
+      redirect_to user_access_business_path(params[:id])
     else
-      redirect_to access_admins_business_path(params[:id])
+      redirect_to user_access_business_path(params[:id])
       flash.now[:notice] == "#{@user.errors.full_messages}"
     end
   end
 
   def remove_user
     raise ArgumentError, 'You must be an admin to access this method' unless current_user.admin
-    
+
     if @user.destroy
-      redirect_to access_admins_business_path(params[:id])
+      redirect_to user_access_business_path(params[:id])
     else
-      redirect_to access_admins_business_path(params[:id])
+      redirect_to user_access_business_path(params[:id])
       flash.now[:notice] == "#{@user.errors.full_messages}"
     end
   end

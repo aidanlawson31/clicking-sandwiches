@@ -9,7 +9,7 @@
 html,
 body {
   min-height: 1599px;
-  background-color: #F9FAFB;
+  background-color: #e8ecff;
 }
 
 div.business-banner {
@@ -107,10 +107,19 @@ input {
   width: 400px;
 }
 
+.btn-danger {
+  background-color: #EE6C4D;
+  border-color: #EE6C4D;
+}
+
 .btn-primary {
   background-color: #1C4D7E;
   color:#FFF;
   border-color: #1C4D7E;
+}
+
+.category-edit-button {
+  margin-right:5px;
 }
 
 .custom-btn {
@@ -357,4 +366,17 @@ label {
 
 .max-width-inputs input {
   width: 100%;
+}
+
+.bda-inputs input {
+  width: 100%;
+}
+
+#priv-m-table {
+  border-collapse: separate;
+  border-spacing: 10px 0;
+}
+
+#priv-m-td {
+  padding: 1px 0;
 }

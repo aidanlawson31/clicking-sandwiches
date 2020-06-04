@@ -4,7 +4,7 @@
     <%= f.input :name %>
     <%= f.input :address %>
     <%= f.input :phone_number, label: "Phone Number" %>
-    <%= f.input :open, label: "Opening Times" %>
+    <%= f.input :open, label: "Opening Times", as: :text %>
     <%= f.hidden_field :location_url %>
     <br>
     <%= f.button :submit, class: "btn btn-primary", data: { disable_with: "Saving..." } %>

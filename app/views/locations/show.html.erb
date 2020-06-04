@@ -7,7 +7,7 @@
           <%= f.input :name %>
           <%= f.input :address %>
           <%= f.input :phone_number %>
-          <%= f.input :open %>
+          <%= f.input :open, as: :text, :input_html => { :cols => 65, :rows => 5 } %>
           <br>
           <%= link_to "back", locations_path %>
           <%= f.button :submit, class: "btn btn-primary btn-sm", data: { disable_with: "Saving..." } %>
@@ -28,16 +28,18 @@
                   <%= link_to "Delete Image", remove_image_location_path(image_form.object), method: :delete, class: "btn btn-sm btn-primary" %>
                 </li>
               <% end %>
-              <%= f.button :submit, "Save Image Order", class: "btn btn-primary" %>
+              <% if @location.location_images.count > 0 %>
+                <%= f.button :submit, "Save Image Order", class: "btn btn-primary" %>
+              <% end %>
             </ul>
           <% end %>
         <% end %>
       </div>
       <div style="margin-top:40px;">
         <%= simple_form_for @location_image, url: add_image_location_path do |f| %>  
-            <%= f.file_field :image, accept: 'image/png,image/jpeg', input_html: { required: true } %>
-            <%= f.hidden_field :display_sequence_number, value: 1 %>
-            <%= f.button :submit, "Upload Image", class: "btn btn-primary", data: { disable_with: "Saving..." }, :id => "location-image-submit" %>
+          <%= f.file_field :image, accept: 'image/png,image/jpeg', input_html: { required: true } %>
+          <%= f.hidden_field :display_sequence_number, value: 1 %>
+          <%= f.button :submit, "Upload Image", class: "btn btn-primary", data: { disable_with: "Saving..." }, :id => "location-image-submit" %>
         <% end %>
       </div>
     </div>
@@ -45,7 +47,7 @@
   <div class="row">
     <div class="col">
       <% if @menus.present? %>
-        <%= link_to "Add existing menu", show_menus_location_path, class: "btn btn-primary btn-sm" %>
+        <%= link_to "Attach existing menu", show_menus_location_path, class: "btn btn-primary btn-sm" %>
       <% end %>
       <% unless @location.location_menus.empty? %>
         <% @location.location_menus.each do |location_menu| %>

@@ -27,14 +27,12 @@
     <% @menu.categories.each do |category| %>
       <div class="row menu-show-category" style="margin-bottom: 1%; margin-top: 1%;">
         <div class="col">
-          <p><%= category.name %></p>
+          <b><%= category.name %></b>
         </div>
-        <div class="row">
-          <%= link_to "Update Category Name", edit_menu_category_path(@menu.id, category.id), class: "btn btn-primary btn-sm" %>
-          <%= link_to "Delete Category",      menu_category_path(@menu.id, category.id), method: :DELETE, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure? This action will delete all category items.' }  %>
-          <%= link_to "Add Menu Item",        new_menu_category_menu_item_path(@menu.id, category.id), class: "btn btn-primary btn-sm" %>
-          <%= link_to "Sort Menu Items",      sort_category_menu_items_menu_category_path(@menu.id, category.id), class: "btn btn-primary btn-sm" %>
-        </div>
+        <%= link_to "Update Category Name", edit_menu_category_path(@menu.id, category.id), class: "btn btn-primary btn-sm category-edit-button" %>
+        <%= link_to "Delete Category",      menu_category_path(@menu.id, category.id), method: :DELETE, class: "btn btn-danger btn-sm category-edit-button", data: { confirm: 'Are you sure? This action will delete all category items.' }  %>
+        <%= link_to "Add Menu Item",        new_menu_category_menu_item_path(@menu.id, category.id), class: "btn btn-primary btn-sm category-edit-button" %>
+        <%= link_to "Sort Menu Items",      sort_category_menu_items_menu_category_path(@menu.id, category.id), class: "btn btn-primary btn-sm category-edit-button" %>
       </div>
 
       <% category.menu_items.each do |menu_item| %>
@@ -46,9 +44,10 @@
             <div class="row menu-item-name">
               <%= menu_item.name %><br>
             </div>
-            <b>Category: <%= menu_item.category.name %><br></b>
-            <% if menu_item.item_options %>
-              <table>
+              <p><%= menu_item.description.html_safe %>
+              </p>
+              <% if menu_item.item_options %>
+              <table id="pub-m-table">
                 <thead>
                   <tr>
                     <th>Options</th>
@@ -58,15 +57,17 @@
                 <tbody>
                   <% menu_item.menu_item_options.each do |option| %>
                     <tr>
-                      <td><%= option.name %></td>
-                      <td>$<%= option.price %></td>
+                      <td id="pub-m-td"><%= option.name %></td>
+                      <% if option.price %>
+                        <td id="pub-m-td">$<%=option.price%></td>
+                      <% else %>
+                        <td id="#priv-m-td">$0</td>
+                      <% end %>
                     </tr>
                   <% end %>
                 <tbody>
               </table>
             <% end %>
-
-            <%= menu_item.description.html_safe %>
           </div>
           <div class="col">
             <% if menu_item.image.attached? %>

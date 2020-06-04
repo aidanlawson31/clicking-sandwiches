@@ -3,7 +3,13 @@
 background-color: <%= @business.business_display_attribute.background_color %>;
 font-family: '<%= @business.business_display_attribute.font.name %>';
 ">
-
+  <% if @business.locations.count < 2 %>
+    <% if @business.business_display_attribute.sized_business_icon %>
+      <div class="business-banner">
+        <%= list_image(@business.business_display_attribute.business_icon, alt: "Image") %>
+      </div>
+    <% end %>
+  <% end %>
   <div class="container" id="show-container" style="padding-top: 10px;">
     <% if @business.locations.count > 1 %>
       <%= link_to "Back to #{@business.name}'s page", public_locations_path(@business.business_url), class: "btn custom-btn btn-primary btn-sm btn-custom", style:"background-color: #{@business.business_display_attribute.primary_color}; border-color: #{@business.business_display_attribute.primary_color};" %>
@@ -70,13 +76,11 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
             <% @location.location_menus.each do |location_menu| %>
               <div class="card location-show-card" style="background-color: <%= @business.business_display_attribute.secondary_color%>">
                 <h5 class="card-title" style="color: <%= @business.business_display_attribute.general_text_color %>"><%= location_menu.menu.display_name %></h5>
-
+                <p style="margin-top: 10px; color: <%= @business.business_display_attribute.general_text_color %>"><%= location_menu.menu.description.html_safe %></p>
                 <%= link_to "View Menu", public_menu_path(@location.business.business_url, 
                                                           @location.location_url, 
                                                           location_menu.menu.menu_url), 
                                                           class: "btn custom-btn btn-primary btn-sm", style: "background-color: #{@business.business_display_attribute.primary_color}; border-color: #{@business.business_display_attribute.primary_color}" %>
-
-                <p style="margin-top: 10px; color: <%= @business.business_display_attribute.general_text_color %>"><%= location_menu.menu.description.html_safe %></p>
               </div>
             <% end %>
           <% else %>
@@ -95,3 +99,4 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
     </div>
   </div>
 </div>
+<p style="text-align:center;">Powered by <a href="#">ClickingSandwiches</a></p>

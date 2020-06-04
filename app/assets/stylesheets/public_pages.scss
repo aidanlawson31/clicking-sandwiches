@@ -6,12 +6,6 @@
   *= require_tree .
 */
 
-.background,
-html,
-body {
-  min-height: 1599px;
-  background-color: #F9FAFB;
-}
 
 .card {
   display: block !important;
@@ -28,113 +22,6 @@ div.business-banner {
   justify-content: center;
 }
 
-// Removes Asterisk from simpleforms
-abbr[title="required"] {
-  display: none;
-}
-
-input {
-  box-sizing: border-box;
-}
-
-.imap-location-show {
-  margin-top:10px;
-}
-
-.nav {
-  background-color: #1C4D7E;
-
-  a {
-    color: white;
-  }
-}
-
-.nav-public {
-  background-color: white;
-  border: 1px solid rgba(0,0,0,.125);
-  margin-bottom: 0px;
-
-  a {
-    color: black;
-  }
-}
-
-.drop-down-link {
-  color: #1C4D7E !important;
-}
-
-.nav-item {
-  color: #1C4D7E;
-}
-
-.menu-item-name {
-  background-color: #1C4D7E;
-  color: white;
-}
-
-.home {
-  background-image: url('../images/ben-karpinski-aJAfKxscG3k-unsplash.jpg');
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.home-buttons {
-  padding: 10px 10px;
-  margin-top: 20px;
-}
-
-.home-paragraph {
-  width: 400px;
-}
-
-.btn-primary {
-  background-color: #1C4D7E;
-  color:#FFF;
-  border-color: #1C4D7E;
-}
-
-.custom-btn {
-  background-color: #1C4D7E;
-  border-color: #1C4D7E;
-}
- 
-.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
-  background-color: #2F3E48;
-  color:#FFF;
-  border-color: #31347B;
-}
-
-.show-header {
-  color: #000000;
-  padding: 10px;
-}
-
-.login-form {
-  /* centering the form */
-  position: fixed; /* or absolute */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  /* styling the form content */
-  padding-top: 25%;
-  padding-bottom: 25%;
-  text-align: center;
-}
-
-.sign-up-form {
-  /* centering the form */
-  position: fixed; /* or absolute */
-  top:50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  /* styling the form content */
-  padding-top: 3%;
-  text-align: center;
-}
 
 label {
    /* puts form label over input */
@@ -289,4 +176,13 @@ label {
     width: 100%;
     border-radius:0;
   }
+}
+
+#pub-m-table {
+  border-collapse: separate;
+  border-spacing: 10px 0;
+}
+
+#pub-m-td {
+  padding: 1px 0;
 }
