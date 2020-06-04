@@ -3,7 +3,7 @@ background-color: <%= @business.business_display_attribute.background_color %>;
 font-family: '<%= @business.business_display_attribute.font.name %>';
 ">
 
-<div class="container">
+<div class="container" id="pub-m-container">
   <div class="row customer-menu-title">
     <h1 style="color: <%= @business.business_display_attribute.primary_color %>%"><%= @menu.display_name %></h1>
   </div>
@@ -11,7 +11,7 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
     <p style="color: <%= @business.business_display_attribute.primary_color %>%"><%= @menu.description.html_safe %></p>
   </div>
   
-  <div style="padding-top: 25%; padding-bottom: 5%;">
+  <div id="pub-menu">
   <%= link_to "Back to menus", public_location_path(@business.business_url, @location.location_url) %>
     <% if @menu.categories %> 
       <% @menu.categories.each do |category| %>

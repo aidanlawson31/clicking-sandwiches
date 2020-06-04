@@ -28,30 +28,6 @@ label {
   display: block; 
 }
 
-@media only screen // For tablets, portrait and landscape
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 1) {
-
-  .location-card {
-    width:  100%;
-    height: 300px;
-    text-align: center;
-    margin-left:   5px;
-    margin-right:  5px;
-    margin-top:    5px;
-    margin-bottom: 5px;
-  }
-
-  .show-header {
-    width:      100%;
-    text-align: center;
-  }
-
-  .card-title {
-    font-size: 20pt;
-  }
-}
 
 @media only screen // for desktops, portrait and landscape
   and (min-device-width: 1025px) 
@@ -89,41 +65,52 @@ label {
   .pub-show-menus {
     margin-top:10px;
   }
+
+  #pub-menu {
+    padding-top: 25%; 
+    padding-bottom: 5%;
+  }
 }
 
-.gallery {
-  border: 1px solid black;
-  border-radius: 5px;
-  padding-left:15px;
-  padding-right: 15px;
-  overflow: hidden;
+@media only screen // For tablets, portrait and landscape
+  and (min-device-width: 508px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+  .location-card {
+    width:  100%;
+    height: 300px;
+    text-align: center;
+    margin-left:   5px;
+    margin-right:  5px;
+    margin-top:    5px;
+    margin-bottom: 5px;
+  }
+
+  .show-header {
+    width:      100%;
+    text-align: center;
+  }
+
+  .card-title {
+    font-size: 20pt;
+  }
+
+  #pub-menu {
+    padding-top: 50%; 
+    padding-bottom: 5%;
+  }
+  
+  #pub-m-container {
+    width: 100%;
+    max-width: 900px;
+  }
 }
-
-.radio-options {
-  margin-top: 15px;
-  margin-bottom : 15px;
-}
-
-.option-form {
-  width: 50%;
-  margin-bottom: 10px;
-}
-
-.location-show-card {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left:10px;
-  padding-right:10px;
-  width: 100%;
-  border-radius:0;
-}
-
-
 
 /* Portrait and Landscape Phones */
 
 @media only screen 
-  and (max-device-width: 375px) 
+  and (max-device-width: 507px) 
  { 
 
   #index-container,
@@ -176,6 +163,51 @@ label {
     width: 100%;
     border-radius:0;
   }
+
+  #pub-menu {
+    padding-top: 70%; 
+    padding-bottom: 5%;
+  }
+
+  .menu-description{
+    top: 23%;
+    font-size: 20pt
+  }
+
+  .customer-menu-title h1 {
+    font-size: 40pt;
+  }
+
+  .customer-menu-title {
+    top: 15%;
+  }
+}
+
+.gallery {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding-left:15px;
+  padding-right: 15px;
+  overflow: hidden;
+}
+
+.radio-options {
+  margin-top: 15px;
+  margin-bottom : 15px;
+}
+
+.option-form {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.location-show-card {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left:10px;
+  padding-right:10px;
+  width: 100%;
+  border-radius:0;
 }
 
 #pub-m-table {
