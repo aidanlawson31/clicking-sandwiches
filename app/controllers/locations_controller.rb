@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_location, only: [:add_menu, :show_menus, :remove_menu, :add_image, :remove_image, :update, :destroy, :show]
+  before_action :set_location, only: [:add_menu, :show_menus, :remove_menu, :add_image, :save_sort_image, :update, :destroy, :show]
   
   def index
     @locations = current_user.business.locations
@@ -48,6 +48,7 @@ class LocationsController < ApplicationController
   def add_image
     @location_image          = LocationImage.new(location_image_params)
     @location_image.location = @location
+    @location_image.display_sequence_number = next_display_sequence_number(@location_image.location_id)
 
     if @location_image.save
       redirect_to location_path(@location), notice: "Image added successfully"
@@ -57,11 +58,12 @@ class LocationsController < ApplicationController
   end
 
   def remove_image
-    @location_image = LocationImage.find(params[:location_image])
+    @location_image = LocationImage.find(params[:id])
+    @location = @location_image.location
 
     if @location_image.destroy
       redirect_to location_path(@location)
-      flash.now[:notice] = "Menu successfully removed from #{@location.name}"
+      flash.now[:notice] = "Image successfully removed from #{@location.name}"
     end
   end
 
@@ -86,7 +88,22 @@ class LocationsController < ApplicationController
     @menus           = current_user.business.menus
   end
 
+  def save_sort_image
+    if @location.update(location_sort_params)
+      redirect_to location_path(@location), notice: 'Images successfully sorted.'
+    else
+      redirect_to location_path(@location), notice: 'Something went wrong.'
+    end
+  end
+
   private
+
+  def next_display_sequence_number(location_id)
+    location            = Location.find(location_id)
+    @location_images    = location.location_images
+    last_location_image = @location_images.last
+    last_location_image ? (last_location_image .display_sequence_number + 1) : 1
+  end
 
   def setup_add_menus
     @location_menus_names = []
@@ -108,6 +125,10 @@ class LocationsController < ApplicationController
   end
 
   def location_image_params
-    params[:location_image].permit(:image, :display_sequence_number)
+    params[:location_image].permit(:id, :display_sequence_number, :image)
+  end
+
+  def location_sort_params 
+    params[:location].permit(location_images_attributes: [:id, :image, :display_sequence_number])
   end
 end

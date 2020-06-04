@@ -18,23 +18,16 @@
   <% end %>
   <br>
 
-  <% if root_url == "clicking-sandwiches.herokuapp.com" %>
-    <h4>Preview Customization</h4>
-    <iframe src="http://clicking-sandwiches.herokuapp.com/<%= @business.business_url %>" id="business-iframe">
+  <h3 style="text-align:center;">Website Preview</h3>
+  <iframe src="<%= public_locations_path(@business.business_url)%>" id="business-iframe">
       <p>Placeholder text; only shows up if the page DOESN'T render!</p>
-    </iframe>
-  <% else %>
-    <h4>Preview Customization</h4>
-    <iframe src="http://localhost:3000/<%= @business.business_url %>" id="business-iframe">
-        <p>Placeholder text; only shows up if the page DOESN'T render!</p>
-    </iframe>
-  <% end %> 
+  </iframe>
 
   <%= simple_form_for @business_display_attribute do |f| %>
     <h4> Your Business Customization</h4>
     <div class="row" style="margin-bottom:20px;">
       <div class="col">
-        <p>Upload a Banner, dimentions are 1250 × 200 </p>
+        <p>Upload a Banner, recommended dimentions are 1250 × 200 </p>
         <%= f.file_field :business_icon, accept: 'image/png,image/jpeg' %>
         <%= list_image(@business_display_attribute.sized_business_icon(size: 100), alt: "Image") %>
 
@@ -51,7 +44,7 @@
         <% end %>
 
       </div>
-      <div class="col">
+      <div class="col bda-inputs">
         <%= f.input :nav_bar_color, as: :minicolors, input_html: {data: {
               minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"} %>
         <%= f.input :heading_color, as: :minicolors, input_html: {data: {
@@ -61,10 +54,10 @@
         <%= f.input :secondary_color, as: :minicolors, input_html: {data: {
               minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
       </div>
-      <div class="col">
+      <div class="col bda-inputs">
         <%= f.input :background_color, as: :minicolors, input_html: {data: {
               minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
-        <%= f.association :font, collection: @fonts %>
+        <%= f.association :font, collection: @fonts, include_blank: false %>
         <%= f.input :general_text_color, as: :minicolors, input_html: {data: {
           minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"} %>
       </div>

@@ -1,13 +1,8 @@
 class LocationImage < ApplicationRecord
   belongs_to       :location
   has_one_attached :image
-  
-  def attached_image
-    unless image.attached?
-      image.purge
-      errors[:image] << 'Image Not Attached'
-    end
-  end
+
+  default_scope { order(:display_sequence_number) }
 
   def sized_image(size: 300)
     image.variant(resize: "!#{size}x#{size}").processed if image.attached?

@@ -1,9 +1,9 @@
-<div class="backround" style="
+<div class="background" style="
 background-color: <%= @business.business_display_attribute.background_color %>;
 font-family: '<%= @business.business_display_attribute.font.name %>';
 ">
 
-<div class="container">
+<div class="container" id="pub-m-container">
   <div class="row customer-menu-title">
     <h1 style="color: <%= @business.business_display_attribute.primary_color %>%"><%= @menu.display_name %></h1>
   </div>
@@ -11,7 +11,7 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
     <p style="color: <%= @business.business_display_attribute.primary_color %>%"><%= @menu.description.html_safe %></p>
   </div>
   
-  <div style="padding-top: 25%; padding-bottom: 5%;">
+  <div id="pub-menu">
   <%= link_to "Back to menus", public_location_path(@business.business_url, @location.location_url) %>
     <% if @menu.categories %> 
       <% @menu.categories.each do |category| %>
@@ -27,12 +27,13 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
               <p style="color: <%= @business.business_display_attribute.primary_color %>%"><%= menu_item.code %></p>
             </div>
             <div class="col">
-              <div class="row menu-item-name">
-                <%= menu_item.name %><br>
+              <div class="row" style="background-color: <%= @business.business_display_attribute.secondary_color %>; padding-left: 5px; padding=">
+                <h5 style="color: <%= @business.business_display_attribute.primary_color %>%"><%= menu_item.name %></h5>
               </div>
-              <%= menu_item.description.html_safe %>
+              <p><%= menu_item.description.html_safe %>
+              </p>
               <% if menu_item.item_options %>
-              <table>
+              <table id="pub-m-table">
                 <thead>
                   <tr>
                     <th>Options</th>
@@ -42,8 +43,12 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
                 <tbody>
                   <% menu_item.menu_item_options.each do |option| %>
                     <tr>
-                      <td><%= option.name %></td>
-                      <td>$<%= option.price %></td>
+                      <td id="pub-m-td"><%= option.name %></td>
+                      <% if option.price %>
+                        <td id="pub-m-td">$<%=option.price%></td>
+                      <% else %>
+                        <td id="#priv-m-td">$0</td>
+                      <% end %>
                     </tr>
                   <% end %>
                 <tbody>
@@ -66,3 +71,4 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
 </div>
 
 </div>
+<p style="text-align:center;">Powered by <a href="#">ClickingSandwiches</a></p>

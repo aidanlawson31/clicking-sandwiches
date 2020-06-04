@@ -17,7 +17,6 @@
 //= require_tree .
 //= require jquery.minicolors
 //= require jquery.minicolors.simple_form
-//= require fancybox
 //= require trix
 //= require cocoon
 

@@ -4,6 +4,8 @@ class Business < ApplicationRecord
   has_many :menus
   has_one  :business_display_attribute
   
+  accepts_nested_attributes_for :users
+
   before_validation :sanitize_text
   
   validates :name,         presence: true
@@ -26,7 +28,6 @@ class Business < ApplicationRecord
   private
 
   def sanitize_text
-    sanitized_description = sanitize(description)
-    self.description = sanitized_description.gsub("\n", '') if sanitized_description
+    self.description = Utility.sanitize_rich_text(description)
 	end
 end

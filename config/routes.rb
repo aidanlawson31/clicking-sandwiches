@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
-  root       'business#show'
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
+  
   devise_for :users
   resources  :business_display_attributes
 
   resources  :businesses do
     member do
-      patch 'reset_options'
+      get   'user_access'
+      post  'create_user'
+      patch 'remove_admin_privileges'
+      patch 'grant_admin_privileges'
+      delete 'remove_user'
     end
   end
 
@@ -14,6 +21,7 @@ Rails.application.routes.draw do
       get    'show_menus'
       post   'add_menu'
       post   'add_image'
+      patch  'save_sort_image'
       delete 'remove_menu'
       delete 'remove_image'
     end

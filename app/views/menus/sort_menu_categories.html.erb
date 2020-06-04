@@ -7,6 +7,7 @@
         <%= f.simple_fields_for :categories, wrapper: false do |category_form| %>
           <tr class="nested-fields">
             <td>
+              <%= image_tag "updown" %>
               <%= category_form.hidden_field :display_sequence_number, class: 'display_sequence_number' %>
             </td>
             <td>

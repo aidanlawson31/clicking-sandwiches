@@ -8,7 +8,7 @@
         <p><%= menu.internal_name %></p>
       </div>
       <% unless @location_menus_names.include?(menu.display_name) %>
-        <%= link_to "Add menu", add_menu_location_path(@location.id, menu_id: menu.id), method: :post, class: "btn btn-primary", remote: true %>
+        <%= link_to "Attach menu", add_menu_location_path(@location.id, menu_id: menu.id), method: :post, class: "btn btn-primary", remote: true %>
       <% else %>
         <p>Display Name Taken </p>
       <% end %>

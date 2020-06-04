@@ -3,6 +3,8 @@ class Location < ApplicationRecord
   has_many   :location_menus,  dependent: :destroy
   has_many   :location_images, dependent: :destroy
 
+  accepts_nested_attributes_for :location_images
+  
   before_validation :convert_location_url
 
   validates :name,         presence: true, uniqueness: { scope: :business }

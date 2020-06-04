@@ -4,6 +4,5 @@ class MenuItemOption < ApplicationRecord
   default_scope { order(:display_sequence_number) }
 
   validates :name,  presence: true
-  validates :price, presence: true
   validates :display_sequence_number, inclusion: 0..10_000
 end

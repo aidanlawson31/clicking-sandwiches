@@ -1,6 +1,7 @@
 class PublicLocationsController < ApplicationController
   before_action :set_business
   before_action :set_location, only: :show
+  layout 'public_pages'
 
   def show
   end
