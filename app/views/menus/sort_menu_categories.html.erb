@@ -19,10 +19,10 @@
       </tbody>
     </table>
     <div class="row" style="padding-left: 10%;">
-    <%= f.button :submit, class: "btn btn-primary", data: { disable_with: "Saving..." } %>
+    <%= f.button :submit, class: "btn btn-primary btn-sm", data: { disable_with: "Saving..." } %>
   <% end %>
 <% else %>
   <p>You have no menu items in this category</p>
 <% end %>
-  <%= link_to "back to menu", menu_path(@menu), class: "btn btn-primary" %>
+  <%= link_to "back to menu", menu_path(@menu), class: "btn btn-primary btn-sm", style: "margin-left: 5px;"%>
 </div>
