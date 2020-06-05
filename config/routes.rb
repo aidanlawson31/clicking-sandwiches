@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   end
   
   devise_for :users
-  resources  :business_display_attributes
 
   resources  :businesses do
-    
+    member do
+      patch 'update_business_display_attribute'
+    end
+
     resources :business_users do
       member do
         patch 'grant_admin_privileges'

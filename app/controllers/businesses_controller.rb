@@ -1,6 +1,11 @@
 class BusinessesController < ApplicationController
   before_action :authenticate_user!
-  before_action :form_setup, only: [:update, :show]
+  before_action :form_setup, only: [:update, :show, :update_business_display_attribute]
+  
+  def update_business_display_attribute
+    @business_display_attribute.update(business_display_attribute_params)
+    redirect_to business_path(@business)
+  end
 
   def new
     @business = Business.new
@@ -39,6 +44,12 @@ class BusinessesController < ApplicationController
     @business                   = current_user.business
     @business_display_attribute = @business.business_display_attribute
     @fonts                      = Font.all
+  end
+
+  def business_display_attribute_params
+    params[:business_display_attribute].permit(:business_id, :primary_color, :secondary_color, :background_color, :font_id, :heading_color, :general_text_color, :nav_bar_color, :business_icon, :favicon,
+      :remove_business_icon, :remove_favicon
+    )
   end
 
   def business_params

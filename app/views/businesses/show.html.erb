@@ -23,7 +23,7 @@
       <p>Placeholder text; only shows up if the page DOESN'T render!</p>
   </iframe>
 
-  <%= simple_form_for @business_display_attribute do |f| %>
+  <%= simple_form_for @business_display_attribute, url: update_business_display_attribute_business_path do |f| %>
     <h4> Your Business Customization</h4>
     <div class="row" style="margin-bottom:20px;">
       <div class="col">
@@ -62,7 +62,6 @@
           minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"} %>
       </div>
     </div>
-    <%#= link_to "Reset Customization Options", reset_options_business_path(@business_display_attribute, @business) %>
     <%= f.button :submit, class: "btn btn-sm btn-primary", data: { disable_with: "Saving..." } %>
   <% end %>
 </div>
