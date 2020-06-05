@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 style="text-align: center; margin-top: 10px;">User Access</h1>
+  <h1 id="u-access-title">User Access</h1>
   <table class="table"> 
     <tr>
       <th>Full Name</th>
@@ -12,11 +12,11 @@
       <td><%= user.email %></td>
       <td><%= user.admin %></td>
       <% if current_user.admin && current_user != user %>
-        <td><%= link_to "remove user", remove_user_business_path(user.id), method: :delete, data: { confirm: 'Are you sure? This action perminantly delete this user account.' } %></td>
+        <td><%= link_to "remove user", business_business_user_path(@business.id, user.id), method: :delete, data: { confirm: 'Are you sure? This action perminantly delete this user account.' } %></td>
         <% if user.admin %>
-          <td><%= link_to "remove admin privileges", remove_admin_privileges_business_path(user.id), method: :patch %></td>
+          <td><%= link_to "remove admin privileges", remove_admin_privileges_business_business_user_path(@business.id, user.id), method: :patch %></td>
         <% else %>
-          <td><%= link_to "grant admin privileges", grant_admin_privileges_business_path(user.id), method: :patch %></td>
+          <td><%= link_to "grant admin privileges", grant_admin_privileges_business_business_user_path(@business.id, user.id), method: :patch %></td>
         <% end %>
       <% end %>
       <% if current_user.email == user.email %>
@@ -29,7 +29,7 @@
     <h4>Create More Users</h4>
     <table class="table">
       <tr>
-        <%= simple_form_for(@user, url: create_user_business_path(params[:id]), method: :post) do |f| %>
+        <%= simple_form_for(@user, url: business_business_users_path(@business.id, @user.id), method: :post) do |f| %>
           <td><%= f.input :admin %></td>
           <td><%= f.input :first_name %></td>
           <td><%= f.input :last_name %></td>
@@ -42,4 +42,3 @@
     </table>
   <% end %>
 </div>
-   m 
