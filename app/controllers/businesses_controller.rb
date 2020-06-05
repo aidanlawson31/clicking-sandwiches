@@ -1,8 +1,8 @@
 class BusinessesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_business, only: [:edit, :update, :destroy, :add_admins]
   before_action :set_user, only: [:remove_admin_privileges, :grant_admin_privileges, :remove_user]
-  
+  before_action :form_setup, only: [:update, :show]
+
   def new
     @business = Business.new
   end
@@ -16,9 +16,6 @@ class BusinessesController < ApplicationController
     else
       render :new
     end
-  end
-
-  def edit
   end
 
   def update    
@@ -35,9 +32,6 @@ class BusinessesController < ApplicationController
   end
 
   def show
-    @business                   = current_user.business
-    @business_display_attribute = @business.business_display_attribute
-    @fonts                      = Font.all
   end
 
   def user_access
@@ -54,7 +48,7 @@ class BusinessesController < ApplicationController
       redirect_to user_access_business_path(params[:id])
     else
       redirect_to user_access_business_path(params[:id])
-      flash.now[:notice] == "#{@user.errors.full_messages}"
+      flash.now[:notice] == "#{@user.errors.full_messages.join(', ')}"
     end
   end
 
@@ -67,7 +61,7 @@ class BusinessesController < ApplicationController
       redirect_to user_access_business_path(params[:id])
     else
       redirect_to user_access_business_path(params[:id])
-      flash.now[:notice] == "#{@user.errors.full_messages}"
+      flash.now[:notice] == "#{@user.errors.full_messages.join(', ')}"
     end
   end
 
@@ -79,7 +73,7 @@ class BusinessesController < ApplicationController
       redirect_to user_access_business_path(params[:id])
     else
       redirect_to user_access_business_path(params[:id])
-      flash.now[:notice] == "#{@user.errors.full_messages}"
+      flash.now[:notice] == "#{@user.errors.full_messages.join(', ')}"
     end
   end
 
@@ -90,7 +84,7 @@ class BusinessesController < ApplicationController
       redirect_to user_access_business_path(params[:id])
     else
       redirect_to user_access_business_path(params[:id])
-      flash.now[:notice] == "#{@user.errors.full_messages}"
+      flash.now[:notice] == "#{@user.errors.full_messages.join(', ')}"
     end
   end
   
@@ -104,9 +98,10 @@ class BusinessesController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def set_business
-    @business = Business.find(params[:id])
+  def form_setup
+    @business                   = current_user.business
     @business_display_attribute = @business.business_display_attribute
+    @fonts                      = Font.all
   end
 
   def business_params

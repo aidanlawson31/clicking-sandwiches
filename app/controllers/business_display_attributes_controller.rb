@@ -1,14 +1,10 @@
 class BusinessDisplayAttributesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_business_display_attribute
-
-  def edit
-  end
   
   def update
-    if @business_display_attribute.update(business_display_attribute_params)
-      redirect_to business_path(@business)
-    end
+    @business_display_attribute.update(business_display_attribute_params)
+    redirect_to business_path(@business)
   end
 
   private

@@ -11,8 +11,7 @@ class LocationsController < ApplicationController
   end
 
   def create
-    @location             = Location.new(location_params)
-    @location.business_id = current_user.business.id
+    @location = current_business.locations.new(location_params)
 
     if @location.save
       redirect_to locations_path, notice: "Location created successfully"
