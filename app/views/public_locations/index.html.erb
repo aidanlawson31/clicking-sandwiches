@@ -29,8 +29,8 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
               <h5 id="index-card" style="padding-top: 30px; color: <%= @business.business_display_attribute.general_text_color %>"><%= location.name %></h5>
               <h5 id="index-card" style="margin-top: 5px; color: <%= @business.business_display_attribute.general_text_color %>"><%= location.phone_number %></h5>
               <h5 id="index-card" style="margin-top: 5px; color: <%= @business.business_display_attribute.general_text_color %>"><%= location.address %></h5>
-              <% if location.open %>
-              <h5 id="index-card" style="margin-top: 5px; color: <%= @business.business_display_attribute.general_text_color %>">open: <%= location.open %></h5>
+              <% unless location.open.blank? %>
+                <h5 id="index-card" style="margin-top: 5px; color: <%= @business.business_display_attribute.general_text_color %>">open: <%= location.open %></h5>
               <% end %>
               <%= link_to "View location", public_location_path(@business.business_url, location.location_url), class: "btn btn-sm btn-primary custom-btn", style: "background-color: #{@business.business_display_attribute.primary_color}; border-color: #{@business.business_display_attribute.primary_color}" %>
             </div>
@@ -49,4 +49,4 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
     <% end %>
   </div>
 </div>
-<p style="text-align:center;">Powered by <a href="#">ClickingSandwiches</a></p>
+<p style="text-align:center;"><a href="#">ClickingSandwiches</a></p>

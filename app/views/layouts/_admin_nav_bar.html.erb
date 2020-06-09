@@ -7,7 +7,7 @@
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <%= link_to "My Business",       business_path(current_user.business),       class: "drop-down-link nav-link active" %>
-        <%= link_to "User Access",       user_access_business_path(current_business), class: "drop-down-link nav-link active" %>
+        <%= link_to "User Access",       business_business_users_path(current_business), class: "drop-down-link nav-link active" %>
         <%= link_to "Locations",         locations_path, class: "drop-down-link nav-link active" %>
         <%= link_to "Menus",             menus_path ,    class: "drop-down-link nav-link active" %>
       </div>

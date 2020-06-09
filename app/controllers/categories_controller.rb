@@ -8,18 +8,18 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    @category = Category.new
+    @category = @menu.categories.new
+    render file: "categories/new.js.erb"
   end
 
   def create
-    @category                         = Category.new(category_params)
-    @category.menu_id                 = category_params[:menu_id]
-    @category.display_sequence_number = next_display_sequence_number(@category.menu_id)
-
+    @category = @menu.categories.new(category_params)
+    @category.display_sequence_number = next_display_sequence_number
+ 
     if @category.save
-      redirect_to menu_path(@category.menu), notice: "Category created successfully"
+      render file: "categories/create.js.erb"
     else
-      render :new
+      render file: "categories/new.js.erb"
     end
   end
 
@@ -28,9 +28,9 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      redirect_to menu_path(@category.menu), notice: "Category updated successfully"
+      render file: "categories/update.js.erb"
     else
-      render :show
+      render file: "categories/edit.js.erb"
     end
   end
 
@@ -49,16 +49,14 @@ class CategoriesController < ApplicationController
     if @category.update(category_sort_params)
       redirect_to menu_path(@category.menu), notice: 'Menu Items successfully sorted.'
     else
-      redirect_to menu_path(params[:menu_id])
+      render :sort_category_menu_items
     end
   end
 
   private
 
-  def next_display_sequence_number(menu_id)
-    menu          = Menu.find(menu_id)
-    @categories   = menu.categories
-    last_category = @categories.last
+  def next_display_sequence_number
+    last_category = @menu.categories.last
     last_category ? (last_category.display_sequence_number + 1) : 1
   end
 
@@ -71,7 +69,7 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    params[:category].permit(:name, :menu_id, menu_items_attributes: [ :id, :display_sequence_number, :name, :description, :price, :item_options ])
+    params[:category].permit(:name, :menu_id, :display_sequence_number, menu_items_attributes: [ :id, :display_sequence_number, :name, :description, :price, :item_options ])
   end
 
   def category_sort_params

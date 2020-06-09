@@ -4,15 +4,17 @@ Rails.application.routes.draw do
   end
   
   devise_for :users
-  resources  :business_display_attributes
 
   resources  :businesses do
     member do
-      get   'user_access'
-      post  'create_user'
-      patch 'remove_admin_privileges'
-      patch 'grant_admin_privileges'
-      delete 'remove_user'
+      patch 'update_business_display_attribute'
+    end
+
+    resources :business_users do
+      member do
+        patch 'grant_admin_privileges'
+        patch 'remove_admin_privileges'
+      end
     end
   end
 

@@ -1,9 +1,0 @@
-<div class="container">
-  <%= simple_form_for @category, url: menu_category_path(@menu.id, @category.id)do |f| %>
-    <h5>Edit Category</h5>
-    <%= f.input :name %>
-    <%= f.hidden_field :menu_id, value: @menu.id %><br>
-    <%= f.button :submit, class: "btn btn-primary", data: { disable_with: "Saving..." } %>
-  <% end %>
-  <%= link_to 'back', menu_path(@menu)%>
-</div>

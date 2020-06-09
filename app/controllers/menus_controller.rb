@@ -1,19 +1,18 @@
 class MenusController < ApplicationController
   before_action :authenticate_user!
   before_action :set_menu, only: [:update, :destroy, :show, :sort_menu_categories, :save_sort_menu_categories]
+  before_action :form_setup, only: [:update, :show]
   
   def index
-    @menus = Menu.all
-    @menus = current_user.business.menus
+    @menus = current_business.menus
   end
 
   def new
-    @menu = Menu.new
+    @menu = current_business.menus.new
   end
 
   def create
-    @menu = Menu.new(menu_params)
-    @menu.business_id = current_user.business.id
+    @menu = current_business.menus.new(menu_params)
 
     if @menu.save
       redirect_to menu_path(@menu), notice: "menu created successfully"
@@ -34,14 +33,11 @@ class MenusController < ApplicationController
   end
 
   def destroy
-    
     @menu.destroy
     redirect_to menus_path, notice: 'menu was successfully destroyed.'
   end
 
   def show
-    @categories = @menu.categories
-    @locations  = current_user.business.locations
   end
 
   def sort_menu_categories
@@ -56,6 +52,11 @@ class MenusController < ApplicationController
   end
 
   private
+
+  def form_setup
+    @categories = @menu.categories
+    @locations  = current_business.locations
+  end
 
   def set_menu
     @menu = Menu.find(params[:id])

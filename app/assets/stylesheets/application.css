@@ -12,74 +12,92 @@ body {
   background-color: #e8ecff;
 }
 
-.error {
-  background-color: lightcoral;  
-  color: white;
-}
-
 div.business-banner {
   width: 100%;
   max-height: 200px;
-  vertical-align:middle;
+  vertical-align: middle;
   overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-#location-images-list { 
-  list-style-type: none; 
-  margin: 0; 
-  padding: 0; 
-  width: 100%; 
+#location-images-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
-#location-images-list li { 
-  padding: 1px; 
-  float: left; 
-  width: 150px; 
-  height: 150px; 
-  text-align: center; 
+#location-images-list li {
+  padding: 1px;
+  float: left;
+  width: 150px;
+  height: 150px;
+  text-align: center;
 }
 
 #location-image-form {
-  margin-top:20px;
-  padding-top:20px;
+  margin-top: 20px;
+  padding-top: 20px;
 }
 
-// Removes Asterisk from simpleforms
 abbr[title="required"] {
   display: none;
 }
 
 input {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .imap-location-show {
-  margin-top:10px;
+  margin-top: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.error {
+  color: red;
+  font: 13pt;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-left: 5px;
 }
 
 .nav {
-  background-color: red;
+  background-color: #1C4D7E;
+}
 
-  a {
-    color: white;
-  }
+.nav a {
+  color: white;
 }
 
 .nav-public {
   background-color: white;
-  border: 1px solid rgba(0,0,0,.125);
+  border: 1px solid rgba(0, 0, 0, 0.125);
   margin-bottom: 0px;
+}
 
-  a {
-    color: black;
-  }
+.nav-public a {
+  color: black;
 }
 
 .drop-down-link {
@@ -96,11 +114,17 @@ input {
 }
 
 .home {
-  background-image: url('../images/ben-karpinski-aJAfKxscG3k-unsplash.jpg');
+  background-image: url("../images/ben-karpinski-aJAfKxscG3k-unsplash.jpg");
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .home-buttons {
@@ -119,22 +143,22 @@ input {
 
 .btn-primary {
   background-color: #1C4D7E;
-  color:#FFF;
+  color: #FFF;
   border-color: #1C4D7E;
 }
 
 .category-edit-button {
-  margin-right:5px;
+  margin-right: 5px;
 }
 
 .custom-btn {
   background-color: #1C4D7E;
   border-color: #1C4D7E;
 }
- 
+
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
   background-color: #2F3E48;
-  color:#FFF;
+  color: #FFF;
   border-color: #31347B;
 }
 
@@ -145,11 +169,12 @@ input {
 
 .login-form {
   /* centering the form */
-  position: fixed; /* or absolute */
+  position: fixed;
+  /* or absolute */
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   /* styling the form content */
   padding-top: 25%;
   padding-bottom: 25%;
@@ -158,28 +183,30 @@ input {
 
 .sign-up-form {
   /* centering the form */
-  position: fixed; /* or absolute */
-  top:50%;
+  position: fixed;
+  /* or absolute */
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   /* styling the form content */
   padding-top: 3%;
   text-align: center;
 }
 
 label {
-   /* puts form label over input */
-  display: block; 
+  /* puts form label over input */
+  display: block;
 }
 
 .new-business-form {
   /* centering the form */
-  position: fixed; /* or absolute */
+  position: fixed;
+  /* or absolute */
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   /* styling the form content */
   padding-top: 3%;
   text-align: center;
@@ -187,27 +214,28 @@ label {
 
 .new-menu-form {
   /* centering the form */
-  position: fixed; /* or absolute */
+  position: fixed;
+  /* or absolute */
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   /* styling the form content */
   padding-top: 3%;
   text-align: center;
 }
 
-
 /* Style page content */
 .main {
-  margin-left: 160px; /* Same as the width of the sidebar */
+  margin-left: 160px;
+  /* Same as the width of the sidebar */
   padding: 0px 10px;
 }
 
 .menu-show-category {
   border: 1px solid lightgray;
   padding: 10px;
-  margin-bottom: 1%; 
+  margin-bottom: 1%;
   margin-top: 1%;
 }
 
@@ -220,14 +248,16 @@ label {
   position: absolute;
   left: 50%;
   top: 20%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .menu-description {
   position: absolute;
   left: 50%;
   top: 30%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 #index-heading {
@@ -239,57 +269,44 @@ label {
   text-align: center;
 }
 
-@media only screen // For tablets, portrait and landscape
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 1) {
-
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
   .location-card {
-    width:  100%;
+    width: 100%;
     height: 300px;
     text-align: center;
-    margin-left:   5px;
-    margin-right:  5px;
-    margin-top:    5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
     margin-bottom: 5px;
   }
-
   .show-header {
-    width:      100%;
+    width: 100%;
     text-align: center;
   }
-
   .card-title {
     font-size: 20pt;
   }
 }
 
-@media only screen // for desktops, portrait and landscape
-  and (min-device-width: 1025px) 
-  and (max-device-width: 3000px) 
-  and (-webkit-min-device-pixel-ratio: 1) {
-
+@media only screen and (min-device-width: 1025px) and (max-device-width: 3000px) and (-webkit-min-device-pixel-ratio: 1) {
   .location-card {
-    width:  100%;
+    width: 100%;
     height: 250px;
     text-align: center;
-    margin-left:   5px;
-    margin-right:  5px;
-    margin-top:    5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
     margin-bottom: 5px;
   }
-
   .show-header {
-    width:      100%;
+    width: 100%;
     text-align: center;
   }
-
   .card-title {
     font-size: 20pt;
   }
-
   #business-iframe {
-    width:100%;
+    width: 100%;
     height: 65vh;
   }
 }
@@ -297,14 +314,14 @@ label {
 .gallery {
   border: 1px solid black;
   border-radius: 5px;
-  padding-left:15px;
+  padding-left: 15px;
   padding-right: 15px;
   overflow: hidden;
 }
 
 .radio-options {
   margin-top: 15px;
-  margin-bottom : 15px;
+  margin-bottom: 15px;
 }
 
 .option-form {
@@ -313,49 +330,38 @@ label {
 }
 
 /* Portrait and Landscape Phones */
-
-@media only screen 
-  and (max-device-width: 375px) 
- { 
-
+@media only screen and (max-device-width: 375px) {
   #index-container {
     min-width: 100%;
     margin-right: 0;
     margin-left: 0;
     padding-left: 0;
-    padding-right: 0
+    padding-right: 0;
   }
-
-  .nav-public, 
-  .nav-item{
+  .nav-public,
+  .nav-item {
     height: 100px;
     font-size: 40px;
   }
-
   #index-container {
     text-align: center;
   }
-
   .custom-btn {
     height: 50px;
     width: 200px;
     font-size: 25px;
   }
-
   #index-heading {
     margin-bottom: 50px;
     padding-top: 30px;
     font-size: 60px;
   }
-
   #index-description {
     font-size: 35px;
   }
-
   #index-card {
     font-size: 30px;
   }
-
   #index-iframe {
     height: 250px;
     width: 250px;
@@ -364,11 +370,11 @@ label {
 
 .edit-gallery {
   margin-bottom: 10px;
-  height:80%;
+  height: 80%;
 }
 
 .max-width-inputs input[type=submit] {
-    width: 150px;
+  width: 150px;
 }
 
 .max-width-inputs input {
@@ -396,3 +402,4 @@ label {
   text-align: center;
   margin-top: 10px;
 }
+/*# sourceMappingURL=application.css.map */

@@ -5,14 +5,14 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
 
 <div class="container" id="pub-m-container">
   <div class="row customer-menu-title">
-    <h1 style="color: <%= @business.business_display_attribute.primary_color %>%"><%= @menu.display_name %></h1>
+    <h1 style="color: <%= @business.business_display_attribute.primary_color %>;"><%= @menu.display_name %></h1>
   </div>
   <div class="row menu-description">
-    <p style="color: <%= @business.business_display_attribute.primary_color %>%"><%= @menu.description.html_safe %></p>
+    <span style="color: <%= @business.business_display_attribute.primary_color %>"><%= @menu.description.html_safe %></span>
   </div>
-  
+
   <div id="pub-menu">
-  <%= link_to "Back to menus", public_location_path(@business.business_url, @location.location_url) %>
+    <%= link_to "Back to #{@business.name}", public_location_path(@business.business_url, @location.location_url), class:"btn btn-primary btn-sm", style:"background-color: #{@business.business_display_attribute.primary_color}; border-color: #{@business.business_display_attribute.primary_color};" %>
     <% if @menu.categories %> 
       <% @menu.categories.each do |category| %>
         <div class="row menu-show-category" style="margin-bottom: 1%; margin-top: 1%;">
@@ -27,7 +27,7 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
               <p style="color: <%= @business.business_display_attribute.primary_color %>%"><%= menu_item.code %></p>
             </div>
             <div class="col">
-              <div class="row" style="background-color: <%= @business.business_display_attribute.secondary_color %>; padding-left: 5px; padding=">
+              <div class="row" style="background-color: <%= @business.business_display_attribute.secondary_color %>; padding-left: 5px;">
                 <h5 style="color: <%= @business.business_display_attribute.primary_color %>%"><%= menu_item.name %></h5>
               </div>
               <p><%= menu_item.description.html_safe %>
@@ -71,4 +71,4 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
 </div>
 
 </div>
-<p style="text-align:center;">Powered by <a href="#">ClickingSandwiches</a></p>
+<p style="text-align:center;"><a href="#">ClickingSandwiches</a></p>

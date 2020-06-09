@@ -52,7 +52,6 @@
     })
 
     $('input:radio[name="menu_item[item_options]"]').change(function () {
-      console.log("checkbox change")
       if ($('input:radio[name="menu_item[item_options]"]:checked').val() == 'true') {
         $("#menu-item-radio-no").slideUp();
         $("#menu-item-radio-buttons").slideDown();
