@@ -12,7 +12,7 @@
       <td><%= user.email %></td>
       <td><%= user.admin %></td>
       <% if current_user.admin && current_user != user %>
-        <td><%= link_to "remove user", business_business_user_path(@business.id, user.id), method: :delete, data: { confirm: 'Are you sure? This action perminantly delete this user account.' } %></td>
+        <td><%= link_to "remove user", business_business_user_path(@business.id, user.id), method: :delete, data: { confirm: 'Are you sure? This action will permanently delete this user account.' } %></td>
         <% if user.admin %>
           <td><%= link_to "remove admin privileges", remove_admin_privileges_business_business_user_path(@business.id, user.id), method: :patch %></td>
         <% else %>

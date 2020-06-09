@@ -9,16 +9,17 @@ class CategoriesController < ApplicationController
 
   def new
     @category = @menu.categories.new
+    render file: "categories/new.js.erb"
   end
 
   def create
     @category = @menu.categories.new(category_params)
     @category.display_sequence_number = next_display_sequence_number
-
+ 
     if @category.save
-      redirect_to menu_path(@category.menu), notice: "Category created successfully"
+      render file: "categories/create.js.erb"
     else
-      render :new
+      render file: "categories/new.js.erb"
     end
   end
 
@@ -27,9 +28,9 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      redirect_to menu_path(@category.menu), notice: "Category updated successfully"
+      render file: "categories/update.js.erb"
     else
-      render :show
+      render file: "categories/edit.js.erb"
     end
   end
 
@@ -68,7 +69,7 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    params[:category].permit(:name, :menu_id, menu_items_attributes: [ :id, :display_sequence_number, :name, :description, :price, :item_options ])
+    params[:category].permit(:name, :menu_id, :display_sequence_number, menu_items_attributes: [ :id, :display_sequence_number, :name, :description, :price, :item_options ])
   end
 
   def category_sort_params

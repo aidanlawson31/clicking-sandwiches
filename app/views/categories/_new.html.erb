@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLongTitle">New Category</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<%= simple_form_for @category, url: menu_categories_path(@menu.id), method: :post, remote: true do |f| %>
+  <div class="modal-body">
+    <%= f.input :name %>
+    <%= f.hidden_field :menu_id, value: @menu.id %>
+    <%= f.hidden_field :display_sequence_number, value: 0 %>
+  </div>
+  <div class="modal-footer">
+    <%= link_to 'back', menu_path(@menu), class: "btn btn-primary btn-sm"%>
+    <%= f.button :submit, class: "btn btn-primary btn-sm", data: { disable_with: "Saving..." } %>
+  </div>
+<% end %>
