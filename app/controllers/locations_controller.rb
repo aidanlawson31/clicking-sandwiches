@@ -72,6 +72,9 @@ class LocationsController < ApplicationController
   def update
     if @location.update(location_params)
       redirect_to location_path(@location), notice: "Location updated"
+    else
+      redirect_to location_path(@location)
+      flash.now[:alert] = "There was an error"
     end
   end
 

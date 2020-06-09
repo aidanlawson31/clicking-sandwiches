@@ -72,6 +72,16 @@ input {
           justify-content: center;
 }
 
+.error {
+  color: red;
+  font: 13pt;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-left: 5px;
+}
+
 .nav {
   background-color: #1C4D7E;
 }

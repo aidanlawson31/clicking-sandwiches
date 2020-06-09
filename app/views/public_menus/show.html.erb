@@ -12,7 +12,7 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
   </div>
 
   <div id="pub-menu">
-    <%= link_to "Back to #{@business.name}", public_location_path(@business.business_url, @location.location_url) %>
+    <%= link_to "Back to #{@business.name}", public_location_path(@business.business_url, @location.location_url), class:"btn btn-primary btn-sm", style:"background-color: #{@business.business_display_attribute.primary_color}; border-color: #{@business.business_display_attribute.primary_color};" %>
     <% if @menu.categories %> 
       <% @menu.categories.each do |category| %>
         <div class="row menu-show-category" style="margin-bottom: 1%; margin-top: 1%;">

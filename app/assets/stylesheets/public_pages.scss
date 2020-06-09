@@ -106,30 +106,18 @@ label {
     max-width: 900px;
   }
 }
-
 /* Portrait and Landscape Phones */
 
 @media only screen 
   and (max-device-width: 507px) 
  { 
 
-  #index-container,
-  #show-container {
-    min-width: 100%;
-    margin-right: 0;
-    margin-left: 0;
-    padding-left: 0;
-    padding-right: 0;
-  }
 
-  #index-container {
-    text-align: center;
-  }
+
   .location-show-card 
   .nav-public, 
   .nav-item{
     padding-bottom: 10px;
-
     height: 100px;
     font-size: 40px;
   }
