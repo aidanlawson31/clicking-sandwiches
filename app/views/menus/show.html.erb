@@ -35,7 +35,7 @@
         <div class="col">
           <b><%= category.name %></b>
         </div>
-        <%= link_to "Edit Category", edit_menu_category_path(@menu.id, category.id), { remote: true, class: "btn btn-primary btn-sm", 'data-toggle' => "modal", 'data-target' => "#edit-category-modal" } %>
+        <%= link_to "Edit Category", edit_menu_category_path(@menu.id, category.id), { remote: true, class: "btn btn-primary btn-sm category-edit-button", 'data-toggle' => "modal", 'data-target' => "#edit-category-modal" } %>
         <div class="modal fade" id="edit-category-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content" id="edit-category-form-modal-content">
