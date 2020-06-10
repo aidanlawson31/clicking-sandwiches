@@ -2,17 +2,20 @@
   <h1>Create A Menu</h1>
   <%= simple_form_for @menu do |f| %>
     <%= f.input :display_name %>
-    <%= f.input :internal_name %>
+    <div class="row">
+      <p data-toggle="tooltip" title="Internal name is how we differentiate menus. Please make sure this is unique."><%= image_tag "tooltip" %></p>
+      <%= f.input :internal_name %>
+    </div>
     <%= f.input :location_id, as: :hidden, input_html: { value: params[:location_id] } %>
     <br>
     <%= f.input :description, as: :trix_editor %>
     <%= f.hidden_field :menu_url %>
     <br>
     <% if params[:location_id] %>
-      <%= link_to "back", location_path(params[:location_id]) %>
+      <%= link_to "back", location_path(params[:location_id]), class: "btn btn-primary btn-sm" %>
     <% else %>
-      <%= link_to "back", menus_path %>
-      <%= f.button :submit, class: "btn btn-primary", data: { disable_with: "Saving..." } %>
+      <%= link_to "back", menus_path, class: "btn btn-primary btn-sm" %>
+      <%= f.button :submit, class: "btn btn-primary btn-sm", data: { disable_with: "Saving..." } %>
     <% end %>
   <% end %>
   <hr>
