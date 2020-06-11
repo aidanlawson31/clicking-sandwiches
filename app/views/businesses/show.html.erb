@@ -66,6 +66,9 @@
           minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"} %>
       </div>
     </div>
-    <%= f.button :submit, class: "btn btn-sm btn-primary", data: { disable_with: "Saving..." } %>
+    <div id="b-show-links">
+      <%= f.button :submit, class: "btn btn-primary", data: { disable_with: "Saving..." } %>
+      <%= link_to "View Public Pages", public_locations_path(current_user.business.business_url), class: "btn btn-primary" %>
+    </div>
   <% end %>
 </div>
