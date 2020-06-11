@@ -37,7 +37,7 @@ group :development do
 end
 
 group :production do
-  gem "aws-sdk-s3", reqiure: false
+  gem "aws-sdk-s3"
 end
 
 group :test do
