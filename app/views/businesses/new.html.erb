@@ -6,7 +6,10 @@
     <%= f.input :phone_number %>
     <%= f.input :description, as: :trix_editor %>
     <%= f.input :email, label: "Business Email" %>
-    <%= f.input :business_url %>
+    <div class="row">
+      <p data-toggle="tooltip" title="Business Url is the url for your business. E.g. https://clicking-sandwiches.herokuapp.com/[your business url]"><%= image_tag "tooltip" %></p>
+      <%= f.input :business_url %>
+    </div>
     <br>
     <%= f.button :submit, class: "btn btn-primary" %>
   <% end %>

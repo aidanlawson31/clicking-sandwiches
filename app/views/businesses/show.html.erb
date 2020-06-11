@@ -10,7 +10,10 @@
         <%= f.input :phone_number %>
       </div>
       <div class="col">
-        <%= f.input :business_url %><br>
+        <div class="row">
+          <p data-toggle="tooltip" title="Business Url is the url for your business. E.g. https://clicking-sandwiches.herokuapp.com/[your business url]"><%= image_tag "tooltip" %></p>
+          <%= f.input :business_url %><br>
+        </div>
       </div>
       <%= f.input :description, label: "Business Description", as: :trix_editor %>
     </div>
@@ -57,6 +60,7 @@
       <div class="col bda-inputs">
         <%= f.input :background_color, as: :minicolors, input_html: {data: {
               minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
+
         <%= f.association :font, collection: @fonts, include_blank: false %>
         <%= f.input :general_text_color, as: :minicolors, input_html: {data: {
           minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"} %>
