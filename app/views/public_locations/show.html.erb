@@ -87,7 +87,7 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
         <div class="imap-location-show">
           <iframe width="530" height="530" frameborder="0" style="border:0"
-          src="https://www.google.com/maps/embed/v1/place?key=<%= ENV['MAPS_API_KEY'] %>&q=<%= @location.latitude %>,<%= @location.longitude %>"
+          src="https://www.google.com/maps/embed/v1/place?key=<%= ENV["MAPS_API_KEY"] %>&q=<%= @location.latitude %>,<%= @location.longitude %>"
           allowfullscreen>
           </iframe>
         </div>

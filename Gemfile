@@ -22,7 +22,7 @@ gem 'simple_form'
 gem 'jquery-minicolors-rails' # colour picker
 gem 'trix-rails', require: 'trix'   # Rich text editor
 gem 'geocoder'
-gem 'dotenv-rails'
+gem 'dotenv'
 gem "cocoon"
 gem "aws-sdk-s3", require: false
 
