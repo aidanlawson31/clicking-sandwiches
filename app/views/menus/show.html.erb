@@ -11,7 +11,7 @@
       </div>
       <%= f.input :description, as: :trix_editor %>
       <hr/>
-      <%= link_to "back", menus_path %>
+      <%= link_to "back", menus_path, class: "btn btn-primary btn-sm" %>
       <%= f.button :submit, class: "btn btn-primary btn-sm" %>
       <%= link_to "Delete Menu", menu_path(@menu), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure? This action will delete all menu items.' } %>
     </div>
@@ -27,7 +27,9 @@
       </div>
     </div>
   </div>
-  <%= link_to "Sort Categories", sort_menu_categories_menu_path(@menu.id), class: "btn btn-primary btn-sm" %>
+  <% if @menu.categories.count > 1 %>
+    <%= link_to "Sort Categories", sort_menu_categories_menu_path(@menu.id), class: "btn btn-primary btn-sm" %>
+  <% end %>
   
   <% if @menu.categories %> 
     <% @menu.categories.each do |category| %>
@@ -44,7 +46,9 @@
         </div>
         <%= link_to "Delete Category", menu_category_path(@menu.id, category.id), method: :DELETE, class: "btn btn-danger btn-sm category-edit-button", data: { confirm: 'Are you sure? This action will delete all category items.' }  %>
         <%= link_to "Add Menu Item",   new_menu_category_menu_item_path(@menu.id, category.id), class: "btn btn-primary btn-sm category-edit-button" %>
-        <%= link_to "Sort Menu Items", sort_category_menu_items_menu_category_path(@menu.id, category.id), class: "btn btn-primary btn-sm category-edit-button" %>
+        <% if category.menu_items.count > 1 %>
+          <%= link_to "Sort Menu Items", sort_category_menu_items_menu_category_path(@menu.id, category.id), class: "btn btn-primary btn-sm category-edit-button" %>
+        <% end %>
       </div>
 
       <% category.menu_items.each do |menu_item| %>
