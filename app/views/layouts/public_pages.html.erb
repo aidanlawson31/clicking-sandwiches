@@ -1,7 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ClickingSandwiches</title>
+
+    <% if current_business.business_display_attribute.favicon.attached? %>
+      <link rel="icon" href="<%= url_for(current_business.business_display_attribute.favicon) %>">
+    <% else %>
+      <%= favicon_link_tag("favicon-32x32") %>
+    <% end %>
+    
+    <% if current_business %>
+      <title><%= current_business.name %></title>
+    <% else %>
+      <title>ClickingSandwiches</title>
+    <% end %>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
