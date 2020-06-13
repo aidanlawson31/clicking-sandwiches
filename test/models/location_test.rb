@@ -38,7 +38,7 @@ class LocationTest < ActiveSupport::TestCase
 
   test "location url is converted" do
     @location.name = "some location"
-    @location.valid?
+    @location.save
     assert @location.location_url == "some-location"
   end
 end

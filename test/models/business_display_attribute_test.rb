@@ -10,7 +10,10 @@ class BusinessDisplayAttributeTest < ActiveSupport::TestCase
         font_id:          @font.id,
         primary_color:    'primary color',
         secondary_color:  'secondary color',
-        background_color: 'background color'
+        background_color: 'background color',
+        heading_color: 'heading color',
+        nav_bar_color: 'nav color',
+        general_text_color: 'text color'
       )
   end
 
