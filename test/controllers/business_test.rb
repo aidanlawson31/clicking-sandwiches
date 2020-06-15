@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class BusinessControllerTest < ActionDispatch::IntegrationTest
-
+	
 	def setup
 		@business = businesses(:one)
 	end

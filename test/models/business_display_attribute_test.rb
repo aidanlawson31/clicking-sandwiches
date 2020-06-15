@@ -35,4 +35,14 @@ class BusinessDisplayAttributeTest < ActiveSupport::TestCase
     @business_display_attr.background_color = nil
     refute @business_display_attr.valid?
   end
+
+  test "heading color is required" do
+    @business_display_attr.heading_color = nil
+    refute @business_display_attr.valid?
+  end
+
+  test "nav color is required" do 
+    @business_display_attr.nav_bar_color = nil
+    refute @business_display_attr.valid? 
+  end 
 end

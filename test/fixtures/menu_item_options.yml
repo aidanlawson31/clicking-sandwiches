@@ -4,8 +4,10 @@ one:
   menu_item: one
   name: MyString
   price: 9.99
+  display_sequence_number: 0
 
 two:
   menu_item: two
   name: MyString
   price: 9.99
+  display_sequence_number: 1

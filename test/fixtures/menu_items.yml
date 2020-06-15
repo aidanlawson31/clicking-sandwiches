@@ -7,6 +7,7 @@ one:
   price:                   '1.5'
   category:                one
   display_sequence_number: '1'
+  item_options:            true
   created_at:              <%= DateTime.now %>
   updated_at:              <%= DateTime.now %>
 
@@ -17,5 +18,6 @@ two:
   price:                   '1.5'
   category:                two
   display_sequence_number: '2'
+  item_options:            true
   created_at:              <%= DateTime.now %>
   updated_at:              <%= DateTime.now %>

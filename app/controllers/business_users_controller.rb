@@ -2,13 +2,13 @@ class BusinessUsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: [:remove_admin_privileges, :grant_admin_privileges, :destroy]
   before_action :set_business
+  before_action :must_be_admin, only: [:create, :destroy, :remove_admin_privileges, :grant_admin_privileges]
 
   def index
     @user = User.new
   end
 
   def create
-    raise ArgumentError, 'You must be an admin to access this method' unless current_user.admin
     @user             = User.new(user_params)
     @user.business_id = @business.id
 
@@ -21,8 +21,6 @@ class BusinessUsersController < ApplicationController
   end
 
   def destroy
-    raise ArgumentError, 'You must be an admin to access this method' unless current_user.admin
-
     if @user.destroy
       redirect_to business_business_users_path(@business)
     else
@@ -32,8 +30,6 @@ class BusinessUsersController < ApplicationController
   end
 
   def remove_admin_privileges
-    raise ArgumentError, 'You must be an admin to access this method'    unless current_user.admin
-
     @user.admin = false
 
     if @user.save 
@@ -45,7 +41,6 @@ class BusinessUsersController < ApplicationController
   end
 
   def grant_admin_privileges
-    raise ArgumentError, 'You must be an admin to access this method' unless current_user.admin
     @user.admin = true
 
     if @user.save 
@@ -68,5 +63,11 @@ class BusinessUsersController < ApplicationController
 
   def set_business
     @business = current_business
+  end
+
+  def must_be_admin
+    unless current_user.admin?
+      render 'shared/not_authorized', layout: false, status: :unauthorized
+    end
   end
 end

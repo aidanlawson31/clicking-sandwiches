@@ -11,3 +11,18 @@ user_two:
   admin:      true
   created_at: <%= DateTime.now %>
   updated_at: <%= DateTime.now %>
+
+admin_user:
+  email: 'adminuser@example.com'
+  business: one
+  admin: true
+  created_at: <%= DateTime.now %>
+  updated_at: <%= DateTime.now %>
+
+not_admin_user:
+  email: 'notadminuser@example.com'
+  business: one
+  admin: false
+  created_at: <%= DateTime.now %>
+  updated_at: <%= DateTime.now %>
+  
