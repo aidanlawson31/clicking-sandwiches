@@ -4,6 +4,13 @@ class BusinessDisplayAttribute < ApplicationRecord
 
   has_one_attached :favicon
   has_one_attached :business_icon
+
+  validates :primary_color,      presence: true
+  validates :secondary_color,    presence: true
+  validates :background_color,   presence: true
+  validates :heading_color,      presence: true
+  validates :nav_bar_color,      presence: true
+  validates :general_text_color, presence: true 
   
   after_save :purge_business_icon, if: :remove_business_icon
   after_save :purge_favicon,       if: :remove_favicon

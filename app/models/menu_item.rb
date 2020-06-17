@@ -13,7 +13,7 @@ class MenuItem < ApplicationRecord
   before_validation :sanitize_text
   validates :name,        presence: true
   validates :price,       presence: true
-	validates :display_sequence_number, inclusion: 0..10_000
+  validates :display_sequence_number, inclusion: 0..10_000
   validates :item_options, inclusion: { in: [true, false] }
 
   def sized_image(size: 140)
@@ -24,5 +24,5 @@ class MenuItem < ApplicationRecord
 
   def sanitize_text
     self.description = Utility.sanitize_rich_text(description)
-	end
+  end
 end

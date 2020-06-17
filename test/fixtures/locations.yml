@@ -5,6 +5,8 @@ one:
   address:      '65 manns st'
   business:     one
   location_url: 'west-gosford'
+  phone_number: '12343243'
+  open:         MyString
   created_at:   <%= DateTime.now %>
   updated_at:   <%= DateTime.now %>
 
@@ -13,5 +15,7 @@ two:
   address:      '66 manns st'
   business:     two
   location_url: 'east-gosford'
+  phone_number: '12343243'
+  open:         MyString
   created_at:   <%= DateTime.now %>
   updated_at:   <%= DateTime.now %>

@@ -6,7 +6,6 @@ class MenuItemTest < ActiveSupport::TestCase
     @menu_item = 
       MenuItem.new(
         name: "some item",
-        description: "some item description",
         price: 10,
         category_id: @category.id,
         display_sequence_number: 1
@@ -19,11 +18,6 @@ class MenuItemTest < ActiveSupport::TestCase
 
   test "name is required" do
     @menu_item.name = nil
-    refute @menu_item.valid?
-  end
-
-  test "description is required" do
-    @menu_item.description = nil
     refute @menu_item.valid?
   end
 

@@ -10,7 +10,10 @@ class BusinessDisplayAttributeTest < ActiveSupport::TestCase
         font_id:          @font.id,
         primary_color:    'primary color',
         secondary_color:  'secondary color',
-        background_color: 'background color'
+        background_color: 'background color',
+        heading_color: 'heading color',
+        nav_bar_color: 'nav color',
+        general_text_color: 'text color'
       )
   end
 
@@ -32,4 +35,14 @@ class BusinessDisplayAttributeTest < ActiveSupport::TestCase
     @business_display_attr.background_color = nil
     refute @business_display_attr.valid?
   end
+
+  test "heading color is required" do
+    @business_display_attr.heading_color = nil
+    refute @business_display_attr.valid?
+  end
+
+  test "nav color is required" do 
+    @business_display_attr.nav_bar_color = nil
+    refute @business_display_attr.valid? 
+  end 
 end

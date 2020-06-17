@@ -39,7 +39,7 @@
         <% end %>
 
         <p>Upload a Favicon</p>
-        <%= f.file_field :favicon, accept: 'image/png,image/jpeg' %>
+        <%= f.file_field :favicon, accept: 'image/png,image/jpeg,image/ico' %>
         <%= list_image(@business_display_attribute.sized_favicon(size: 100), alt: "Image") %>
 
         <% if @business_display_attribute.favicon.attached? %>

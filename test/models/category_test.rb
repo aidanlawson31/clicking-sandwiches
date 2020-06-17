@@ -20,11 +20,6 @@ class CategoryTest < ActiveSupport::TestCase
     refute @category.valid?
   end
 
-  test "category must have a display sequence number" do
-    @category.display_sequence_number = nil
-    refute @category.valid?
-  end
-
   test "dependent menu items are destroyed" do
     @category.save
     @category.menu_items.create(
