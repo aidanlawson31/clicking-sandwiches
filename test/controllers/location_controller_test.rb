@@ -1,12 +1,22 @@
 require 'test_helper'
 
-class LocationsControllerTest < ActionDispatch::IntegrationTest
+class LocationControllerTest < ActionDispatch::IntegrationTest
   def setup
     @user          = users(:user_one)
     @location      = locations(:one)
     @menu          = menus(:one)
     @location_menu = location_menus(:one)
     sign_in @user
+  end
+
+  test "get locations index" do
+    get locations_url
+    assert_response :success
+  end
+
+  test "get location show" do
+    get location_url(@location.id)
+    assert_response :success
   end
 
   test "get show menus" do
