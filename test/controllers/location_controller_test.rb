@@ -31,6 +31,7 @@ class LocationControllerTest < ActionDispatch::IntegrationTest
       location_id: location.id,
       menu_id:     menu.id
     )
+    assert location.persisted?
     delete remove_menu_location_url(location.id, location_menu: location_menu.id)
     refute LocationMenu.find_by(id: location_menu.id)
   end

@@ -60,13 +60,16 @@ class BusinessUsersControllerTest < ActionDispatch::IntegrationTest
 
   test 'admin can delete another user' do
     sign_in @admin_user
+    assert @not_admin_user
     delete business_business_user_url(@business.id, @not_admin_user.id)
     refute User.find_by(id: @not_admin_user.id)
   end
 
   test 'non admins cannot delete another user' do
     sign_in @not_admin_user
+    assert @admin_user
     delete business_business_user_url(@business.id, @admin_user.id)
     assert_response :unauthorized
+    assert @admin_user
   end
 end
