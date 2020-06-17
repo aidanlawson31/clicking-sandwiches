@@ -28,42 +28,77 @@
 
   <%= simple_form_for @business_display_attribute, url: update_business_display_attribute_business_path do |f| %>
     <h4> Your Business Customization</h4>
-    <div class="row" style="margin-bottom:20px;">
-      <div class="col">
-        <p>Upload a Banner, recommended dimentions are 1250 × 200 </p>
-        <%= f.file_field :business_icon, accept: 'image/png,image/jpeg' %>
-        <%= list_image(@business_display_attribute.sized_business_icon(size: 100), alt: "Image") %>
+    <div id="business-customization">
+      <div class="row">
+        <div class="col">
+          <p>Upload a Banner, recommended dimentions are 1250 × 200 </p>
+          <%= f.file_field :business_icon, accept: 'image/png,image/jpeg' %>
+          <%= list_image(@business_display_attribute.sized_business_icon(size: 100), alt: "Image") %>
 
-        <% if @business_display_attribute.business_icon.attached? %>
-          <%= f.input :remove_business_icon, as: :boolean, checked_value: true, unchecked_value: false %>
-        <% end %>
+          <% if @business_display_attribute.business_icon.attached? %>
+            <%= f.input :remove_business_icon, as: :boolean, checked_value: true, unchecked_value: false %>
+          <% end %>
+        </div>
+        <div class="col">
+          <p>Upload a Favicon</p>
+          <%= f.file_field :favicon, accept: 'image/png,image/jpeg,image/ico' %>
+          <%= list_image(@business_display_attribute.sized_favicon(size: 100), alt: "Image") %>
 
-        <p>Upload a Favicon</p>
-        <%= f.file_field :favicon, accept: 'image/png,image/jpeg,image/ico' %>
-        <%= list_image(@business_display_attribute.sized_favicon(size: 100), alt: "Image") %>
+          <% if @business_display_attribute.favicon.attached? %>
+            <%= f.input :remove_favicon, as: :boolean, checked_value: true, unchecked_value: false %>
+          <% end %>
+        </div>
+        <div class="col">
+          <p>Upload a background image or pattern</p>
+          <%= f.file_field :background_image, accept: 'image/png,image/jpeg' %>
+          <%= list_image(@business_display_attribute.sized_background_image(size: 100), alt: "Image") %>
 
-        <% if @business_display_attribute.favicon.attached? %>
-          <%= f.input :remove_favicon, as: :boolean, checked_value: true, unchecked_value: false %>
-        <% end %>
-
+          <% if @business_display_attribute.background_image.attached? %>
+            <%= f.input :remove_background_image, as: :boolean, checked_value: true, unchecked_value: false %>
+          <% end %>
+        </div>
       </div>
-      <div class="col bda-inputs">
-        <%= f.input :nav_bar_color, as: :minicolors, input_html: {data: {
-              minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"} %>
-        <%= f.input :heading_color, as: :minicolors, input_html: {data: {
-              minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"} %>
-        <%= f.input :primary_color, as: :minicolors, input_html: {data: {
-              minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
-        <%= f.input :secondary_color, as: :minicolors, input_html: {data: {
-              minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
+      <h2>Colors</h2>
+      <div class="row">
+        <div class="col bda-inputs">
+          <%= f.input :nav_bar_color, as: :minicolors, input_html: {data: {
+                minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"} %>
+          <%= f.input :primary_color, as: :minicolors, input_html: {data: {
+                minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
+        </div>
+        <div class="col bda-inputs">
+          <%= f.input :secondary_color, as: :minicolors, input_html: {data: {
+                minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
+          <%= f.input :background_color, as: :minicolors, input_html: {data: {
+                minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
+        </div>
       </div>
-      <div class="col bda-inputs">
-        <%= f.input :background_color, as: :minicolors, input_html: {data: {
-              minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
-
-        <%= f.association :font, collection: @fonts, include_blank: false %>
-        <%= f.input :general_text_color, as: :minicolors, input_html: {data: {
-          minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"} %>
+      <hr>
+      <h2>Text and font</h2>
+      <div class="row">
+        <div class="col bda-inputs">
+          <%= f.association :font, collection: @fonts, include_blank: false %>
+          <%= f.input :general_text_color, as: :minicolors, input_html: {data: {
+            minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"} %>
+          <%= f.input :heading_color, as: :minicolors, input_html: {data: {
+            minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"} %>
+        </div>
+      </div>
+      <hr>
+      <h2>Cards and buttons</h2>
+      <div class="row">
+        <div class="col bda-inputs">
+          <%= f.input :button_text_color, as: :minicolors, input_html: {data: {
+            minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
+          <%= f.input :button_color, as: :minicolors, input_html: {data: {
+            minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
+        </div>
+        <div class="col bda-inputs">
+          <%= f.input :card_background_color, as: :minicolors, input_html: {data: {
+            minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
+          <%= f.input :card_border_color, as: :minicolors, input_html: {data: {
+            minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
+        </div>
       </div>
     </div>
     <div id="b-show-links">

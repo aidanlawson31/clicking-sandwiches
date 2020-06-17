@@ -2,6 +2,8 @@ class Menu < ApplicationRecord
   belongs_to :business
   has_many   :categories,     dependent: :destroy
   has_many   :location_menus, dependent: :destroy
+  
+  has_one_attached :menu_banner
 
   accepts_nested_attributes_for :categories, allow_destroy: true
 

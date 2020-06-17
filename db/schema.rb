@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_14_075358) do
+ActiveRecord::Schema.define(version: 2020_06_17_053107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,10 @@ ActiveRecord::Schema.define(version: 2020_05_14_075358) do
     t.string "heading_color"
     t.string "nav_bar_color"
     t.string "general_text_color"
+    t.string "button_text_color"
+    t.string "button_color"
+    t.string "card_background_color"
+    t.string "card_border_color"
     t.index ["business_id"], name: "index_business_display_attributes_on_business_id"
     t.index ["font_id"], name: "index_business_display_attributes_on_font_id"
   end
