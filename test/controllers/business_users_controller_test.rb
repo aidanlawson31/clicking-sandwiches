@@ -1,4 +1,4 @@
-require 'test_helper'
+  require 'test_helper'
 
 class BusinessUsersControllerTest < ActionDispatch::IntegrationTest
   def setup
@@ -50,7 +50,7 @@ class BusinessUsersControllerTest < ActionDispatch::IntegrationTest
 		assert User.find_by(id: @not_admin_user.id)&.admin?
   end
 
-  test 'non admins arent permitted to change the admin status of another user' do
+  test "non admins aren't permitted to change the admin status of another user" do
     sign_in @not_admin_user
     patch remove_admin_privileges_business_business_user_url(@business, @admin_user, "user" => {
       "admin" => "false"

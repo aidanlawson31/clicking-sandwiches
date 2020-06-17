@@ -38,10 +38,12 @@ class LocationsController < ApplicationController
   def remove_menu
     @location_menu = LocationMenu.find(params[:location_menu])
 
-    if @location.location_menus.delete(@location_menu)
-      redirect_to location_path(@location)
+    if @location_menu.destroy
       flash.now[:notice] = "Menu successfully removed from #{@location.name}"
+    else
+      flash.now[:notice] = "Menu was not removed from #{@location.name} due to: #{@location.errors.full_messages}." 
     end
+    redirect_to location_path(@location)
   end
 
   def add_image

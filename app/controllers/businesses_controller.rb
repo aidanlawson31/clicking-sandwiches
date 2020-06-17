@@ -3,8 +3,11 @@ class BusinessesController < ApplicationController
   before_action :form_setup, only: [:update, :show, :update_business_display_attribute]
   
   def update_business_display_attribute
-    @business_display_attribute.update(business_display_attribute_params)
-    redirect_to business_path(@business)
+    if @business_display_attribute.update(business_display_attribute_params)
+      redirect_to business_path(@business), notice: "Business display attributes saved successfull.y"
+    else
+      redirect_to business_path(@business), notice: "Business display attributes failed to save."
+    end
   end
 
   def new
@@ -16,7 +19,7 @@ class BusinessesController < ApplicationController
 
     if @business.save
       current_user.update_attributes(business_id: @business.id)
-      redirect_to @business, notice: "Business created successfully"
+      redirect_to @business, notice: "Business created successfully."
     else
       render :new
     end
@@ -24,7 +27,7 @@ class BusinessesController < ApplicationController
 
   def update    
     if @business.update(business_params)
-      redirect_to business_path(@business), notice: "Business updated successfully"
+      redirect_to business_path(@business), notice: "Business updated successfully."
     else
       render :show 
     end
