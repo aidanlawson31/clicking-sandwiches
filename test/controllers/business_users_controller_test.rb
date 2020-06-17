@@ -7,10 +7,10 @@ class BusinessUsersControllerTest < ActionDispatch::IntegrationTest
     @not_admin_user = users(:not_admin_user)
   end
 
-	test 'should redirect to login' do
-		get business_business_users_url(@business)
-		assert_response :redirect
-	end
+  test 'should redirect to login' do
+    get business_business_users_url(@business)
+    assert_response :redirect
+  end
   
   test 'should get user access when admin' do
     sign_in @admin_user
@@ -47,7 +47,7 @@ class BusinessUsersControllerTest < ActionDispatch::IntegrationTest
   test 'admin can change admin status of another user' do
     sign_in @admin_user
     patch grant_admin_privileges_business_business_user_url(@business.id, @not_admin_user.id, "user" => {"admin" => "true"}, "id"=> @not_admin_user.id)
-		assert User.find_by(id: @not_admin_user.id)&.admin?
+    assert User.find_by(id: @not_admin_user.id)&.admin?
   end
 
   test "non admins aren't permitted to change the admin status of another user" do
@@ -61,7 +61,7 @@ class BusinessUsersControllerTest < ActionDispatch::IntegrationTest
   test 'admin can delete another user' do
     sign_in @admin_user
     delete business_business_user_url(@business.id, @not_admin_user.id)
-		refute User.find_by(id: @not_admin_user.id)
+    refute User.find_by(id: @not_admin_user.id)
   end
 
   test 'non admins cannot delete another user' do

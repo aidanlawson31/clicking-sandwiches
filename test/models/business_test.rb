@@ -12,7 +12,7 @@ class BusinessTest < ActiveSupport::TestCase
   end
 
   test "valid_business" do
-		assert @business.valid?
+    assert @business.valid?
   end
 
   test "name is required" do

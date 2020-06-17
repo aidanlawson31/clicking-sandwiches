@@ -21,5 +21,5 @@ class Menu < ApplicationRecord
 
   def sanitize_text
     self.description = Utility.sanitize_rich_text(description)
-	end
+  end
 end
