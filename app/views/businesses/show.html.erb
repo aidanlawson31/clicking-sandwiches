@@ -1,7 +1,7 @@
-<div class="container" style="padding-bottom:100px; padding-top:10px;">
+<div class="container" id="business-show-container">
   <%= simple_form_for @business do |f| %>
     <h3 style="text-align:center;"> Your Business Details</h3>
-    <div class="row" style="margin-bottom:20px; ">
+    <div class="row" id="business-s-info">
       <div class="col">
         <%= f.input :name %>
         <%= f.input :email %>
@@ -15,9 +15,11 @@
           <%= f.input :business_url %><br>
         </div>
       </div>
-      <%= f.input :description, label: "Business Description", as: :trix_editor %>
+      <div id="business-s-description">
+        <%= f.input :description, label: "Business Description", as: :trix_editor %>
+        <%= f.button :submit, class: "b-btn-save btn btn-primary", data: { disable_with: "Saving..." } %>
+      </div>
     </div>
-    <%= f.button :submit, class: "btn btn-sm btn-primary", data: { disable_with: "Saving..." } %>
   <% end %>
   <br>
 

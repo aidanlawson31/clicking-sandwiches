@@ -10,6 +10,12 @@
         <%= f.input :internal_name %>
       </div>
       <%= f.input :description, as: :trix_editor %>
+      <br>
+      <p> Attach a banner for this menu </p>
+      <%= f.file_field :image, accept: 'image/png,image/jpeg' %>
+      <% if @menu.image.attached? %>
+        <%= image_tag @menu.sized_image(size: 150) %>
+      <% end %>
       <hr/>
       <%= link_to "back", menus_path, class: "btn btn-primary btn-sm" %>
       <%= f.button :submit, class: "btn btn-primary btn-sm" %>

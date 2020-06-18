@@ -2,33 +2,37 @@
 background-color: <%= @business.business_display_attribute.background_color %>;
 font-family: '<%= @business.business_display_attribute.font.name %>';
 ">
-
+<div id="menu-banner">
+  <% if @menu.image.attached? %>
+    <%= image_tag @menu.sized_image(size: 600) %>
+  <% end %>
+</div>
 <div class="container" id="pub-m-container">
-  <div class="row customer-menu-title">
-    <h1 style="color: <%= @business.business_display_attribute.primary_color %>;"><%= @menu.display_name %></h1>
+  <div class="row customer-menu-title" style="<%= @menu.image.attached? ? "margin-top:10%" : "" %>">
+    <h1 style="color: <%= @business.business_display_attribute.general_text_color %>;"><%= @menu.display_name %></h1>
   </div>
-  <div class="row menu-description">
-    <span style="color: <%= @business.business_display_attribute.primary_color %>"><%= @menu.description.html_safe %></span>
+  <div class="row menu-description"  style="<%= @menu.image.attached? ? "margin-top:10%" : "" %>">
+    <span style="color: <%= @business.business_display_attribute.general_text_color %>"><%= @menu.description.html_safe %></span>
   </div>
 
   <div id="pub-menu">
-    <%= link_to "Back to #{@business.name}", public_location_path(@business.business_url, @location.location_url), class:"btn btn-primary btn-sm", style:"background-color: #{@business.business_display_attribute.primary_color}; border-color: #{@business.business_display_attribute.primary_color};" %>
+    <%= link_to "Back to #{@business.name}", public_location_path(@business.business_url, @location.location_url), class:"btn btn-primary btn-sm", style:"background-color: #{@business.business_display_attribute.button_color}; border-color: #{@business.business_display_attribute.button_color}; color: #{@business.business_display_attribute.button_text_color}" %>
     <% if @menu.categories %> 
       <% @menu.categories.each do |category| %>
-        <div class="row menu-show-category" style="margin-bottom: 1%; margin-top: 1%;">
+        <div class="row menu-show-category" style="margin-bottom: 1%; margin-top: 1%; background-color: <%= @business.business_display_attribute.card_background_color %>; border: 1px solid <%= @business.business_display_attribute.card_border_color %>;">
           <div class="col">
-            <h5 style="color: <%= @business.business_display_attribute.primary_color %>%"><%= category.name %></h5>
+            <h5 style="color: <%= @business.business_display_attribute.general_text_color %>%"><%= category.name %></h5>
           </div>
         </div>
 
         <% category.menu_items.each do |menu_item| %>
-          <div class="row menu-show-menu-item">
+          <div class="row menu-show-menu-item" style="background-color: <%= @business.business_display_attribute.card_background_color %>; border: 1px solid <%= @business.business_display_attribute.card_border_color %>;">
             <div class="col-1">
-              <p style="color: <%= @business.business_display_attribute.primary_color %>%"><%= menu_item.code %></p>
+              <p style="color: <%= @business.business_display_attribute.general_text_color %>%"><%= menu_item.code %></p>
             </div>
             <div class="col">
-              <div class="row" style="background-color: <%= @business.business_display_attribute.secondary_color %>; padding-left: 5px;">
-                <h5 style="color: <%= @business.business_display_attribute.primary_color %>%"><%= menu_item.name %></h5>
+              <div class="row" style="background-color: <%= @business.business_display_attribute.primary_color %>; padding-left: 5px;">
+                <h5 style="color: <%= @business.business_display_attribute.general_text_color %>%"><%= menu_item.name %></h5>
               </div>
               <p><%= menu_item.description.html_safe %>
               </p>

@@ -14,7 +14,7 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
     <h3  id="index-description" style="color: <%= @business.business_display_attribute.general_text_color %>">Locations</h3>
     <% unless @locations.empty? %>
       <% @locations.each do |location| %>
-        <div class="card" style="margin:5px;  background-color: <%= @business.business_display_attribute.secondary_color %>">
+        <div class="card" style="margin:5px; background-color: <%= @business.business_display_attribute.card_background_color %>; border: 1px solid <%= @business.business_display_attribute.card_border_color%>">
           <div class="row" style="padding: 10px; width: 100%;">
             <div class="col" style="margin: 0.5rem;" >
               <% if location.location_images %>
@@ -30,10 +30,10 @@ font-family: '<%= @business.business_display_attribute.font.name %>';
               <% unless location.open.blank? %>
                 <h5 id="index-card" style="margin-top: 5px; color: <%= @business.business_display_attribute.general_text_color %>">open: <%= location.open %></h5>
               <% end %>
-              <%= link_to "View location", public_location_path(@business.business_url, location.location_url), class: "btn btn-sm btn-primary custom-btn", style: "background-color: #{@business.business_display_attribute.primary_color}; border-color: #{@business.business_display_attribute.primary_color}" %>
+              <%= link_to "View location", public_location_path(@business.business_url, location.location_url), class: "btn btn-sm btn-primary custom-btn", style: "background-color: #{@business.business_display_attribute.button_color}; border-color: #{@business.business_display_attribute.button_color}; color: #{@business.business_display_attribute.button_text_color}" %>
             </div>
             <div class="col">
-              <iframe id="index-iframe" width="200" height="200" frameborder="0" style="border:10"
+              <iframe id="index-iframe" width="200" height="200" frameborder="0"
               src="https://www.google.com/maps/embed/v1/place?key=<%= ENV["MAPS_API_KEY"] %>&q=<%= location.latitude %>,<%= location.longitude %>"
               allowfullscreen>
               </iframe>

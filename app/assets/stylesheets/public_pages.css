@@ -189,4 +189,18 @@ label {
 #pub-m-td {
   padding: 1px 0;
 }
+
+#menu-banner {
+  display:flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.menu-show-menu-item {
+  border: 1px solid lightgray;
+  padding: 10px;
+  margin-top:10px;
+}
+
+
 /*# sourceMappingURL=public_pages.css.map */
