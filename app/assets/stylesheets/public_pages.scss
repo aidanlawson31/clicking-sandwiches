@@ -1,5 +1,5 @@
 /*
-  *= require_self
+  *= require_self   
   *= require jquery-ui/sortable
   *= require jquery.minicolors
   *= require trix
@@ -22,12 +22,10 @@ div.business-banner {
   justify-content: center;
 }
 
-
 label {
    /* puts form label over input */
   display: block; 
 }
-
 
 @media only screen // for desktops, portrait and landscape
   and (min-device-width: 1025px) 
@@ -111,8 +109,6 @@ label {
 @media only screen 
   and (max-device-width: 507px) 
  { 
-
-
 
   .location-show-card 
   .nav-public, 
@@ -207,7 +203,6 @@ label {
 #pub-m-td {
   padding: 1px 0;
 }
-
 
 #menu-banner {
   display:flex;
