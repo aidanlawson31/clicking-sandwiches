@@ -5,6 +5,15 @@
   *= require trix
   *= require_tree .
 */
+
+body,
+.background {
+  background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
 .card {
   display: block !important;
 }

@@ -429,4 +429,14 @@ label {
   margin-top: 15px;
 }
 
+#show-container {
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+#repeat-s {
+  height: 100%;
+  padding: 100px 0;
+  text-align: center;
+}
 /*# sourceMappingURL=application.css.map */

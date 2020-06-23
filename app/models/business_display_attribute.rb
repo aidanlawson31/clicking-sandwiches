@@ -16,11 +16,15 @@ class BusinessDisplayAttribute < ApplicationRecord
   validates :button_color,          presence: true
   validates :card_background_color, presence: true
   validates :card_border_color,     presence: true
-  
-  after_save :purge_business_icon, if: :remove_business_icon
-  after_save :purge_favicon,       if: :remove_favicon
+  validates :repeat,                presence: true
+  validates :foreground_color,      presence: true
+  validates :foreground_opacity,    presence: true, inclusion: 0..10
 
-  attr_accessor :remove_business_icon, :remove_favicon
+  after_save :purge_business_icon,    if: :remove_business_icon
+  after_save :purge_favicon,          if: :remove_favicon
+  after_save :purge_background_image, if: :remove_background_image
+
+  attr_accessor :remove_business_icon, :remove_favicon, :remove_background_image
 
   def sized_business_icon(size: 100)
     business_icon.variant(resize: "!#{size}x#{size}").processed if business_icon.attached?

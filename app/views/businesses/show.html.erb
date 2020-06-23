@@ -50,8 +50,12 @@
             <%= f.input :remove_favicon, as: :boolean, checked_value: true, unchecked_value: false %>
           <% end %>
         </div>
+      </div>
+      <hr>
+      <h2>Background</h2>
+      <p>Upload a background image or pattern</p>
+      <div class="row">
         <div class="col">
-          <p>Upload a background image or pattern</p>
           <%= f.file_field :background_image, accept: 'image/png,image/jpeg' %>
           <%= list_image(@business_display_attribute.sized_background_image(size: 100), alt: "Image") %>
 
@@ -59,7 +63,29 @@
             <%= f.input :remove_background_image, as: :boolean, checked_value: true, unchecked_value: false %>
           <% end %>
         </div>
+        <div class="col">
+          <div class="row" id="repeat-s">
+            <%= f.input :repeat, as: :boolean, checked_value: true, unchecked_value: false, label: "Repeat background" %>
+            <p data-toggle="tooltip" title="Repeat is best for images that are patterns. Leave unchecked for fullsized background images."><%= image_tag "tooltip" %></p>
+          </div>
+        </div>
       </div>
+      <div class="row bda-inputs">
+        <div class="col">
+          <%= f.input :background_color, as: :minicolors, input_html: {data: {
+                minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
+        </div>
+      </div>
+      <div class="row bda-inputs">
+        <div class="col">
+          <%= f.input :foreground_color, as: :minicolors, input_html: {data: {
+                minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
+        </div>
+        <div class="col">
+          <%= f.input :foreground_opacity %>
+        </div>
+      </div>
+      <hr>
       <h2>Colors</h2>
       <div class="row">
         <div class="col bda-inputs">
@@ -67,11 +93,10 @@
                 minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"} %>
           <%= f.input :primary_color, as: :minicolors, input_html: {data: {
                 minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
+          <p>Menu item heading background</p>
         </div>
         <div class="col bda-inputs">
           <%= f.input :secondary_color, as: :minicolors, input_html: {data: {
-                minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
-          <%= f.input :background_color, as: :minicolors, input_html: {data: {
                 minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
         </div>
       </div>

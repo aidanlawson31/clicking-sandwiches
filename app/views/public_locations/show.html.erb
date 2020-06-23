@@ -1,7 +1,8 @@
 <div class="background" style="
 background-color: <%= @business.business_display_attribute.background_color %>;
 font-family: '<%= @business.business_display_attribute.font.name %>';
-">
+background-image: <%= @business.business_display_attribute.background_image.attached? ? "url(#{url_for @business.business_display_attribute.sized_background_image(size: 900)})" : 'none' %>"
+>
   <% if @business.locations.count < 2 %>
     <% if @business.business_display_attribute.sized_business_icon %>
       <div class="business-banner">
