@@ -50,7 +50,9 @@ class BusinessesController < ApplicationController
   end
 
   def business_display_attribute_params
-    params[:business_display_attribute].permit(:business_id, :primary_color, :secondary_color, :background_color, :font_id, :heading_color, :general_text_color, :nav_bar_color, :business_icon, :favicon,
+    params[:business_display_attribute].permit(:business_id, :primary_color, :secondary_color, :background_color, :font_id, :heading_color, 
+      :general_text_color, :nav_bar_color, :button_text_color, :button_color, :card_background_color, :card_border_color, :foreground_color,
+      :foreground_opacity, :repeat, :background_color, :business_icon, :favicon, :background_image, :remove_background_image, 
       :remove_business_icon, :remove_favicon
     )
   end

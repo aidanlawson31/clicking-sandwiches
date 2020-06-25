@@ -21,7 +21,11 @@ class Business < ApplicationRecord
       background_color: "#F9FAFB",
       heading_color: "#000",     
       nav_bar_color: "#fff",     
-      general_text_color: "#000" 
+      general_text_color: "#000",
+      button_text_color: "#fff",
+      button_color: "#F9FAFB",
+      card_background_color: "#fff",
+      card_border_color: "#000"
      )
   end
 

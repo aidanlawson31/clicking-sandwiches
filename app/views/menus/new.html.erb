@@ -11,6 +11,7 @@
     <%= f.input :description, as: :trix_editor %>
     <%= f.hidden_field :menu_url %>
     <br>
+    <%= f.file_field :image, accept: 'image/png,image/jpeg' %>
     <% if params[:location_id] %>
       <%= link_to "back", location_path(params[:location_id]), class: "btn btn-primary btn-sm" %>
     <% else %>

@@ -2,6 +2,8 @@ class Menu < ApplicationRecord
   belongs_to :business
   has_many   :categories,     dependent: :destroy
   has_many   :location_menus, dependent: :destroy
+  
+  has_one_attached :image
 
   accepts_nested_attributes_for :categories, allow_destroy: true
 
@@ -15,6 +17,10 @@ class Menu < ApplicationRecord
   def convert_menu_url
     return unless self.display_name
     self.menu_url = self.display_name.downcase.parameterize
+  end
+  
+  def sized_image(size: 200)
+    image.variant(resize: "#{size}x#{size}").processed if image.attached?
   end
 
   private

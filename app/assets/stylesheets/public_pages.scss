@@ -1,11 +1,17 @@
 /*
-  *= require_self
+  *= require_self   
   *= require jquery-ui/sortable
   *= require jquery.minicolors
   *= require trix
   *= require_tree .
 */
 
+body,
+.background {
+  background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
 
 .card {
   display: block !important;
@@ -22,12 +28,10 @@ div.business-banner {
   justify-content: center;
 }
 
-
 label {
    /* puts form label over input */
   display: block; 
 }
-
 
 @media only screen // for desktops, portrait and landscape
   and (min-device-width: 1025px) 
@@ -104,6 +108,8 @@ label {
   #pub-m-container {
     width: 100%;
     max-width: 900px;
+    margin-top:10px;
+    padding-bottom: 10px;
   }
 }
 /* Portrait and Landscape Phones */
@@ -111,8 +117,6 @@ label {
 @media only screen 
   and (max-device-width: 507px) 
  { 
-
-
 
   .location-show-card 
   .nav-public, 
@@ -131,6 +135,7 @@ label {
 
   #index-description {
     font-size: 35px;
+    margin-bottom: 50px;
   }
 
   #index-card {
@@ -206,4 +211,40 @@ label {
 
 #pub-m-td {
   padding: 1px 0;
+}
+
+#menu-banner {
+  display:flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.menu-show-menu-item {
+  border: 1px solid lightgray;
+  padding: 10px;
+  margin-top:10px;
+}
+
+#index-container {
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
+
+#show-container {
+  padding-bottom: 10px;
+}
+
+#pub-m-container {
+  margin-top:10px;
+  padding-bottom: 10px;
+}
+
+.menu-info {
+  height: 300px;
+  padding-top: 80px;
+  margin-bottom: 10px;
+}
+
+#b-description-p {
+  margin-bottom:49px;
 }
