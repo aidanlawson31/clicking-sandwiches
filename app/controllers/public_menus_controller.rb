@@ -17,5 +17,6 @@ class PublicMenusController < ApplicationController
     end
     @menu = location_menu&.menu
     render :menu_not_found and return unless @menu
+    @bda = @business.business_display_attribute
   end
 end

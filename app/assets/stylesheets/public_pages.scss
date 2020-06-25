@@ -11,7 +11,6 @@ body,
   background-position: center center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	background-size: cover;
 }
 
 .card {
@@ -109,6 +108,8 @@ label {
   #pub-m-container {
     width: 100%;
     max-width: 900px;
+    margin-top:10px;
+    padding-bottom: 10px;
   }
 }
 /* Portrait and Landscape Phones */
@@ -134,6 +135,7 @@ label {
 
   #index-description {
     font-size: 35px;
+    margin-bottom: 50px;
   }
 
   #index-card {
@@ -221,4 +223,28 @@ label {
   border: 1px solid lightgray;
   padding: 10px;
   margin-top:10px;
+}
+
+#index-container {
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
+
+#show-container {
+  padding-bottom: 10px;
+}
+
+#pub-m-container {
+  margin-top:10px;
+  padding-bottom: 10px;
+}
+
+.menu-info {
+  height: 300px;
+  padding-top: 80px;
+  margin-bottom: 10px;
+}
+
+#b-description-p {
+  margin-bottom:49px;
 }

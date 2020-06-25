@@ -11,7 +11,6 @@ body,
   background-position: center center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	background-size: cover;
 }
 
 .card {
@@ -68,13 +67,29 @@ label {
   .pub-show-menus {
     margin-top: 10px;
   }
-  #pub-menu {
-    padding-top: 25%;
-    padding-bottom: 5%;
-  }
 }
 
 @media only screen and (min-device-width: 508px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+  .container {
+    max-width: 95%;
+  }
+
+  #index-card {
+    font-size: 18pt;
+  }
+
+  #index-description {
+    font-size: 18pt;
+  }
+
+  .custom-btn {
+    margin-top: 20px;
+    padding-bottom: 5px;
+    height: 40px;
+    width: 200px;
+    font-size: 15pt;
+  }
+
   .location-card {
     width: 100%;
     height: 300px;
@@ -91,18 +106,27 @@ label {
   .card-title {
     font-size: 20pt;
   }
-  #pub-menu {
-    padding-top: 50%;
-    padding-bottom: 5%;
-  }
   #pub-m-container {
     width: 100%;
     max-width: 900px;
+    margin-top:10px;
+    padding-bottom: 10px;
   }
 }
 
 /* Portrait and Landscape Phones */
 @media only screen and (max-device-width: 507px) {
+  div.business-banner {
+    max-height: 300px;
+  }
+
+  .custom-btn {
+    padding-top: 5px;
+    height: 60px;
+    width: 250px;
+    font-size: 22pt;
+  }
+
   #index-container,
   #show-container {
     min-width: 100%;
@@ -113,6 +137,7 @@ label {
   }
   #index-container {
     text-align: center;
+    margin-top:0px !important;
   }
   .location-show-card
 .nav-public,
@@ -130,14 +155,17 @@ label {
   #index-description {
     font-size: 35px;
   }
+  
   #index-card {
-    font-size: 30px;
+    font-size: 30pt;
     border-radius: 0;
   }
+
   #index-iframe {
     height: 250px;
     width: 250px;
   }
+
   #show-card {
     padding-bottom: 10px;
     padding-top: 10px;
@@ -146,19 +174,22 @@ label {
     width: 100%;
     border-radius: 0;
   }
-  #pub-menu {
-    padding-top: 70%;
-    padding-bottom: 5%;
-  }
+
   .menu-description {
     top: 23%;
     font-size: 20pt;
   }
+
   .customer-menu-title h1 {
     font-size: 40pt;
   }
+
   .customer-menu-title {
     top: 15%;
+  }
+
+  #pub-m-container {
+    width: 100%;
   }
 }
 
@@ -181,7 +212,7 @@ label {
 }
 
 .location-show-card {
-  padding-top: 10px;
+  padding-top: 30px;
   padding-bottom: 10px;
   padding-left: 10px;
   padding-right: 10px;
@@ -211,5 +242,41 @@ label {
   margin-top:10px;
 }
 
+#index-container {
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
+
+#show-c-container {
+  margin-top:10px;
+}
+
+#show-container {
+  margin-top:10px;
+  padding-bottom: 10px;
+}
+
+#pub-m-container {
+  margin-top:10px;
+}
+
+.menu-info {
+  height: 300px;
+  padding-top: 100px;
+  margin-bottom: 10px;
+  text-align:center;
+}
+
+#b-description-p {
+  margin-bottom:49px;
+}
+
+#index-description {
+  margin-bottom:40px;
+}
+
+#pub-menu {
+  padding-bottom: 5%;
+}
 
 /*# sourceMappingURL=public_pages.css.map */

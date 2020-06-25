@@ -6,6 +6,8 @@ class BusinessDisplayAttribute < ApplicationRecord
   has_one_attached :business_icon
   has_one_attached :background_image
 
+  attribute :repeat, :boolean, default: false
+
   validates :primary_color,         presence: true
   validates :secondary_color,       presence: true
   validates :background_color,      presence: true
@@ -16,7 +18,6 @@ class BusinessDisplayAttribute < ApplicationRecord
   validates :button_color,          presence: true
   validates :card_background_color, presence: true
   validates :card_border_color,     presence: true
-  validates :repeat,                presence: true
   validates :foreground_color,      presence: true
   validates :foreground_opacity,    presence: true, inclusion: 0..10
 
@@ -25,6 +26,14 @@ class BusinessDisplayAttribute < ApplicationRecord
   after_save :purge_background_image, if: :remove_background_image
 
   attr_accessor :remove_business_icon, :remove_favicon, :remove_background_image
+
+  def foreground_rgba(hex, opacity)
+    r = hex[1..2].hex
+    g = hex[3..4].hex
+    b = hex[5..6].hex
+
+    "rgb(#{r},#{g},#{b},#{opacity.to_f/10})"
+  end
 
   def sized_business_icon(size: 100)
     business_icon.variant(resize: "!#{size}x#{size}").processed if business_icon.attached?
