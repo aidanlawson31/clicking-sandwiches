@@ -16,10 +16,10 @@ background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: co
   </div>
 
   <div id="pub-menu">
-    <%= link_to "Back to #{@business.name}", public_location_path(@business.business_url, @location.location_url), class:"btn btn-primary btn-sm", style:"background-color: #{@bda.button_color}; border-color: #{@bda.button_color}; color: #{@bda.button_text_color}" %>
+    <%= link_to "Back to #{@business.name}", public_location_path(@business.business_url, @location.location_url), class:"btn btn-primary btn-sm custom-btn", style:"background-color: #{@bda.button_color}; border-color: #{@bda.button_color}; color: #{@bda.button_text_color}" %>
     <% if @menu.categories %> 
       <% @menu.categories.each do |category| %>
-        <div class="row menu-show-category" style="margin-bottom: 1%; margin-top: 1%; background-color: <%= @bda.card_background_color %>; border: 1px solid <%= @bda.card_border_color %>;">
+        <div class="row menu-show-category" style="background-color: <%= @bda.card_background_color %>; border: 1px solid <%= @bda.card_border_color %>;">
           <div class="col">
             <h5 style="color: <%= @bda.general_text_color %>%"><%= category.name %></h5>
           </div>
