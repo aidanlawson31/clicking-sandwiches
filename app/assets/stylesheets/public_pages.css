@@ -85,9 +85,10 @@ label {
   .custom-btn {
     margin-top: 20px;
     padding-bottom: 5px;
+    width: 240px;
     height: 40px;
-    width: 200px;
     font-size: 15pt;
+    border-radius: 5px;
   }
 
   .location-card {
@@ -164,10 +165,11 @@ label {
   }
 
   .custom-btn {
-    padding-top: 5px;
-    height: 60px;
-    width: 240px;
-    font-size: 22pt;
+    padding-top: 8px;
+    height: 65px;
+    width: 50%;
+    font-size: 24pt;
+    border-radius: 5px;
   }
 
   .show-location-images {

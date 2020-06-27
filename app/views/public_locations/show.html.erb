@@ -10,11 +10,12 @@ background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: co
   </div>
 <% end %>
   <div class="container" id="show-container" style="background-color: <%= @bda.foreground_rgba(@bda.foreground_color, @bda.foreground_opacity) %>;">
-    <h1 class="show-header" style="color: <%= @bda.heading_color %>"><%= @location.name %></h1>
     <% if @business.locations.count > 1 %>
+      <h1 class="show-header" style="color: <%= @bda.heading_color %>"><%= @business.name %></h1>
       <h5 class="show-sub-header" style="color: <%= @bda.heading_color %>"><%= @business.name %> Location</h5><br>
       <%= link_to "Back to #{@business.name}'s page", public_locations_path(@business.business_url), class: "btn custom-btn btn-primary btn-sm btn-custom", id: "back-button", style:"background-color: #{@bda.button_color}; border-color: #{@bda.button_color}; color: #{@bda.button_text_color}" %>
     <% else %>
+      <h1 class="show-header" style="color: <%= @bda.heading_color %>"><%= @business.name %></h1>
       <h5 class="show-header" style="color: <%= @bda.heading_color %>"><%= @location.name %></h5><br>
     <% end %>
  
