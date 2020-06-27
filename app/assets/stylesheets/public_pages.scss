@@ -116,11 +116,7 @@ label {
   
   div.business-banner {
     max-height: 300px;
-  }
-
-  #show-container {
-    margin-bottom: 10px;
-  }
+  } 
 
   .show-header {
     font-size: 45pt;
@@ -129,7 +125,6 @@ label {
 
   .show-sub-header {
     font-size: 35pt;
-    text-align: center;
   }
 
   #back-button {
@@ -342,7 +337,6 @@ label {
 }
 
 #show-container {
-  margin-top:10px;
   padding-bottom: 10px;
 }
 
@@ -372,4 +366,8 @@ label {
 .menu-show-category {
   margin-bottom: 1%;
   margin-top: 1%;
+}
+
+#show-title {
+  text-align:center;
 }
