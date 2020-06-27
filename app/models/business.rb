@@ -1,7 +1,7 @@
 class Business < ApplicationRecord
-  has_many :users
-  has_many :locations
-  has_many :menus
+  has_many :users, dependent: :destroy
+  has_many :locations, dependent: :destroy
+  has_many :menus, dependent: :destroy
   has_one  :business_display_attribute
   
   accepts_nested_attributes_for :users
@@ -25,7 +25,10 @@ class Business < ApplicationRecord
       button_text_color: "#fff",
       button_color: "#F9FAFB",
       card_background_color: "#fff",
-      card_border_color: "#000"
+      card_border_color: "#000",
+      foreground_color: "#F9FAFB",
+      foreground_opacity: "0",
+      repeat: "true"
      )
   end
 
