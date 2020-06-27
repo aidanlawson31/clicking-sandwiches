@@ -14,6 +14,14 @@ class Menu < ApplicationRecord
   validates :internal_name, presence: true, uniqueness: { scope: :business }
   validates :menu_url,      presence: true
 
+  after_save :purge_menu_banner, if: :remove_menu_banner
+  
+  attr_accessor :remove_menu_banner
+
+  def purge_menu_banner
+    image.purge_later
+  end
+
   def convert_menu_url
     return unless self.display_name
     self.menu_url = self.display_name.downcase.parameterize

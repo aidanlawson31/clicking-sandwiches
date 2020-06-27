@@ -10,14 +10,16 @@ background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: co
   </div>
 <% end %>
   <div class="container" id="show-container" style="background-color: <%= @bda.foreground_rgba(@bda.foreground_color, @bda.foreground_opacity) %>;">
-    <h1 class="show-header" style="color: <%= @bda.heading_color %>"><%= @location.name %></h1>
-    <% if @business.locations.count > 1 %>
-      <h5 class="show-sub-header" style="color: <%= @bda.heading_color %>"><%= @business.name %> Location</h5><br>
-      <%= link_to "Back to #{@business.name}'s page", public_locations_path(@business.business_url), class: "btn custom-btn btn-primary btn-sm btn-custom", id: "back-button", style:"background-color: #{@bda.button_color}; border-color: #{@bda.button_color}; color: #{@bda.button_text_color}" %>
-    <% else %>
-      <h5 class="show-header" style="color: <%= @bda.heading_color %>"><%= @location.name %></h5><br>
-    <% end %>
- 
+    <div id="show-title">
+      <% if @business.locations.count > 1 %>
+        <h1 class="show-header" style="color: <%= @bda.heading_color %>"><%= @location.name %></h1>
+        <h5 class="show-sub-header" style="color: <%= @bda.heading_color %>"><%= @business.name %> Location</h5><br>
+        <%= link_to "Back to #{@business.name}'s page", public_locations_path(@business.business_url), class: "btn custom-btn btn-primary btn-sm btn-custom", id: "back-button", style:"background-color: #{@bda.button_color}; border-color: #{@bda.button_color}; color: #{@bda.button_text_color}" %>
+      <% else %>
+        <h1 class="show-header" style="color: <%= @bda.heading_color %>"><%= @business.name %></h1>
+        <h5 class="show-header" style="color: <%= @bda.heading_color %>"><%= @location.name %></h5><br>
+      <% end %>
+    </div>
       <div class="row">
         <div class="col-xs-12 col-sm-12 <%= @location.location_images.blank? ? "col-md-12 col-lg-12" : "col-md-12 col-lg-6" %>">
           <div class="show-description" style="<%= @location.location_images.blank? && @business.locations.count < 2 ? "text-align:center;" : "" %> background-color: <%= @bda.card_background_color%>; border: 1px solid <%= @bda.card_border_color %>">

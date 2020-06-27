@@ -11,7 +11,9 @@
     <%= f.input :description, as: :trix_editor %>
     <%= f.hidden_field :menu_url %>
     <br>
+    <p>Choose a file below to upload a banner to the menu</p>
     <%= f.file_field :image, accept: 'image/png,image/jpeg' %>
+    <br><br>
     <% if params[:location_id] %>
       <%= link_to "back", location_path(params[:location_id]), class: "btn btn-primary btn-sm" %>
     <% else %>

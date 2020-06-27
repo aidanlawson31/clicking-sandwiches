@@ -11,10 +11,13 @@
       </div>
       <%= f.input :description, as: :trix_editor %>
       <br>
-      <p> Attach a banner for this menu </p>
+      <% unless @menu.image.attached? %>
+        <p>Choose a file below and update menu to upload a banner to the menu</p>
+      <% end %>
       <%= f.file_field :image, accept: 'image/png,image/jpeg' %>
       <% if @menu.image.attached? %>
         <%= image_tag @menu.sized_image(size: 150) %>
+        <%= f.input :remove_menu_banner, as: :boolean, checked_value: true, unchecked_value: false %>
       <% end %>
       <hr/>
       <%= link_to "back", menus_path, class: "btn btn-primary btn-sm" %>

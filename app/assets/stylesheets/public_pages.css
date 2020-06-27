@@ -85,9 +85,10 @@ label {
   .custom-btn {
     margin-top: 20px;
     padding-bottom: 5px;
+    width: 240px;
     height: 40px;
-    width: 200px;
     font-size: 15pt;
+    border-radius: 5px;
   }
 
   .location-card {
@@ -125,10 +126,6 @@ label {
     max-height: 300px;
   }
 
-  #show-container {
-    margin-bottom: 10px;
-  }
-
   .show-header {
     font-size: 45pt;
     text-align: center;
@@ -136,7 +133,6 @@ label {
 
   .show-sub-header {
     font-size: 35pt;
-    text-align: center;
   }
 
   #back-button {
@@ -164,10 +160,11 @@ label {
   }
 
   .custom-btn {
-    padding-top: 5px;
-    height: 60px;
-    width: 240px;
-    font-size: 22pt;
+    padding-top: 8px;
+    height: 65px;
+    width: 50%;
+    font-size: 24pt;
+    border-radius: 5px;
   }
 
   .show-location-images {
@@ -349,7 +346,6 @@ label {
 }
 
 #show-container {
-  margin-top:10px;
   padding-bottom: 10px;
 }
 
@@ -379,6 +375,10 @@ label {
 .menu-show-category {
   margin-bottom: 1%;
   margin-top: 1%;
+}
+
+#show-title {
+  text-align:center;
 }
 
 /*# sourceMappingURL=public_pages.css.map */

@@ -63,7 +63,7 @@ class MenusController < ApplicationController
   end
 
   def menu_params
-    params[:menu].permit(:display_name, :internal_name, :image,
+    params[:menu].permit(:display_name, :internal_name, :image, :remove_menu_banner,
       :description, :menu_url, categories_attributes: [ :id, :name, :display_sequence_number ])
   end
 
