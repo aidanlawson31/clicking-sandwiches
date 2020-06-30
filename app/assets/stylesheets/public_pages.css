@@ -355,7 +355,8 @@ label {
 
 .menu-info {
   height: 100%;
-  padding-top: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
   margin-bottom: 10px;
   text-align:center;
 }
@@ -369,7 +370,7 @@ label {
 }
 
 #pub-menu {
-  margin-top:50px;
+  margin-top:20px;
   padding-bottom: 5%;
 }
 
