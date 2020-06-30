@@ -5,6 +5,7 @@
     <%= f.input :address %>
     <%= f.input :phone_number, label: "Phone Number" %>
     <%= f.input :open, label: "Opening Times", as: :text %>
+    <%= f.input :allow_reservations, as: :boolean %>
     <%= f.hidden_field :location_url %>
     <br>
     <%= f.button :submit, class: "btn btn-primary", data: { disable_with: "Saving..." } %>

@@ -74,6 +74,7 @@ class LocationsController < ApplicationController
   def update
     if @location.update(location_params)
       redirect_to location_path(@location), notice: "Location updated"
+      puts "ALAL #{@location.allow_reservations?}"
     else
       redirect_to location_path(@location)
       flash.now[:alert] = "There was an error"
@@ -125,7 +126,7 @@ class LocationsController < ApplicationController
   end
 
   def location_params
-    params[:location].permit(:name, :address, :phone_number, :open, :location_menu, :location_url, :added_menu)
+    params[:location].permit(:name, :address, :phone_number, :open, :location_menu, :location_url, :added_menu, :allow_reservations)
   end
 
   def location_image_params

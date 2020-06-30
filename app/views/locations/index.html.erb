@@ -12,6 +12,9 @@
           <h5 class="card-title"><%= location.name %></h5>
           <p class="card-text"><%= location.address %></p>
           <%= link_to "View Location", location_path(location), class: "btn btn-primary" %>
+          <% if location.allow_reservations? %>
+            <%= link_to "View Reservations", location_reservations_path(location), class: "btn btn-primary"%>
+          <% end %>
         </div>
       </div>
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_29_002634) do
+ActiveRecord::Schema.define(version: 2020_06_30_010936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 2020_06_29_002634) do
     t.float "latitude"
     t.float "longitude"
     t.string "open"
+    t.boolean "allow_reservations"
     t.index ["business_id"], name: "index_locations_on_business_id"
   end
 
@@ -148,6 +149,20 @@ ActiveRecord::Schema.define(version: 2020_06_29_002634) do
     t.index ["business_id"], name: "index_menus_on_business_id"
   end
 
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "location_id"
+    t.string "name"
+    t.datetime "time"
+    t.integer "number_of_people"
+    t.text "requirements"
+    t.string "phone_number"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "status"
+    t.index ["location_id"], name: "index_reservations_on_location_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -176,5 +191,6 @@ ActiveRecord::Schema.define(version: 2020_06_29_002634) do
   add_foreign_key "menu_item_options", "menu_items"
   add_foreign_key "menu_items", "categories"
   add_foreign_key "menus", "businesses"
+  add_foreign_key "reservations", "locations"
   add_foreign_key "users", "businesses"
 end

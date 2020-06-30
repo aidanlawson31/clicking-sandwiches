@@ -38,6 +38,9 @@ background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: co
                   <span style="color:<%= @bda.general_text_color %>" data-trix-color><%= @business.description.html_safe%></span>
                 </div>
               <% end %>
+              <% if @location.allow_reservations? %>
+                <%= link_to "make a reservation", new_location_reservation_path(@location), class: "btn btn-primary btn-sm"%>
+              <% end %>
             </div> 
           </div>
         </div>

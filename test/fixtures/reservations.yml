@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  location: one
+  name: MyString
+  time: 2020-06-30 10:56:08
+  number_of_people: 1
+  requirements: MyText
+  phone_number: MyString
+  email: MyString
+
+two:
+  location: two
+  name: MyString
+  time: 2020-06-30 10:56:08
+  number_of_people: 1
+  requirements: MyText
+  phone_number: MyString
+  email: MyString

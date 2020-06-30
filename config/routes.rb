@@ -2,10 +2,10 @@ Rails.application.routes.draw do
   devise_scope :user do
     root to: "devise/sessions#new"
   end
-  
+
   devise_for :users
 
-  resources  :businesses do
+  resources :businesses do
     member do
       patch 'update_business_display_attribute'
     end
@@ -26,6 +26,13 @@ Rails.application.routes.draw do
       patch  'save_sort_image'
       delete 'remove_menu'
       delete 'remove_image'
+    end
+
+    resources :reservations do
+      member do
+        post  'cancel'
+        patch 'confirm'
+      end
     end
   end
 

@@ -2,14 +2,17 @@ class Location < ApplicationRecord
   belongs_to :business
   has_many   :location_menus,  dependent: :destroy
   has_many   :location_images, dependent: :destroy
+  has_many   :reservations,    dependent: :destroy
 
   accepts_nested_attributes_for :location_images
   
   before_validation :convert_location_url
 
-  validates :name,         presence: true, uniqueness: { scope: :business }
-  validates :address,      presence: true
-  validates :location_url, presence: true
+  attribute :allow_reservations, :boolean, default: false
+
+  validates :name,               presence: true, uniqueness: { scope: :business }
+  validates :address,            presence: true
+  validates :location_url,       presence: true
 
   geocoded_by      :address
   after_validation :geocode

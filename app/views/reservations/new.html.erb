@@ -1,0 +1,25 @@
+<div class="background" style="
+background-color: <%= @bda.background_color %>;
+font-family: '<%= @bda.font.name %>';
+background-image: <%= @bda.background_image.attached? ? "url(#{url_for @bda.sized_background_image(size: 900)})" : 'none' %>;
+background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: cover"%>;"
+>
+  <div class="container">
+    <div class="location-new-title">
+      <h1>Create a reservation for <%= @location.name %></h1>
+    </div>
+    <%= link_to "Back to #{@location.name}", public_location_path(@business.business_url, @location.location_url), class:"btn btn-sm btn-primary"%>
+    <%= simple_form_for(@reservation, url: location_reservations_path(@location)) do |f| %>
+      <div class="max-width-inputs">
+        <%= f.hidden_field :status, value: "pending" %>
+        <%= f.input :name %>
+        <%= f.input :phone_number %>
+        <%= f.input :email %>
+        <%= f.input :time %>
+        <%= f.input :number_of_people %>
+        <%= f.input :requirements, label: "Any special requirements?" %>
+      </div>
+    <%= f.button :submit, class: "btn btn-primary btn-sm" %>
+    <% end %>
+  </div>
+</div>

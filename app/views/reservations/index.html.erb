@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="reservation-index-title">
+    <h1><%= @location.name %>'s reservations</h1>
+  </div>
+  <%= link_to "location page", location_path(@location), class: "btn btn-sm btn-primary" %>
+  <div class="reservation-index-body">
+    <table class="table">
+      <tr>
+        <th>status</th>
+        <th>name</th>
+        <th>time</th>
+        <th>number of people</th>
+        <th>requirements</th>
+        <th>phone number</th>
+        <th>email</th>
+      </tr>
+      <% @reservations.each do |reservation| %>
+        <tr>
+          <td style="<%= reservation.status == "pending" ? "color: orange;" : "color: green;" %>"><%= reservation.status %></td>
+          <td><%= reservation.name %></td>
+          <td><%= reservation.time %></td>
+          <td><%= reservation.number_of_people %></td>
+          <td><%= reservation.requirements %></td>
+          <td><%= reservation.phone_number %></td>
+          <td><%= reservation.email %></td>
+          <td>
+            <%= link_to "Confirm", confirm_location_reservation_path(@location.id, reservation.id), method: :patch, class: "btn btn-sm btn-primary" %>
+            <%= link_to "Deny",    root_path, class: "btn btn-sm btn-danger" %>
+            <%= link_to "Contact", root_path, class: "btn btn-sm btn-primary" %>
+          </td>
+        <tr>
+      <% end %>
+    </table>
+  </div>
+</div>

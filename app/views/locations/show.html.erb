@@ -8,12 +8,13 @@
           <%= f.input :address %>
           <%= f.input :phone_number %>
           <%= f.input :open, as: :text, :input_html => { :cols => 65, :rows => 5 } %>
-          <br>
-          <%= link_to "back", locations_path, class: "btn btn-primary btn-sm" %>
-          <%= f.button :submit, class: "btn btn-primary btn-sm", data: { disable_with: "Saving..." } %>
-          <%= link_to "Delete Location", location_path(@location), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure you want to delete this location?'} %>
-        <% end %>
-      </div>
+        </div>
+        <%= f.input :allow_reservations, as: :boolean %>
+        <br>
+        <%= link_to "back", locations_path, class: "btn btn-primary btn-sm" %>
+        <%= f.button :submit, class: "btn btn-primary btn-sm", data: { disable_with: "Saving..." } %>
+        <%= link_to "Delete Location", location_path(@location), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure you want to delete this location?'} %>
+      <% end %>
     </div>
     <div class="col">
       <div class="edit-gallery">
