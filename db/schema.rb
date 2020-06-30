@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_23_015746) do
+ActiveRecord::Schema.define(version: 2020_06_29_002634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,8 +38,7 @@ ActiveRecord::Schema.define(version: 2020_06_23_015746) do
 
   create_table "business_display_attributes", force: :cascade do |t|
     t.bigint "business_id"
-    t.string "primary_color"
-    t.string "secondary_color"
+    t.string "menu_item_header_color"
     t.string "background_color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

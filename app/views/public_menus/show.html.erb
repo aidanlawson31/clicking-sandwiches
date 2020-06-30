@@ -31,7 +31,7 @@ background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: co
               <p style="color: <%= @bda.general_text_color %>%"><%= menu_item.code %></p>
             </div>
             <div class="col">
-              <div class="row" style="background-color: <%= @bda.primary_color %>; padding-left: 5px;">
+              <div class="row" style="background-color: <%= @bda.menu_item_header_color %>; padding-left: 5px;">
                 <h5 style="color: <%= @bda.general_text_color %>%"><%= menu_item.name %></h5>
               </div>
               <p><%= menu_item.description.html_safe %>

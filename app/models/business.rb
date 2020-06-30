@@ -16,8 +16,7 @@ class Business < ApplicationRecord
   def create_display_attributes
     self.create_business_display_attribute(
       font_id: Font.default.id,
-      primary_color: "#000",
-      secondary_color: "#fff",
+      menu_item_heading: "#000",
       background_color: "#F9FAFB",
       heading_color: "#000",     
       nav_bar_color: "#fff",     

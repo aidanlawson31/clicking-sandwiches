@@ -8,8 +8,7 @@ class BusinessDisplayAttributeTest < ActiveSupport::TestCase
       BusinessDisplayAttribute.new(
         business_id:      @business.id,
         font_id:          @font.id,
-        primary_color:    'primary color',
-        secondary_color:  'secondary color',
+        menu_item_header_color:    'primary color',
         background_color: 'background color',
         heading_color: 'heading color',
         nav_bar_color: 'nav color',
@@ -21,13 +20,8 @@ class BusinessDisplayAttributeTest < ActiveSupport::TestCase
     assert @business_display_attr.valid?    
   end
 
-  test "primary color is required" do
-    @business_display_attr.primary_color = nil
-    refute @business_display_attr.valid?
-  end
-
-  test "secondary color is required" do
-    @business_display_attr.secondary_color = nil
+  test "menu item header color is required" do
+    @business_display_attr.menu_item_header_color = nil
     refute @business_display_attr.valid?
   end
 

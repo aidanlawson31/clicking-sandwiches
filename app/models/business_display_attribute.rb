@@ -8,18 +8,17 @@ class BusinessDisplayAttribute < ApplicationRecord
 
   attribute :repeat, :boolean, default: false
 
-  validates :primary_color,         presence: true
-  validates :secondary_color,       presence: true
-  validates :background_color,      presence: true
-  validates :heading_color,         presence: true
-  validates :nav_bar_color,         presence: true
-  validates :general_text_color,    presence: true 
-  validates :button_text_color,     presence: true
-  validates :button_color,          presence: true
-  validates :card_background_color, presence: true
-  validates :card_border_color,     presence: true
-  validates :foreground_color,      presence: true
-  validates :foreground_opacity,    presence: true, inclusion: 0..10
+  validates :menu_item_header_color, presence: true
+  validates :background_color,       presence: true
+  validates :heading_color,          presence: true
+  validates :nav_bar_color,          presence: true
+  validates :general_text_color,     presence: true 
+  validates :button_text_color,      presence: true
+  validates :button_color,           presence: true
+  validates :card_background_color,  presence: true
+  validates :card_border_color,      presence: true
+  validates :foreground_color,       presence: true
+  validates :foreground_opacity,     presence: true, inclusion: 0..10
 
   after_save :purge_business_icon,    if: :remove_business_icon
   after_save :purge_favicon,          if: :remove_favicon
