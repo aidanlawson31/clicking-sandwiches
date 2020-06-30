@@ -25,6 +25,8 @@ class MenuItemsController < ApplicationController
   end
 
   def update
+    @menu_item.display_sequence_number = next_display_sequence_number
+    
     if @menu_item.update(menu_item_params)
       redirect_to menu_path(@menu_item.category.menu), notice: 'Menu item updated successfully.'
     else
