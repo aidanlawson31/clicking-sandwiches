@@ -5,11 +5,8 @@ class BusinessesController < ApplicationController
   def update_business_display_attribute
     if @business_display_attribute.update(business_display_attribute_params)
       redirect_to business_path(@business), notice: "Business display attributes saved successfully."
-      puts "pass ALAL #{business_display_attribute_params.inspect}"
-
     else
       redirect_to business_path(@business), notice: "Business display attributes failed to save."
-      puts "fail ALAL #{business_display_attribute_params.inspect}"
     end
   end
 

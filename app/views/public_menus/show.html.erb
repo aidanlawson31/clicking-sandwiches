@@ -26,22 +26,25 @@ background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: co
 
     <div class="col">
       <div id="pub-menu">
-        <%= link_to "Back to #{@business.name}", public_location_path(@business.business_url, @location.location_url), class:"btn btn-primary btn-sm custom-btn", style:"background-color: #{@bda.button_color}; border-color: #{@bda.button_color}; color: #{@bda.button_text_color}" %>
-        <div class="dropdown" id="menu-category-nav">
-          <button class="btn btn-primary dropdown-toggle btn-lg" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Categories
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <% @menu.categories.each do |category| %>
-              <a class="dropdown-item" href="#<%=category.name%>"><%= category.name %></a>
-            <% end %>
+        <div class="row">
+          <%= link_to "Back to #{@business.name}", public_location_path(@business.business_url, @location.location_url), class:"btn btn-primary btn-sm custom-btn", style:"background-color: #{@bda.button_color}; border-color: #{@bda.button_color}; color: #{@bda.button_text_color}" %>
+          <% if @menu.categories %> 
+            <div class="dropdown" id="menu-category-nav">
+              <button class="btn btn-primary dropdown-toggle custom-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: <%= @bda.button_color %>; border-color: <%= @bda.button_color %>; color: <%= @bda.button_text_color %>">
+                Categories
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <% @menu.categories.each do |category| %>
+                  <a class="dropdown-item hamburger-item" href="#<%=category.name%>"><%= category.name %></a>
+                <% end %>
+              </div>
+            </div>
           </div>
-        </div>
-        <% if @menu.categories %> 
+        
           <% @menu.categories.each do |category| %>
             <div class="row menu-show-category" style="background-color: <%= @bda.card_background_color %>; border: 1px solid <%= @bda.card_border_color %>;">
               <div class="col" id="<%= category.name %>">
-                <h5 style="color: <%= @bda.general_text_color %>%"><%= category.name %></h5>
+                <h3 class="category-name" style="color: <%= @bda.general_text_color %>%"><%= category.name %></h3>
               </div>
             </div>
 
