@@ -27,18 +27,9 @@
   </iframe>
 
   <%= simple_form_for @business_display_attribute, url: update_business_display_attribute_business_path do |f| %>
-    <h4> Your Business Customization</h4>
+    <h2 id="bc-title"> Your Business Customization</h2>
     <div id="business-customization">
       <div class="row">
-        <div class="col">
-          <p>Upload a Banner, recommended dimentions are 1250 × 200 </p>
-          <%= f.file_field :business_icon, accept: 'image/png,image/jpeg' %>
-          <%= list_image(@business_display_attribute.sized_business_icon(size: 100), alt: "Image") %>
-
-          <% if @business_display_attribute.business_icon.attached? %>
-            <%= f.input :remove_business_icon, as: :boolean, checked_value: true, unchecked_value: false %>
-          <% end %>
-        </div>
         <div class="col">
           <p>Upload a Favicon</p>
           <%= f.file_field :favicon, accept: 'image/png,image/jpeg,image/ico' %>
@@ -81,6 +72,59 @@
         </div>
         <div class="col">
           <%= f.input :foreground_opacity, label: 'Foreground opacity (1-10)' %>
+        </div>
+      </div>
+      <hr>
+      <h2>Header</h2>
+      <div class="row">
+        <div class="col bda-inputs">
+          <%= f.association :heading_font, collection: @fonts, include_blank: false %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col bda-inputs">
+          <p>Upload a Banner, recommended dimentions are 1250 × 200 </p> 
+          <%= f.file_field :banner, accept: 'image/png,image/jpeg' %>
+          <%= list_image(@business_display_attribute.sized_banner(size: 100), alt: "Image") %>
+
+          <% if @business_display_attribute.banner.attached? %>
+            <%= f.input :remove_banner, label: 'Remove banner', as: :boolean, checked_value: true, unchecked_value: false %>
+          <% end %>
+        </div>
+        <br>
+        <div class="col bda-inputs">
+          <p>Upload a top icon</p>
+          <%= f.file_field :top_icon, accept: 'image/png,image/jpeg' %>
+          <%= list_image(@business_display_attribute.sized_top_icon(size: 100), alt: "Image") %>
+
+          <% if @business_display_attribute.top_icon.attached? %>
+            <%= f.input :remove_top_icon, label: 'Remove Top Icon', as: :boolean, checked_value: true, unchecked_value: false %>
+          <% end %>
+        </div>
+      </div>
+      <hr>
+      <h2>Hero</h2>
+      <div class="row" id="hero-buttons">
+        <%= f.input :hero_image_or_video, label: '', as: :radio_buttons, :collection => [['Use Hero Image', true] ,['Use Hero Video', false]] %>
+      </div>
+      <div class="row">
+        <div class="col bda-inputs" id="use-hero-image" style="display: <%= @business_display_attribute.hero_image_or_video ? 'block' : 'none '%>;">
+          <p>Hero image</p>
+          <%= f.file_field :hero_image %>
+          <%= list_image(@business_display_attribute.sized_hero_image(width: 50, height: 50), alt: "Image") %>
+          
+          <% if @business_display_attribute.hero_image.attached? %>
+            <%= f.input :remove_hero_image, label: 'Remove Hero Image', as: :boolean, checked_value: true, unchecked_value: false %>
+          <% end %>
+        </div>
+        <div class="col bda-inputs" id="use-hero-video" style="display: <%= @business_display_attribute.hero_image_or_video ? 'none' : 'block'%>;">
+          <p>Hero Video</p>
+          <%= f.file_field :hero_video %>
+
+          <% if @business_display_attribute.hero_video.attached? %>
+            <%= video_tag(url_for(@business_display_attribute.hero_video), controls: '', muted: true, height: '200', width: '200') %>
+            <%= f.input :remove_hero_video, label: 'Remove Hero Video', as: :boolean, checked_value: true, unchecked_value: false %>
+          <% end %>
         </div>
       </div>
       <hr>

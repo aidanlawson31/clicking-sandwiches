@@ -4,9 +4,9 @@ font-family: '<%= @bda.font.name %>';
 background-image: <%= @bda.background_image.attached? ? "url(#{url_for @bda.sized_background_image(size: 900)})" : 'none' %>;
 background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: cover"%>;"
 >
-<% if @bda.sized_business_icon %>
+<% if @bda.sized_banner %>
   <div class="business-banner">
-    <%= list_image(@bda.business_icon, alt: "Image") %>
+    <%= list_image(@bda.banner, alt: "Image") %>
   </div>
 <% end %>
   <div class="container" id="show-container" style="background-color: <%= @bda.foreground_rgba(@bda.foreground_color, @bda.foreground_opacity) %>;">
@@ -31,9 +31,9 @@ background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: co
                 <p style="color: <%= @bda.general_text_color %>">Open: <%= @location.open %></p>
               <% end %>
               <% if !@location.phone_number.blank? %>
-                <p style="color: <%= @bda.general_text_color %>">Phone Number: <%= @location.phone_number %></p>
+                <a style="color: <%= @bda.general_text_color %>" href="tel:<%= @location.phone_number %>"><%= @location.phone_number %></a>
               <% else %>
-                <p style="color: <%= @bda.general_text_color %>">Phone Number: <%= @business.phone_number %></p>
+                <a style="color: <%= @bda.general_text_color %>" href="tel:<%= @location.phone_number %>"><%= @location.phone_number %></a>
               <% end %>
               <% if @business.locations.count < 2 %>
                 <div id="b-description-p">

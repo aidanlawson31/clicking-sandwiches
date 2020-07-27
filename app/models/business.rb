@@ -16,6 +16,7 @@ class Business < ApplicationRecord
   def create_display_attributes
     self.create_business_display_attribute(
       font_id: Font.default.id,
+      heading_font_id: Font.default.id,
       menu_item_header_color: "#000",
       background_color: "#F9FAFB",
       heading_color: "#000",     
@@ -27,7 +28,8 @@ class Business < ApplicationRecord
       card_border_color: "#000",
       foreground_color: "#F9FAFB",
       foreground_opacity: "0",
-      repeat: "true"
+      repeat: "true",
+      hero_image_or_video: "true"
      )
   end
 

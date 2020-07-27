@@ -12,4 +12,12 @@
   <% if !current_user %>
     <%= link_to "Sign In", new_user_session_path, class: "nav-link" %>
   <% end %>
+
+  <button class="public-nav-dropdown btn btn-lg" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <%= image_tag(url_for("menu-black-18dp")) %>
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="">Home</a>
+  </div>
+
 </ul>

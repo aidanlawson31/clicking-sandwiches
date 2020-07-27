@@ -2,17 +2,40 @@
 background-color:  <%= @bda.background_color %>;
 font-family:      '<%= @bda.font.name %>';
 background-image:  <%= @bda.background_image.attached? ? "url(#{url_for @bda.sized_background_image(size: 900)})" : 'none' %>;
-background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: cover"%>;"
+background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: cover" %>;"
 >
-<% if @bda.sized_business_icon %>
-<div class="business-banner">
-  <%= list_image(@bda.business_icon, alt: "Image") %>
-</div>
-<% end %>
   <div class="container" id="index-container" style="background-color: <%= @bda.foreground_rgba(@bda.foreground_color, @bda.foreground_opacity) %>">
-    <h1 id="index-heading" style="color: <%= @bda.heading_color %>;"><%= @business.name %></h1>
-    <div id="index-description" style="color: <%= @bda.general_text_color %> !important"><%= @business.description.html_safe %></div> 
+    <% if @bda.sized_banner %>
+      <div class="business-banner">
+        <%= list_image(@bda.banner, alt: "Image") %>
+      </div>
+    <% end %>
 
+    <% if @bda.sized_top_icon %>
+      <div class="business-top-ico">
+        <%= list_image(@bda.top_icon, alt: "Image") %>
+      </div>
+    <% end %>
+
+    <h1 id="index-heading" style="color: <%= @bda.heading_color %>; font-family: <%= @bda.heading_font.name %>"><%= @business.name %></h1>
+  
+    <% if @bda.hero_image_or_video %>
+      <% if @bda.sized_hero_image %>
+        <div class="business-hero">
+          <%= list_image(@bda.sized_hero_image(width: 140, height: 120), alt: "Image") %>
+        </div>
+      <% end %>
+    <% else %>
+      <% if @bda.hero_video.attached? %>
+        <div class="business-hero-video-container">
+          <%= video_tag(url_for(@bda.hero_video), autoplay: 'true', loop: 'true', muted: 'true', id: 'business-hero-video' )%>
+        </div>
+      <% end %>
+    <% end %>
+
+    <div id="index-description" style="color: <%= @bda.general_text_color %> !important">
+      <%= @business.description.html_safe %>
+    </div> 
     <h3  id="index-description" style="color: <%= @bda.general_text_color %>">Locations</h3>
     <% unless @locations.empty? %>
       <% @locations.each do |location| %>
