@@ -4,7 +4,7 @@ class BusinessesController < ApplicationController
   
   def update_business_display_attribute
     if @business_display_attribute.update(business_display_attribute_params)
-      redirect_to business_path(@business), notice: "Business display attributes saved successfull.y"
+      redirect_to business_path(@business), notice: "Business display attributes saved successfully."
     else
       redirect_to business_path(@business), notice: "Business display attributes failed to save."
     end
@@ -52,8 +52,8 @@ class BusinessesController < ApplicationController
   def business_display_attribute_params
     params[:business_display_attribute].permit(:business_id, :menu_item_header_color, :background_color, :font_id, :heading_color, 
       :general_text_color, :nav_bar_color, :button_text_color, :button_color, :card_background_color, :card_border_color, :foreground_color,
-      :foreground_opacity, :repeat, :background_color, :business_icon, :favicon, :background_image, :remove_background_image, 
-      :remove_business_icon, :remove_favicon
+      :foreground_opacity, :repeat, :background_color, :banner, :favicon, :background_image, :hero_image, :hero_image_or_video, :heading_font_id,
+      :hero_video, :remove_hero_video, :top_icon, :remove_hero_image, :remove_top_icon, :remove_background_image, :remove_banner, :remove_favicon
     )
   end
 

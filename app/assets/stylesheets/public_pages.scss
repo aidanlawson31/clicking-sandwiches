@@ -6,15 +6,39 @@
   *= require_tree .
 */
 
+html {
+  scroll-behavior: smooth;
+}
+
 body,
 .background {
   background-position: center center;
 	background-repeat: no-repeat;
-	background-attachment: fixed;
+  background-attachment: fixed;
 }
 
 .card {
   display: block !important;
+}
+
+.business-banner img {
+  width: 100%;
+}
+
+.business-top-ico {
+  padding-top: 20px;
+}
+
+.business-hero-video-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#business-hero-video {
+  width: 100%;
 }
 
 div.business-banner {
@@ -34,6 +58,13 @@ label {
 }
 
 @media only screen and (min-device-width: 1025px) and (max-device-width: 3000px) and (-webkit-min-device-pixel-ratio: 1) {
+  #menu-category-nav {
+    display: none;
+  }
+
+  #menu-nav {
+    display: block;
+  }
   .location-card {
     width: 100%;
     height: 250px;
@@ -60,9 +91,19 @@ label {
   .pub-show-menus {
     margin-top: 10px;
   }
+
+  .public-nav-dropdown {
+    display: none;
+  }
+
+  .reg-nav {
+    display: block;
+  }
 }
 
 @media only screen and (min-device-width: 508px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+
+
   .container {
     max-width: 95%;
   }
@@ -78,9 +119,10 @@ label {
   .custom-btn {
     margin-top: 20px;
     padding-bottom: 5px;
+    width: 240px;
     height: 40px;
-    width: 200px;
     font-size: 15pt;
+    border-radius: 5px;
   }
 
   .location-card {
@@ -105,6 +147,22 @@ label {
     margin-top:10px;
     padding-bottom: 10px;
   }
+
+  #menu-nav {
+    display: none;
+  }
+  
+  #menu-category-nav {
+    display: block;
+  }
+
+  .public-nav-dropdown {
+    display: none;
+  }
+
+  .reg-nav {
+    display: block;
+  }
 }
 
 /* Portrait and Landscape Phones */
@@ -113,10 +171,6 @@ label {
     padding-top: 11px;
     padding-right: 11px;
   }
-  
-  div.business-banner {
-    max-height: 300px;
-  } 
 
   .show-header {
     font-size: 45pt;
@@ -152,10 +206,11 @@ label {
   }
 
   .custom-btn {
-    padding-top: 5px;
-    height: 60px;
-    width: 240px;
-    font-size: 22pt;
+    padding-top: 8px;
+    height: 65px;
+    width: 50%;
+    font-size: 24pt;
+    border-radius: 5px;
   }
 
   .show-location-images {
@@ -276,6 +331,39 @@ label {
     height: 75%;
     width: 75%;
   }
+
+  #menu-nav {
+    display: none;
+  }
+
+  #menu-category-nav {
+    display: block;
+    width: 50%;
+  }
+
+  #menu-category-nav button {
+    width: 100%;
+  }
+  
+  .reg-nav {
+    display: none;
+  }
+
+  .public-nav-dropdown {
+    display: block;
+    width: 100px;
+    height: 100px;
+  }
+
+  .hamburger-item {
+    width: 300px;
+    height: 100px;
+    font-size: 50pt;
+  }
+
+  .category-name {
+    font-size: 40pt;
+  }
 }
 
 .gallery {
@@ -371,4 +459,18 @@ label {
 
 #show-title {
   text-align:center;
+}
+
+#menu-nav {
+  margin-right: 10px;
+  margin-top: 60px;
+  height: 100%;
+  padding-bottom: 5%;
+  padding-top: 20px;
+}
+
+#menu-nav a {
+  font-size: 18pt;
+  margin-left: 60px;
+  padding-top: 10px;
 }

@@ -15,62 +15,87 @@ background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: co
     <span style="color: <%= @bda.general_text_color %>"><%= @menu.description.html_safe %></span>
   </div>
 
-  <div id="pub-menu">
-    <%= link_to "Back to #{@business.name}", public_location_path(@business.business_url, @location.location_url), class:"btn btn-primary btn-sm custom-btn", style:"background-color: #{@bda.button_color}; border-color: #{@bda.button_color}; color: #{@bda.button_text_color}" %>
-    <% if @menu.categories %> 
+  <div class="row">
+    <div class="col-2" id="menu-nav" style="background-color: <%= @bda.card_background_color %>; border: 1px solid <%= @bda.card_border_color %>;">
       <% @menu.categories.each do |category| %>
-        <div class="row menu-show-category" style="background-color: <%= @bda.card_background_color %>; border: 1px solid <%= @bda.card_border_color %>;">
-          <div class="col">
-            <h5 style="color: <%= @bda.general_text_color %>%"><%= category.name %></h5>
-          </div>
+        <div class="row">
+          <a href="#<%=category.name%>"><%= category.name %></a>
         </div>
-
-        <% category.menu_items.each do |menu_item| %>
-          <div class="row menu-show-menu-item" style="background-color: <%= @bda.card_background_color %>; border: 1px solid <%= @bda.card_border_color %>;">
-            <div class="col-1">
-              <p style="color: <%= @bda.general_text_color %>%"><%= menu_item.code %></p>
-            </div>
-            <div class="col">
-              <div class="row" style="background-color: <%= @bda.menu_item_header_color %>; padding-left: 5px;">
-                <h5 style="color: <%= @bda.general_text_color %>%"><%= menu_item.name %></h5>
-              </div>
-              <p><%= menu_item.description.html_safe %>
-              </p>
-              <% if menu_item.item_options %>
-              <table id="pub-m-table">
-                <thead>
-                  <tr>
-                    <th>Options</th>
-                    <th>Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% menu_item.menu_item_options.each do |option| %>
-                    <tr>
-                      <td id="pub-m-td"><%= option.name %></td>
-                      <% if option.price %>
-                        <td id="pub-m-td">$<%=option.price%></td>
-                      <% else %>
-                        <td id="#priv-m-td">$0</td>
-                      <% end %>
-                    </tr>
-                  <% end %>
-                <tbody>
-              </table>
-            <% end %>
-            </div>
-            <div class="col">
-              <% if menu_item.image.attached? %>
-                <%= image_tag menu_item.sized_image %>
-              <% end %>
-            </div>
-            $<%= menu_item.price %>
-          </div>
-        <% end %>
       <% end %>
-    <% else %>
-      <p>No categories yet! </p>
-    <% end %>
+    </div>
+
+    <div class="col">
+      <div id="pub-menu">
+        <div class="row">
+          <%= link_to "Back to #{@business.name}", public_location_path(@business.business_url, @location.location_url), class:"btn btn-primary btn-sm custom-btn", style:"background-color: #{@bda.button_color}; border-color: #{@bda.button_color}; color: #{@bda.button_text_color}" %>
+          <% if @menu.categories %> 
+            <div class="dropdown" id="menu-category-nav">
+              <button class="btn btn-primary dropdown-toggle custom-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: <%= @bda.button_color %>; border-color: <%= @bda.button_color %>; color: <%= @bda.button_text_color %>">
+                Categories
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <% @menu.categories.each do |category| %>
+                  <a class="dropdown-item hamburger-item" href="#<%=category.name%>"><%= category.name %></a>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        
+          <% @menu.categories.each do |category| %>
+            <div class="row menu-show-category" style="background-color: <%= @bda.card_background_color %>; border: 1px solid <%= @bda.card_border_color %>;">
+              <div class="col" id="<%= category.name %>">
+                <h3 class="category-name" style="color: <%= @bda.general_text_color %>%"><%= category.name %></h3>
+              </div>
+            </div>
+
+            <% category.menu_items.each do |menu_item| %>
+              <div class="row menu-show-menu-item" style="background-color: <%= @bda.card_background_color %>; border: 1px solid <%= @bda.card_border_color %>;">
+                <div class="col-1">
+                  <p style="color: <%= @bda.general_text_color %>%"><%= menu_item.code %></p>
+                </div>
+                <div class="col">
+                  <div class="row" style="background-color: <%= @bda.menu_item_header_color %>; padding-left: 5px;">
+                    <h5 style="color: <%= @bda.general_text_color %>%"><%= menu_item.name %></h5>
+                  </div>
+                  <p><%= menu_item.description.html_safe %>
+                  </p>
+                  <% if menu_item.item_options %>
+                  <table id="pub-m-table">
+                    <thead>
+                      <tr>
+                        <th>Options</th>
+                        <th>Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% menu_item.menu_item_options.each do |option| %>
+                        <tr>
+                          <td id="pub-m-td"><%= option.name %></td>
+                          <% if option.price %>
+                            <td id="pub-m-td">$<%=option.price%></td>
+                          <% else %>
+                            <td id="#priv-m-td">$0</td>
+                          <% end %>
+                        </tr>
+                      <% end %>
+                    <tbody>
+                  </table>
+                <% end %>
+                </div>
+                <div class="col">
+                  <% if menu_item.image.attached? %>
+                    <%= image_tag menu_item.sized_image %>
+                  <% end %>
+                </div>
+                $<%= menu_item.price %>
+              </div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <p>No categories yet! </p>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
 

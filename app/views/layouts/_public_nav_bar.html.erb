@@ -1,15 +1,30 @@
 <ul class="nav nav-public justify-content-end" style="background-color: <%= current_business.business_display_attribute.nav_bar_color %>">
   <% if current_user %>  
     <% if current_user.business == current_business %>
-      <li class="nav-item">
+      <li class="nav-item reg-nav">
         <%= link_to "Admin", business_path(current_business), class: "nav-link active", target: :_blank %>
       <li>
     <% end %>
   <% end %>
-  <li class="nav-item">
+  <li class="nav-item reg-nav">
     <%= link_to "#{current_business.name}", public_locations_path(current_business.business_url), class: "nav-link active" %>
   </li>
   <% if !current_user %>
     <%= link_to "Sign In", new_user_session_path, class: "nav-link" %>
   <% end %>
+
+  <button class="public-nav-dropdown btn btn-lg" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <%= image_tag(url_for("menu-black-18dp"), style: 'height:100%;width:auto;')%>
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <% if current_user %>  
+      <% if current_user.business == current_business %>
+        <% puts " ALAL #{current_business.inspect}"%>
+        <%= link_to "Admin", business_path(current_business), class: "dropdown-item hamburger-item", target: :_blank %>
+      <% end %>
+    <% else %>
+      <%= link_to "Sign In", new_user_session_path, class: "dropdown-item" %>
+    <% end %>
+    <%= link_to "Home", public_locations_path(current_business.business_url), class: "dropdown-item hamburger-item" %>
+  </div>
 </ul>

@@ -12,7 +12,9 @@ class BusinessDisplayAttributeTest < ActiveSupport::TestCase
         background_color: 'background color',
         heading_color: 'heading color',
         nav_bar_color: 'nav color',
-        general_text_color: 'text color'
+        general_text_color: 'text color',
+        use_hero_image: true,
+        use_hero_video: false,
       )
   end
 

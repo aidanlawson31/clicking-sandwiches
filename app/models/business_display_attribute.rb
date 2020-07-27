@@ -1,12 +1,17 @@
 class BusinessDisplayAttribute < ApplicationRecord
   belongs_to :business
   belongs_to :font
+  belongs_to :heading_font, class_name: "Font", foreign_key: "heading_font_id"
 
   has_one_attached :favicon
-  has_one_attached :business_icon
   has_one_attached :background_image
+  has_one_attached :banner
+  has_one_attached :top_icon
+  has_one_attached :hero_image
+  has_one_attached :hero_video
 
-  attribute :repeat, :boolean, default: false
+  attribute :repeat,              :boolean, default: false
+  attribute :hero_image_or_video, :boolean, default: true
 
   validates :menu_item_header_color, presence: true
   validates :background_color,       presence: true
@@ -19,12 +24,16 @@ class BusinessDisplayAttribute < ApplicationRecord
   validates :card_border_color,      presence: true
   validates :foreground_color,       presence: true
   validates :foreground_opacity,     presence: true, inclusion: 0..10
+  validates :hero_image_or_video,    inclusion: { in: [true, false] }
 
-  after_save :purge_business_icon,    if: :remove_business_icon
   after_save :purge_favicon,          if: :remove_favicon
   after_save :purge_background_image, if: :remove_background_image
+  after_save :purge_top_icon,         if: :remove_top_icon
+  after_save :purge_banner,           if: :remove_banner
+  after_save :purge_hero_image,       if: :remove_hero_image
+  after_save :purge_hero_video,       if: :remove_hero_video
 
-  attr_accessor :remove_business_icon, :remove_favicon, :remove_background_image
+  attr_accessor :remove_top_icon, :remove_favicon, :remove_background_image, :remove_banner, :remove_hero_image, :remove_hero_video
 
   def foreground_rgba(hex, opacity)
     r = hex[1..2].hex
@@ -34,8 +43,8 @@ class BusinessDisplayAttribute < ApplicationRecord
     "rgb(#{r},#{g},#{b},#{opacity.to_f/10})"
   end
 
-  def sized_business_icon(size: 100)
-    business_icon.variant(resize: "!#{size}x#{size}").processed if business_icon.attached?
+  def sized_top_icon(size: 100)
+    top_icon.variant(resize: "!#{size}x#{size}").processed if top_icon.attached?
   end
 
   def sized_favicon(size: 100)
@@ -46,15 +55,18 @@ class BusinessDisplayAttribute < ApplicationRecord
     background_image.variant(resize: "!#{size}x#{size}").processed if background_image.attached?
   end
 
-  def purge_business_icon
-    business_icon.purge_later
+  def sized_banner(size: 100)
+    banner.variant(resize: "!#{size}x#{size}").processed if banner.attached?
   end
 
-  def purge_favicon 
-    favicon.purge_later
+  def sized_hero_image(width: 100, height: 200) 
+    hero_image.variant(resize: "!#{width}%x#{height}").processed if hero_image.attached?
   end
 
-  def purge_background_image
-    background_image.purge_later
-  end
+  def purge_top_icon;         top_icon.purge_later;         end
+  def purge_favicon;          favicon.purge_later;          end
+  def purge_background_image; background_image.purge_later; end
+  def purge_banner;           banner.purge_later;           end
+  def purge_hero_image;       hero_image.purge_later;       end
+  def purge_hero_video;       hero_video.purge_later;       end
 end
