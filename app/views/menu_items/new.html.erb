@@ -33,7 +33,6 @@
     <%= f.input :code %><br>
     <p>Upload an image of the dish</p>
     <%= f.file_field :image, accept: 'image/png,image/jpeg' %><br><br>
-    <%= f.hidden_field :display_sequence_number, value: 0 %>
     <%= f.button :submit, class: "btn btn-primary btn-sm", data: { disable_with: "Saving..." } %>
     <%= link_to "back", menu_path(@menu), class: "btn btn-primary btn-sm" %>
   <% end %>
