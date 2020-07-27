@@ -1,6 +1,7 @@
 class MenuItem < ApplicationRecord
   belongs_to :category
   has_many   :menu_item_options, dependent: :destroy
+  has_many   :menu_item_tags,    dependent: :destroy
 
   has_one_attached :image
   

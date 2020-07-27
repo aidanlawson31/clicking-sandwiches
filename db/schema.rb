@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_18_024951) do
+ActiveRecord::Schema.define(version: 2020_07_27_053750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,15 @@ ActiveRecord::Schema.define(version: 2020_07_18_024951) do
     t.index ["menu_item_id"], name: "index_menu_item_options_on_menu_item_id"
   end
 
+  create_table "menu_item_tags", force: :cascade do |t|
+    t.bigint "menu_item_id"
+    t.bigint "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["menu_item_id"], name: "index_menu_item_tags_on_menu_item_id"
+    t.index ["tag_id"], name: "index_menu_item_tags_on_tag_id"
+  end
+
   create_table "menu_items", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -165,6 +174,15 @@ ActiveRecord::Schema.define(version: 2020_07_18_024951) do
     t.index ["location_id"], name: "index_reservations_on_location_id"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.bigint "business_id"
+    t.string "name"
+    t.integer "display_sequence_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_id"], name: "index_tags_on_business_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -191,8 +209,11 @@ ActiveRecord::Schema.define(version: 2020_07_18_024951) do
   add_foreign_key "location_menus", "menus"
   add_foreign_key "locations", "businesses"
   add_foreign_key "menu_item_options", "menu_items"
+  add_foreign_key "menu_item_tags", "menu_items"
+  add_foreign_key "menu_item_tags", "tags"
   add_foreign_key "menu_items", "categories"
   add_foreign_key "menus", "businesses"
   add_foreign_key "reservations", "locations"
+  add_foreign_key "tags", "businesses"
   add_foreign_key "users", "businesses"
 end
