@@ -24,17 +24,3 @@ puts "Creating Fonts..."
 end
 
 puts "Done!"
-
-puts "Creating Default Tags..."
-
-[['Vegan', 1],
-['Vetegarian', 2],
-['Gluten Free', 3],
-['Mild', 4],
-['Medium', 5],
-['Hot', 6] ].each do |tag|
-	new_tag = Tag.where(name: tag[0], display_sequence_number: tag[1]).first_or_create
-	show_any_errors(new_tag, "new_tag name:#{tag[0]}")
-end
-
-puts "Done!"

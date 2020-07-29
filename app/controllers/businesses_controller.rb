@@ -19,6 +19,7 @@ class BusinessesController < ApplicationController
 
     if @business.save
       current_user.update_attributes(business_id: @business.id)
+      BusinessInitialize.create_menu_item_tags(@business.id)
       redirect_to @business, notice: "Business created successfully."
     else
       render :new
