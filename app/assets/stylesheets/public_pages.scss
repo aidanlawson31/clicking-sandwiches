@@ -17,6 +17,10 @@ body,
   background-attachment: fixed;
 }
 
+.background {
+  padding-top: 10px;
+}
+
 .card {
   display: block !important;
 }
@@ -473,4 +477,13 @@ label {
   font-size: 18pt;
   margin-left: 60px;
   padding-top: 10px;
+}
+
+.form-container {
+  margin-top: 40px;
+}
+
+.form-block {
+  margin: 10px 0px 10px 0px;
+  font-size: 15pt;
 }

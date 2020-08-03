@@ -1,0 +1,40 @@
+<div class="container form-container">
+  <h1>Available tags</h1>
+  <table class="table table-sm form-block">
+    <thead>
+      <tr>
+        <th>Tag Name</th>
+        <th>Tag Icon</th>
+        <%= link_to "Repopulate default tags", repopulate_tags_tag_path(@business.id), method: :post %>
+      </tr>
+    </thead>
+    <tbody>
+      <% current_business.tags.each do |tag| %>
+        <tr>
+          <td><%= tag.name %></td>
+          <% if tag.icon.attached? %>
+            <td><%= image_tag(tag.sized_icon(size: 100)) %></td>
+          <% else %>
+          <td>None Attached</td>
+          <% end %>
+          <td><%= link_to "Delete", business_tag_path(@business.id, tag.id), method: :delete%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <hr>
+  <h1>Create your own tags</h1>
+  <%= simple_form_for(@tag, url: business_tags_path(@business.id), method: :post) do |f| %>
+    <div class="form-block">
+      <%= f.input :name %>
+    </div>
+
+    <div class="form-block">
+      <%= f.file_field :icon, accept: 'image/jpeg,image/png'%>
+    </div>
+
+    <%= f.hidden_field :display_sequence_number, value: 0%>
+
+    <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
+</div>

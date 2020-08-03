@@ -5,6 +5,12 @@ Rails.application.routes.draw do
   
   devise_for :users
 
+  resources :tags do
+    member do
+      post 'repopulate_tags'
+    end
+  end
+
   resources  :businesses do
     member do
       patch 'update_business_display_attribute'
@@ -16,6 +22,8 @@ Rails.application.routes.draw do
         patch 'remove_admin_privileges'
       end
     end
+
+    resources :tags
   end
 
   resources :locations do

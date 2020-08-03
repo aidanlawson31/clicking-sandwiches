@@ -6,4 +6,8 @@ class Tag < ApplicationRecord
   validates :display_sequence_number, inclusion: 0..10_000
 
   has_one_attached :icon
+
+  def sized_icon(size: 140)
+    icon.variant(resize: "#{size}x#{size}").processed if icon.attached?
+  end
 end

@@ -1,0 +1,82 @@
+<%= simple_form_for @menu_item, url: url do |f| %>
+  <div class="form-block">
+    <%= f.input :name %>
+  </div>
+  <div class="form-block">
+    <%= f.input :description, as: :trix_editor %>
+  </div>
+  <div class="form-block">
+    <%= f.input :price %>
+  </div>
+  <div class="form-block">
+    <%= f.input :code %>
+  </div>
+  <hr>
+  <div class="form-block">
+    <%= f.input :item_options, as: :radio_buttons, :collection => [['Yes', true], ['No', false]], checked: @menu_item.item_options %>
+    <div id="menu-item-radio-buttons" style="display: <%= @menu_item.item_options ? 'block' : 'none' %>">
+      <div style="background-color: lightgrey;">
+        <h4>Add Options</h4>
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>Option Name</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody id="menu_item_options">
+            <%= f.simple_fields_for :menu_item_options do |option| %>
+              <%= render 'menu_item_option_fields', :f => option %>
+            <% end %>
+          </tbody>
+          <caption>
+            <div class="links">
+              <%= link_to_add_association 'Add more...', f, :menu_item_options, data: { 'association-insertion-node' => 'tbody#menu_item_options', 'association-insertion-method' => 'append' }, class:"btn btn-primary btn-sm" %>
+            </div>
+          </caption>
+        </table>
+      </div>
+    </div>
+    <div id="menu-item-radio-no" style="display: <%= @menu_item.item_options ? 'none' : 'block' %>">
+    </div>
+  </div>
+  <hr>
+  <div class="form-block" id="menu-item-tags">
+    <%= f.input :item_tags, as: :radio_buttons, :collection => [['Yes', true], ['No', false]], checked: @menu_item.item_tags, label: "Menu item tags" %>
+
+    <div class="row" id="item-tag-radio-buttons" style="display: <%= @menu_item.item_tags ? 'block' : 'none' %>">  
+      <div class="col">
+        <%= f.association :tags, as: :check_boxes,
+                          item_wrapper_tag: :hr,
+                          item_wrapper_class: "image-select",
+                          :collection => current_business.tags.all,
+                          :label => false,
+                          :inline_label => false,
+                          :include_blank => false,
+                          :input_html => {multiple: true},
+                          :label_method => lambda { |tag| "#{tag.name}" } %>
+      </div>
+      <div class="col" id="business-tags-preview-list">
+        <% current_business.tags.each do |tag| %>
+          <%= tag.name %>
+          <% if tag.icon.attached? %>
+            <%= image_tag(tag.sized_icon(size: 100)) %>
+          <% else %>
+            <p>Icon not attached</p>
+          <% end %>
+          <hr>
+        <% end %>
+      </div>
+
+    <div id="item-tag-radio-no" style="display: <%= @menu_item.item_tags ? 'none' : 'block' %>">
+    </div>
+  </div>
+  <hr>
+  <div class="form-block">
+    <p>Upload an image of the dish</p>
+    <%= f.file_field :image, accept: 'image/png,image/jpeg' %><br><br>
+  </div>
+  <%= f.hidden_field :display_sequence_number, value: 0 %>
+  <%= f.button :submit, class: "btn btn-primary btn-sm", data: { disable_with: "Saving..." } %>
+  <%= link_to "back", menu_path(@menu), class: "btn btn-primary btn-sm" %>
+<% end %>

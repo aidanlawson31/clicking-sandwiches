@@ -3,12 +3,13 @@ module BusinessInitialize
 
   def create_menu_item_tags(business_id)
     [[business_id, 'Vegan', 1],
-    [business_id, 'Vetegarian', 2],
+    [business_id, 'Vegetarian', 2],
     [business_id, 'Gluten Free', 3],
     [business_id, 'Mild', 4],
     [business_id, 'Medium', 5],
     [business_id, 'Hot', 6] ].each do |tag|
       new_tag = Tag.where(business_id: tag[0], name: tag[1], display_sequence_number: tag[2]).first_or_create
+      Utility.attach_asset_image("tag-image-#{new_tag.name.downcase.parameterize}.png", new_tag.icon)
     end
   end
 end

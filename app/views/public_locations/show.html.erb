@@ -31,9 +31,9 @@ background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: co
                 <p style="color: <%= @bda.general_text_color %>">Open: <%= @location.open %></p>
               <% end %>
               <% if !@location.phone_number.blank? %>
-                <a style="color: <%= @bda.general_text_color %>" href="tel:<%= @location.phone_number %>"><%= @location.phone_number %></a>
+                <a style="color: <%= @bda.general_text_color %>" href="tel:<%= @location.phone_number %>">Phone number: <%= @location.phone_number %></a>
               <% else %>
-                <a style="color: <%= @bda.general_text_color %>" href="tel:<%= @location.phone_number %>"><%= @location.phone_number %></a>
+                <a style="color: <%= @bda.general_text_color %>" href="tel:<%= @location.phone_number %>">Phone number:<%= @location.phone_number %></a>
               <% end %>
               <% if @business.locations.count < 2 %>
                 <div id="b-description-p">

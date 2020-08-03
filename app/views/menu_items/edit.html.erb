@@ -1,39 +1,5 @@
-<div class="container">
+<div class="container form-container">
   <h1>Edit A Menu Item</h1>
-  <%= simple_form_for @menu_item, url: menu_category_menu_item_path(@menu.id, @category.id) do |f| %>
-    <%= f.input :name %>
-    <%= f.input :description, as: :trix_editor %>
-    <%= f.input :price %>
-    <%= f.input :item_options, as: :radio_buttons, :collection => [['Yes', true], ['No', false]], checked: @menu_item.item_options %>
-    <div id="menu-item-radio-buttons" style="display: <%= @menu_item.item_options ? 'block' : 'none' %>">
-      <div style="background-color: lightgrey;">
-        <h4>Add Options</h4>
-        <table class="table table-sm">
-          <thead>
-            <tr>
-              <th>Option Name</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody id="menu_item_options">
-            <%= f.simple_fields_for :menu_item_options do |option| %>
-              <%= render 'menu_item_option_fields', :f => option %>
-            <% end %>
-          </tbody>
-          <caption>
-            <div class="links">
-              <%= link_to_add_association 'Add more...', f, :menu_item_options, data: { 'association-insertion-node' => 'tbody#menu_item_options', 'association-insertion-method' => 'append' }, class:"btn btn-primary btn-sm" %>
-            </div>
-          </caption>
-        </table>
-      </div>
-	  </div>
-    <div id="menu-item-radio-no" style="display: <%= @menu_item.item_options ? 'none' : 'block' %>">
-    </div>
-    <%= f.input :code %><br>
-    <p>Upload an image of the dish</p>
-    <%= f.file_field :image, accept: 'image/png,image/jpeg' %><br><br>
-    <%= f.button :submit, class: "btn btn-primary" , class: "btn btn-primary btn-sm", data: { disable_with: "Saving..." } %>
-    <%= link_to "back", menu_path(@menu) %>
-  <% end %>
+  
+  <%= render 'form', menu_item: @menu_item, url: menu_category_menu_item_path(@menu, @category, @menu_item) %>
 </div>
