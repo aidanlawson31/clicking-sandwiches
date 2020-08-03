@@ -20,6 +20,14 @@ class MenuItem < ApplicationRecord
   validates :item_options,            inclusion: { in: [true, false] }
   validates :item_tags,               inclusion: { in: [true, false] }
 
+  after_save :remove_tags, unless: :item_tags
+
+  def remove_tags
+    self.menu_item_tags.each do |menu_item_tag|
+      menu_item_tag.destroy
+    end 
+  end
+
   def sized_image(size: 140)
     image.variant(resize: "#{size}x#{size}").processed if image.attached?
   end

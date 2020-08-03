@@ -35,13 +35,10 @@
     <div class="form-block">
       <%= f.input :name %>
     </div>
-
     <div class="form-block">
+      <p>Upload icons with square dimensions for the best results! E.g 300px by 300px</p>
       <%= f.file_field :icon, accept: 'image/jpeg,image/png'%>
     </div>
-
-    <%= f.hidden_field :display_sequence_number, value: 0%>
-
     <%= f.button :submit, class: "btn btn-primary" %>
   <% end %>
 </div>
