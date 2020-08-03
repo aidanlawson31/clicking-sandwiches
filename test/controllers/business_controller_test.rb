@@ -30,9 +30,9 @@ class BusinessControllerTest < ActionDispatch::IntegrationTest
   test "should be able to update a business display attribtue" do
     sign_in @user
     @business_display_attribute = business_display_attributes(:one)
-    assert @business_display_attribute.primary_color == "one"
-    patch update_business_display_attribute_business_url(@business.id, "business_display_attribute" => {"primary_color" => "#000"}, "id"=> @business_display_attribute.id)
+    assert @business_display_attribute.nav_bar_color == "#fff"
+    patch update_business_display_attribute_business_url(@business.id, "business_display_attribute" => {"nav_bar_color" => "#000"}, "id"=> @business_display_attribute.id)
     @business_display_attribute.reload
-    assert @business_display_attribute.primary_color == "#000"
+    assert @business_display_attribute.nav_bar_color == "#000"
   end
 end

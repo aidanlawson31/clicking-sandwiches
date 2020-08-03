@@ -3,7 +3,6 @@ class Tag < ApplicationRecord
   has_many   :menu_item_tags, dependent: :destroy
 
   validates :name, presence: true
-  validates :display_sequence_number, inclusion: 0..10_000
 
   has_one_attached :icon
 

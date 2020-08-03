@@ -3,17 +3,33 @@
 one:
   business: one
   font: one
-  menu_item_header_color: one
-  background_color: MyString
-  heading_color: MyString
-  nav_bar_color: MyString
-  general_text_color: MyString
+  heading_font: one
+  menu_item_header_color: 'menu item heading'
+  background_color: 'background color'
+  heading_color: 'heading color'
+  nav_bar_color: '#fff'
+  general_text_color: 'text color'
+  hero_image_or_video: true
+  button_text_color: 'button text'
+  button_color: 'button color'
+  card_background_color: 'card color'
+  card_border_color: 'card border'
+  foreground_color: 'forground color'
+  foreground_opacity: 'opacity'
 
 two:
   business: two
   font: two
-  menu_item_header_color: one
-  background_color: MyString
-  heading_color: MyString
-  nav_bar_color: MyString
-  general_text_color: MyString
+  heading_font: two
+  menu_item_header_color: 'menu item heading'
+  background_color: 'background color'
+  heading_color: 'heading color'
+  nav_bar_color: '#fff'
+  general_text_color: 'text color'
+  hero_image_or_video: true
+  button_text_color: 'button text'
+  button_color: 'button color'
+  card_background_color: 'card color'
+  card_border_color: 'card border'
+  foreground_color: 'forground color'
+  foreground_opacity: 'opacity'

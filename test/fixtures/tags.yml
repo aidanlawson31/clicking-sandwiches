@@ -3,9 +3,7 @@
 one:
   business: one
   name: MyString
-  display_sequence_number: 1
 
 two:
   business: two
   name: MyString
-  display_sequence_number: 1

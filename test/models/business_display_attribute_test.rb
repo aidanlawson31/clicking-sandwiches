@@ -8,13 +8,19 @@ class BusinessDisplayAttributeTest < ActiveSupport::TestCase
       BusinessDisplayAttribute.new(
         business_id:      @business.id,
         font_id:          @font.id,
-        menu_item_header_color:    'primary color',
+        heading_font_id:  @font.id,
+        menu_item_header_color: 'primary color',
         background_color: 'background color',
         heading_color: 'heading color',
         nav_bar_color: 'nav color',
         general_text_color: 'text color',
-        use_hero_image: true,
-        use_hero_video: false,
+        hero_image_or_video: true,
+        button_text_color: 'button text',
+        button_color: 'button color',
+        card_background_color: 'card color',
+        card_border_color: 'card border',
+        foreground_color: 'forground color',
+        foreground_opacity: 'opacity',
       )
   end
 
