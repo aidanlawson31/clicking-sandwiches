@@ -84,7 +84,11 @@ background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: co
                 </div>
                 <div class="col">
                   <% menu_item.menu_item_tags.each do |menu_item_tag| %>
-                    <p><%= menu_item_tag.tag.name %> <%= image_tag(menu_item_tag.tag.sized_icon(size: 50)) %></p>
+                
+                    <p><%= menu_item_tag.tag.name %>
+                    <% if menu_item_tag.tag.icon.attached? %> 
+                      <%= image_tag(menu_item_tag.tag.sized_icon(size: 50)) %></p>
+                    <% end %>
                   <% end %>
                 </div>
                 <div class="col">

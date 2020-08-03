@@ -5,7 +5,7 @@
       <tr>
         <th>Tag Name</th>
         <th>Tag Icon</th>
-        <%= link_to "Repopulate default tags", repopulate_tags_tag_path(@business.id), method: :post %>
+        <%= link_to "Repopulate default tags", repopulate_tags_tag_path(@business.id), method: :post, class: "btn btn-primary" %>
       </tr>
     </thead>
     <tbody>
@@ -17,7 +17,14 @@
           <% else %>
           <td>None Attached</td>
           <% end %>
-          <td><%= link_to "Delete", business_tag_path(@business.id, tag.id), method: :delete%></td>
+          <td><%= link_to "Update", edit_business_tag_path(@business.id, tag.id), { remote: true, class: "btn btn-primary tag-edit-button", 'data-toggle' => "modal", 'data-target' => "#edit-tag-modal" } %></td>
+          <div class="modal fade" id="edit-tag-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content" id="edit-tag-form-modal-content">
+              </div>
+            </div>
+          </div>
+          <td><%= link_to "Delete", business_tag_path(@business.id, tag.id), method: :delete, class: "btn btn-danger"%></td>
         </tr>
       <% end %>
     </tbody>

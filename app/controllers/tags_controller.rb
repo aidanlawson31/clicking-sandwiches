@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
-  before_action :form_setup, only: [:index, :create, :destroy]
+  before_action :form_setup, only: [:edit, :index, :create, :destroy]
   before_action :set_tag,    only: [:edit, :update, :destroy]
 
   def index
@@ -19,6 +19,11 @@ class TagsController < ApplicationController
   end
 
   def update
+    if @tag.update(tag_params)
+      render file: "tags/update.js.erb"
+    else
+      render file: "tags/edit.js.erb"
+    end
   end
 
   def destroy
@@ -42,6 +47,6 @@ class TagsController < ApplicationController
   end
 
   def tag_params
-    params[:tag].permit(:name, :display_sequence_number, :icon)
+    params[:tag].permit(:name, :icon)
   end
 end 
