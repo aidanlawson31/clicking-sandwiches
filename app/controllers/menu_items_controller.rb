@@ -2,6 +2,7 @@ class MenuItemsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_menu
   before_action :set_menu_item, only: [:edit, :update, :destroy]
+  before_action :current_user_owns_business
 
   def new
     @category  = Category.find(params[:category_id])

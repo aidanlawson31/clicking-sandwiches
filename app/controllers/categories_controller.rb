@@ -2,7 +2,8 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_category, only: [:edit, :update, :destroy, :show, :sort_category_menu_items, :save_sort_category_menu_items]
   before_action :set_menu
-  
+  before_action :current_user_owns_business
+
   def index
     @categories = Category.all
   end

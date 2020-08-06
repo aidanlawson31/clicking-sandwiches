@@ -1,6 +1,7 @@
 class LocationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_location, only: [:add_menu, :show_menus, :remove_menu, :add_image, :save_sort_image, :update, :destroy, :show]
+  before_action :current_user_owns_business
   
   def index
     @locations = current_user.business.locations

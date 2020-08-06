@@ -1,6 +1,7 @@
 class TagsController < ApplicationController
   before_action :form_setup, only: [:edit, :index, :create, :destroy]
   before_action :set_tag,    only: [:edit, :update, :destroy]
+  before_action :current_user_owns_business
 
   def index
     @tags = @business.tags.all
