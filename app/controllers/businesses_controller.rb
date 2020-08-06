@@ -1,7 +1,7 @@
 class BusinessesController < ApplicationController
   before_action :authenticate_user!
   before_action :form_setup, only: [:update, :show, :update_business_display_attribute]
-  
+
   def update_business_display_attribute
     if @business_display_attribute.update(business_display_attribute_params)
       redirect_to business_path(@business), notice: "Business display attributes saved successfully."

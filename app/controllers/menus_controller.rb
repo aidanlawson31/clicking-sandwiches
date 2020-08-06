@@ -15,7 +15,7 @@ class MenusController < ApplicationController
     @menu = current_business.menus.new(menu_params)
 
     if @menu.save
-      redirect_to menu_path(@menu), notice: "menu created successfully"
+      redirect_to business_menu_path(current_business, @menu), notice: "menu created successfully"
     else
       render :new
     end
@@ -26,7 +26,7 @@ class MenusController < ApplicationController
 
   def update
     if @menu.update(menu_params)
-      redirect_to menu_path(@menu), notice: "menu updated successfully"
+      redirect_to business_menu_path(current_business, @menu), notice: "menu updated successfully"
     else
       render :show
     end
@@ -34,7 +34,7 @@ class MenusController < ApplicationController
 
   def destroy
     @menu.destroy
-    redirect_to menus_path, notice: 'menu was successfully destroyed.'
+    redirect_to business_menus_path(current_business), notice: 'menu was successfully destroyed.'
   end
 
   def show
@@ -45,7 +45,7 @@ class MenusController < ApplicationController
 
   def save_sort_menu_categories
     if @menu.update(menu_sort_params)
-      redirect_to menu_path(@menu), notice: 'Categories successfully sorted.'
+      redirect_to business_menu_path(current_business, @menu), notice: 'Categories successfully sorted.'
     else
       render :sort_menu_categories
     end

@@ -5,7 +5,7 @@
       <tr>
         <th>Tag Name</th>
         <th>Tag Icon</th>
-        <%= link_to "Repopulate default tags", repopulate_tags_tag_path(@business.id), method: :post, class: "btn btn-primary" %>
+        <%= link_to "Repopulate default tags", repopulate_tags_business_tag_path(current_business, @business.id), method: :post, class: "btn btn-primary" %>
       </tr>
     </thead>
     <tbody>

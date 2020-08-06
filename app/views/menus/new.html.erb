@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Create A Menu</h1>
-  <%= simple_form_for @menu do |f| %>
+  <%= simple_form_for @menu, url: business_menus_path(current_business) do |f| %>
     <%= f.input :display_name %>
     <div class="row">
       <p data-toggle="tooltip" title="Internal name is how we differentiate menus. Please make sure this is unique."><%= image_tag "tooltip" %></p>
@@ -15,9 +15,9 @@
     <%= f.file_field :image, accept: 'image/png,image/jpeg' %>
     <br><br>
     <% if params[:location_id] %>
-      <%= link_to "back", location_path(params[:location_id]), class: "btn btn-primary btn-sm" %>
+      <%= link_to "back", business_location_path(current_business, params[:location_id]), class: "btn btn-primary btn-sm" %>
     <% else %>
-      <%= link_to "back", menus_path, class: "btn btn-primary btn-sm" %>
+      <%= link_to "back", business_menus_path, class: "btn btn-primary btn-sm" %>
       <%= f.button :submit, class: "btn btn-primary btn-sm", data: { disable_with: "Saving..." } %>
     <% end %>
   <% end %>

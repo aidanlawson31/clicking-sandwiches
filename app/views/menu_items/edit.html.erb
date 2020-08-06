@@ -1,5 +1,5 @@
 <div class="container form-container">
   <h1>Edit A Menu Item</h1>
   
-  <%= render 'form', menu_item: @menu_item, url: menu_category_menu_item_path(@menu, @category, @menu_item) %>
+  <%= render 'form', menu_item: @menu_item, url: business_menu_category_menu_item_path(current_business, @menu, @category, @menu_item) %>
 </div>

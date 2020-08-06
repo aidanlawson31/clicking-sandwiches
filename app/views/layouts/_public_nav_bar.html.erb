@@ -19,7 +19,6 @@
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <% if current_user %>  
       <% if current_user.business == current_business %>
-        <% puts " ALAL #{current_business.inspect}"%>
         <%= link_to "Admin", business_path(current_business), class: "dropdown-item hamburger-item", target: :_blank %>
       <% end %>
     <% else %>

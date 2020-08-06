@@ -1,15 +1,7 @@
 Rails.application.routes.draw do
-  devise_scope :user do
-    root to: "devise/sessions#new"
-  end
-  
-  devise_for :users
+  root to: 'pages#home'
 
-  resources :tags do
-    member do
-      post 'repopulate_tags'
-    end
-  end
+  devise_for :users
 
   resources  :businesses do
     member do
@@ -23,33 +15,37 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :tags
-  end
-
-  resources :locations do
-    member do
-      get    'show_menus'
-      post   'add_menu'
-      post   'add_image'
-      patch  'save_sort_image'
-      delete 'remove_menu'
-      delete 'remove_image'
-    end
-  end
-
-  resources :menus do
-    member do
-      get   'sort_menu_categories'
-      patch 'save_sort_menu_categories'
-    end
-
-    resources :categories do
+    resources :tags do
       member do
-        get   'sort_category_menu_items'
-        patch 'save_sort_category_menu_items'
+        post 'repopulate_tags'
       end
+    end
 
-      resources :menu_items
+    resources :locations do
+      member do
+        get    'show_menus'
+        post   'add_menu'
+        post   'add_image'
+        patch  'save_sort_image'
+        delete 'remove_menu'
+        delete 'remove_image'
+      end
+    end
+  
+    resources :menus do
+      member do
+        get   'sort_menu_categories'
+        patch 'save_sort_menu_categories'
+      end
+  
+      resources :categories do
+        member do
+          get   'sort_category_menu_items'
+          patch 'save_sort_category_menu_items'
+        end
+  
+        resources :menu_items
+      end
     end
   end
 

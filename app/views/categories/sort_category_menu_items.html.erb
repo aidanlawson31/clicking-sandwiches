@@ -1,7 +1,7 @@
 <h1> Sort the order of your menu items </h1>
 
 <% if @category.menu_items.exists? %>
-  <%= simple_form_for @category, url: save_sort_category_menu_items_menu_category_path do |f| %>
+  <%= simple_form_for @category, url: save_sort_category_menu_items_business_menu_category_path(current_business) do |f| %>
     <table class="table">
       <tbody id="menu-items-list">
         <%= f.simple_fields_for :menu_items, wrapper: false do |menu_item_form| %>
@@ -28,5 +28,5 @@
 <% else %>
   <p>You have no menu items in this category</p>
 <% end %>
-<%= link_to "back to menu", menu_path(@category.menu), class: "btn btn-primary btn-sm", style: "margin-left: 5px;" %>
+<%= link_to "back to menu", business_menu_path(current_business, @category.menu), class: "btn btn-primary btn-sm", style: "margin-left: 5px;" %>
 </div>
