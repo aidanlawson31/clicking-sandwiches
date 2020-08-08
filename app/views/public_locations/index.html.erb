@@ -22,7 +22,7 @@ background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: co
     <% if @bda.hero_image_or_video %>
       <% if @bda.sized_hero_image %>
         <div class="business-hero">
-          <%= list_image(@bda.sized_hero_image(width: 140, height: 120), alt: "Image") %>
+          <%= list_image(@bda.sized_hero_image(size: 90), alt: "Image") %>
         </div>
       <% end %>
     <% else %>

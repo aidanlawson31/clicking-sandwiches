@@ -1,6 +1,6 @@
-// Place all the styles related to the pages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#nav-name {
+  margin-left: 10px;
+}
 
 #home-title {
   margin-top: 30px;
@@ -25,9 +25,10 @@
 }
 
 #get-started {
+  margin-top: 20px;
+  margin-bottom: 10px;
   text-align:center;
 }
-
 
 #customization {
   margin-top: 20px;
@@ -67,6 +68,12 @@
 
   #features-list p {
     font-size: 35pt;
+  }
+
+  #get-started {
+    margin-top: 50px;
+    margin-bottom: 10px;
+    text-align:center;
   }
 
   .gallery {

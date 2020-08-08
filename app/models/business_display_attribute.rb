@@ -59,8 +59,8 @@ class BusinessDisplayAttribute < ApplicationRecord
     banner.variant(resize: "!#{size}x#{size}").processed if banner.attached?
   end
 
-  def sized_hero_image(width: 100, height: 200) 
-    hero_image.variant(resize: "!#{width}%x#{height}").processed if hero_image.attached?
+  def sized_hero_image(size: 100) 
+    hero_image.variant(resize: "!#{size}%x#{size}").processed if hero_image.attached?
   end
 
   def purge_top_icon;         top_icon.purge_later;         end

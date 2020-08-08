@@ -4,11 +4,6 @@ font-family: '<%= @bda.font.name %>';
 background-image: <%= @bda.background_image.attached? ? "url(#{url_for @bda.sized_background_image(size: 900)})" : 'none' %>;
 background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: cover"%>;"
 >
-<% if @bda.sized_banner %>
-  <div class="business-banner">
-    <%= list_image(@bda.banner, alt: "Image") %>
-  </div>
-<% end %>
   <div class="container" id="show-container" style="background-color: <%= @bda.foreground_rgba(@bda.foreground_color, @bda.foreground_opacity) %>;">
     <div id="show-title">
       <% if @business.locations.count > 1 %>
@@ -22,6 +17,22 @@ background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: co
         <h5 class="show-header" style="color: <%= @bda.heading_color %>"><%= @location.name %></h5><br>
       <% end %>
     </div>
+    <% if @business.locations.count < 2 %>
+      <% if @bda.hero_image_or_video %>
+        <% if @bda.sized_hero_image %>
+          <div class="business-hero">
+            <%= list_image(@bda.sized_hero_image(size: 115.5), alt: "Image") %>
+          </div>
+        <% end %>
+      <% else %>
+        <% if @bda.hero_video.attached? %>
+          <div class="business-hero-video-container">
+            <%= video_tag(url_for(@bda.hero_video), autoplay: 'true', loop: 'true', muted: 'true', id: 'business-hero-video' )%>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
       <div class="row">
         <div class="col-xs-12 col-sm-12 <%= @location.location_images.blank? ? "col-md-12 col-lg-12" : "col-md-12 col-lg-6" %>">
           <div class="show-description" style="<%= @location.location_images.blank? && @business.locations.count < 2 ? "text-align:center;" : "" %> background-color: <%= @bda.card_background_color%>; border: 1px solid <%= @bda.card_border_color %>">

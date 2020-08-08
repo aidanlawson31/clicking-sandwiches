@@ -12,7 +12,7 @@ class Location < ApplicationRecord
   validates :location_url, presence: true
 
   geocoded_by      :address
-  after_validation :geocode
+  after_validation :geocode, if: :address_changed?
 
   def convert_location_url
     return unless self.name

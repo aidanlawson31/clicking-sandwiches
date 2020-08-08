@@ -111,7 +111,7 @@
         <div class="col bda-inputs" id="use-hero-image" style="display: <%= @business_display_attribute.hero_image_or_video ? 'block' : 'none '%>;">
           <p>Hero image</p>
           <%= f.file_field :hero_image %>
-          <%= list_image(@business_display_attribute.sized_hero_image(width: 50, height: 50), alt: "Image") %>
+          <%= list_image(@business_display_attribute.sized_hero_image(size: 20), alt: "Image") %>
           
           <% if @business_display_attribute.hero_image.attached? %>
             <%= f.input :remove_hero_image, label: 'Remove Hero Image', as: :boolean, checked_value: true, unchecked_value: false %>

@@ -17,11 +17,11 @@ class ApplicationController < ActionController::Base
   end
 
   def current_business
-    if params[:business_url]
+    if    params[:business_url]
       Business.find_by(business_url: params[:business_url])
     elsif params[:business_id]
       Business.find(params[:business_id])
-    else
+    elsif params[:id]
       Business.find(params[:id])
     end
   end
