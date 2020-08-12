@@ -17,6 +17,7 @@ class MenuItemsController < ApplicationController
     if @menu_item.save
       redirect_to business_menu_path(current_business, @menu_item.category.menu), notice: 'Menu item created successfully.'
     else
+      puts "ALAL #{@menu_item.errors.full_messages}"
       render :new
     end
   end

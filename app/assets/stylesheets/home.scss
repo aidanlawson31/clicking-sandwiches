@@ -1,5 +1,24 @@
+#navbar-get-started  {
+  margin-top: 10px;
+  margin-right: 10px;
+  color: white;
+  background-color:#35b8be;
+  border-radius: 5%;
+} 
+
+.landing-nav {
+  background-color: #e8f6ff;
+  display: flex;
+  justify-content: space-between;
+}
+
 #nav-name {
+  margin-top: 10px;
   margin-left: 10px;
+
+  .navbar-brand {
+    color: #35b8be;
+  }
 }
 
 #home-title {

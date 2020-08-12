@@ -168,7 +168,7 @@
       </div>
     </div>
     <div id="b-show-links">
-      <%= f.button :submit, class: "btn btn-primary", data: { disable_with: "Saving..." } %>
+      <%= f.button :submit, "Update Customization", class: "btn btn-primary", data: { disable_with: "Saving..." } %>
       <%= link_to "View Public Pages", public_locations_path(current_user.business.business_url), class: "btn btn-primary" %>
     </div>
   <% end %>

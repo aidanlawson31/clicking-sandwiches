@@ -27,7 +27,7 @@ class MenuItem < ApplicationRecord
       menu_item_tag.destroy
     end 
   end
-
+  
   def sized_image(size: 140)
     image.variant(resize: "#{size}x#{size}").processed if image.attached?
   end
