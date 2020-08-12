@@ -38,16 +38,35 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
+    <hr>
     <div id="customization">
       <h3 class="feature-heading">Easy Customization</h3>
       <p class="home-paragraph">MenuHive allows you to thouroghly customize your restaurant's online pages. Fonts, Colors, Images, and Videos can all be added, removed or changed so that you're gauranteed to setup unique online menus with ease.</p>
-      <%= image_tag("business-customization-color", alt: "Business customization", :size => "1100x660")%>
+      <div class="customization-image-container">
+        <%= image_tag("business-customization-color", alt: "Business customization", style: "max-height:100%;max-width:100%;")%>
+      </div>
     </div>
+    <hr>
     <div id="menu-builder">
       <h3 class="feature-heading">Menu Builder</h3>
       <p class="home-paragraph">MenuHive comes equiped with a menu builder system that allows you to create menus with sortable categories.</p>
       <p class="home-paragraph">Menu items can be created and sorted within different categories.</p>
+      <div class="customization-image-container">
+        <%= image_tag("menu-builder", alt: "Business customization", style: "max-height:100%;max-width:100%;")%>
+      </div>
     </div>
-    <h3 class="feature-heading">Locations</h3>
+  </div>
+</div>
+<div class="home-footer">
+  <ul style="list-style: none;">
+    <li class="footer-item">
+      <%= link_to "Get Started", new_user_registration_path, class: "footer-link "%>
+    </li>
+    <li class="footer-item">
+      <%= mail_to "aidanlawson31@gmail.com", "The Creator of MenuHive is desperate for work! Email The Creator", class: "footer-link" %>
+    </i>
+  </ul>
+  <div class="footer-brand">
+    <p>MenuHive</p>
   </div>
 </div>

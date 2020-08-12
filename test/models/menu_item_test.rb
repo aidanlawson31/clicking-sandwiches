@@ -26,7 +26,7 @@ class MenuItemTest < ActiveSupport::TestCase
     refute @menu_item.valid?
   end
 
-  test "diplay sequence number is required" do
+  test "display sequence number is required" do
     @menu_item.display_sequence_number = nil
     refute @menu_item.valid?
   end

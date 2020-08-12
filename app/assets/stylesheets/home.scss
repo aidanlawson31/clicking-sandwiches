@@ -31,6 +31,7 @@
   text-align:center;
   font-size: 20pt;
   width: auto;
+  margin-bottom: 40px;
 }
 
 #features-list h2 {
@@ -41,6 +42,7 @@
 .feature-heading {
   text-align:center;
   font-size: 25pt;
+  margin-bottom: 40px;
 }
 
 #get-started {
@@ -50,11 +52,12 @@
 }
 
 #customization {
-  margin-top: 20px;
+  padding-top: 40px;
+  margin-top: 90px;
 }
 
 #menu-builder {
-  margin-top: 20px;
+  margin-top: 90px;
 }
 
 /* Portrait and Landscape Phones */
@@ -73,6 +76,7 @@
     text-align:center;
     font-size: 35pt;
     width: auto;
+    margin-bottom: 40px;
   }
 
   #features-list h2 {
@@ -83,6 +87,7 @@
   .feature-heading {
     text-align:center;
     font-size: 50pt;
+    margin-bottom: 40px;
   }
 
   #features-list p {
@@ -109,4 +114,31 @@
     height: 100px;
     font-size: 30pt;
   }
+}
+
+.customization-image-container {
+  width: 100%;
+}
+
+.home-footer {
+  padding-top: 30px;
+  margin-top: 50px;
+  width: 100%;
+  height: 300px;
+  background-color: #35b8be;
+}
+
+.footer-link {
+  color: white;
+}
+
+.footer-item {
+  margin-top: 20px;
+}
+
+.footer-brand {
+  margin-top: 80px;
+  text-align: center; 
+  font-size: 25pt;
+  color: white;
 }

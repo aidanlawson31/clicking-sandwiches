@@ -41,4 +41,8 @@ class LocationTest < ActiveSupport::TestCase
     @location.save
     assert @location.location_url == "some-location"
   end
+
+  test "address is geocoded" do
+    
+  end
 end
