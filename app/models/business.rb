@@ -1,8 +1,9 @@
 class Business < ApplicationRecord
-  has_many :users, dependent: :destroy
+  has_many :users,     dependent: :destroy
   has_many :locations, dependent: :destroy
-  has_many :menus, dependent: :destroy
-  has_one  :business_display_attribute
+  has_many :menus,     dependent: :destroy
+  has_many :tags,      dependent: :destroy
+  has_one  :business_display_attribute, dependent: :destroy
   
   accepts_nested_attributes_for :users
 

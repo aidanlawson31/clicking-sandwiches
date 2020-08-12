@@ -13,17 +13,17 @@
         <span data-toggle="tooltip" title="Business Url is the url for your business. E.g. https://clicking-sandwiches.herokuapp.com/[your business url]"><%= image_tag "tooltip" %>Business url</span>
         <%= f.input :business_url, label: '' %>
       </div>
-      <div id="business-s-description">
-        <%= f.input :description, label: "Business Description", as: :trix_editor %>
-        <%= f.button :submit, class: "b-btn-save btn btn-primary", data: { disable_with: "Saving..." } %>
-      </div>
+    </div>
+    <div id="business-s-description">
+      <%= f.input :description, label: "Business Description", as: :trix_editor %>
+      <%= f.button :submit, class: "b-btn-save btn btn-primary", data: { disable_with: "Saving..." } %>
     </div>
   <% end %>
   <br>
 
   <h3 style="text-align:center;">Website Preview</h3>
   <iframe src="<%= public_locations_path(@business.business_url)%>" id="business-iframe">
-      <p>Placeholder text; only shows up if the page DOESN'T render!</p>
+      <p>Sorry! Something went wrong.</p>
   </iframe>
 
   <%= simple_form_for @business_display_attribute, url: update_business_display_attribute_business_path do |f| %>
@@ -111,7 +111,7 @@
         <div class="col bda-inputs" id="use-hero-image" style="display: <%= @business_display_attribute.hero_image_or_video ? 'block' : 'none '%>;">
           <p>Hero image</p>
           <%= f.file_field :hero_image %>
-          <%= list_image(@business_display_attribute.sized_hero_image(width: 50, height: 50), alt: "Image") %>
+          <%= list_image(@business_display_attribute.sized_hero_image(size: 20), alt: "Image") %>
           
           <% if @business_display_attribute.hero_image.attached? %>
             <%= f.input :remove_hero_image, label: 'Remove Hero Image', as: :boolean, checked_value: true, unchecked_value: false %>
@@ -168,7 +168,7 @@
       </div>
     </div>
     <div id="b-show-links">
-      <%= f.button :submit, class: "btn btn-primary", data: { disable_with: "Saving..." } %>
+      <%= f.button :submit, "Update Customization", class: "btn btn-primary", data: { disable_with: "Saving..." } %>
       <%= link_to "View Public Pages", public_locations_path(current_user.business.business_url), class: "btn btn-primary" %>
     </div>
   <% end %>

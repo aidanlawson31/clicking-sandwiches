@@ -4,14 +4,14 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<%= simple_form_for @category, url: menu_categories_path(@menu.id), method: :post, remote: true do |f| %>
+<%= simple_form_for @category, url: business_menu_categories_path(current_business, @menu.id), method: :post, remote: true do |f| %>
   <div class="modal-body">
     <%= f.input :name %>
     <%= f.hidden_field :menu_id, value: @menu.id %>
     <%= f.hidden_field :display_sequence_number, value: 0 %>
   </div>
   <div class="modal-footer">
-    <%= link_to 'back', menu_path(@menu), class: "btn btn-primary btn-sm"%>
+    <%= link_to 'back', business_menu_path(current_business, @menu), class: "btn btn-primary btn-sm"%>
     <%= f.button :submit, class: "btn btn-primary btn-sm", data: { disable_with: "Saving..." } %>
   </div>
 <% end %>

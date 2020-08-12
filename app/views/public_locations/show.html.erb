@@ -4,11 +4,6 @@ font-family: '<%= @bda.font.name %>';
 background-image: <%= @bda.background_image.attached? ? "url(#{url_for @bda.sized_background_image(size: 900)})" : 'none' %>;
 background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: cover"%>;"
 >
-<% if @bda.sized_banner %>
-  <div class="business-banner">
-    <%= list_image(@bda.banner, alt: "Image") %>
-  </div>
-<% end %>
   <div class="container" id="show-container" style="background-color: <%= @bda.foreground_rgba(@bda.foreground_color, @bda.foreground_opacity) %>;">
     <div id="show-title">
       <% if @business.locations.count > 1 %>
@@ -22,6 +17,22 @@ background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: co
         <h5 class="show-header" style="color: <%= @bda.heading_color %>"><%= @location.name %></h5><br>
       <% end %>
     </div>
+    <% if @business.locations.count < 2 %>
+      <% if @bda.hero_image_or_video %>
+        <% if @bda.sized_hero_image %>
+          <div class="business-hero">
+            <%= image_tag(@bda.hero_image, alt: "Image", style:"height:100%;width:100%;") %>
+          </div>
+        <% end %>
+      <% else %>
+        <% if @bda.hero_video.attached? %>
+          <div class="business-hero-video-container">
+            <%= video_tag(url_for(@bda.hero_video), autoplay: 'true', loop: 'true', muted: 'true', id: 'business-hero-video' )%>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
       <div class="row">
         <div class="col-xs-12 col-sm-12 <%= @location.location_images.blank? ? "col-md-12 col-lg-12" : "col-md-12 col-lg-6" %>">
           <div class="show-description" style="<%= @location.location_images.blank? && @business.locations.count < 2 ? "text-align:center;" : "" %> background-color: <%= @bda.card_background_color%>; border: 1px solid <%= @bda.card_border_color %>">
@@ -31,9 +42,7 @@ background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: co
                 <p style="color: <%= @bda.general_text_color %>">Open: <%= @location.open %></p>
               <% end %>
               <% if !@location.phone_number.blank? %>
-                <a style="color: <%= @bda.general_text_color %>" href="tel:<%= @location.phone_number %>"><%= @location.phone_number %></a>
-              <% else %>
-                <a style="color: <%= @bda.general_text_color %>" href="tel:<%= @location.phone_number %>"><%= @location.phone_number %></a>
+                <a style="color: <%= @bda.general_text_color %>" href="tel:<%= @location.phone_number %>">Phone number: <%= @location.phone_number %></a>
               <% end %>
               <% if @business.locations.count < 2 %>
                 <div id="b-description-p">
@@ -76,13 +85,11 @@ background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: co
               <% @location.location_menus.each do |location_menu| %>
                 <div class="card location-show-card" style="background-color: <%= @bda.card_background_color%>; border: 1px solid <%= @bda.card_border_color%>;">
                   <h5 class="card-title" style="color: <%= @bda.general_text_color %>"><%= location_menu.menu.display_name %></h5>
-                  <div class="pub-menu-description">
-                    <p style="color: <%= @bda.general_text_color %>"><%= location_menu.menu.description.html_safe %></p>
-                  </div>
+                  <span style="color: <%= @bda.general_text_color %>;"><%= location_menu.menu.description.html_safe %></span>
                   <%= link_to "View Menu", public_menu_path(@location.business.business_url, 
                                                             @location.location_url, 
                                                             location_menu.menu.menu_url), 
-                                                            class: "btn custom-btn btn-primary btn-sm", style:"background-color: #{@bda.button_color}; border-color: #{@bda.button_color}; color: #{@bda.button_text_color}" %>
+                                                            class: "btn custom-btn btn-primary btn-sm", style:"background-color: #{@bda.button_color}; border-color: #{@bda.button_color}; color: #{@bda.button_text_color}; margin-top: 10px;" %>
                 </div>
               <% end %>
             <% end %>

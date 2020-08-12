@@ -11,7 +11,7 @@
         <div class="card-body">
           <h5 class="card-title"><%= location.name %></h5>
           <p class="card-text"><%= location.address %></p>
-          <%= link_to "View Location", location_path(location), class: "btn btn-primary" %>
+          <%= link_to "View Location", business_location_path(current_business, location), class: "btn btn-primary" %>
         </div>
       </div>
 
@@ -22,4 +22,4 @@
   <% end %>
 <div>
 
-<%= link_to "Create a location", new_location_path, class: "btn btn-primary btn-sm" %>
+<%= link_to "Create a location", new_business_location_path, class: "btn btn-primary btn-sm" %>

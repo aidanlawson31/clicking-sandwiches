@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  devise_scope :user do
-    root to: "devise/sessions#new"
-  end
-  
+  root to: 'pages#home'
+
   devise_for :users
 
   resources  :businesses do
@@ -16,32 +14,38 @@ Rails.application.routes.draw do
         patch 'remove_admin_privileges'
       end
     end
-  end
 
-  resources :locations do
-    member do
-      get    'show_menus'
-      post   'add_menu'
-      post   'add_image'
-      patch  'save_sort_image'
-      delete 'remove_menu'
-      delete 'remove_image'
-    end
-  end
-
-  resources :menus do
-    member do
-      get   'sort_menu_categories'
-      patch 'save_sort_menu_categories'
-    end
-
-    resources :categories do
+    resources :tags do
       member do
-        get   'sort_category_menu_items'
-        patch 'save_sort_category_menu_items'
+        post 'repopulate_tags'
       end
+    end
 
-      resources :menu_items
+    resources :locations do
+      member do
+        get    'show_menus'
+        post   'add_menu'
+        post   'add_image'
+        patch  'save_sort_image'
+        delete 'remove_menu'
+        delete 'remove_image'
+      end
+    end
+  
+    resources :menus do
+      member do
+        get   'sort_menu_categories'
+        patch 'save_sort_menu_categories'
+      end
+  
+      resources :categories do
+        member do
+          get   'sort_category_menu_items'
+          patch 'save_sort_category_menu_items'
+        end
+  
+        resources :menu_items
+      end
     end
   end
 

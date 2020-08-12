@@ -1,6 +1,7 @@
 class LocationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_location, only: [:add_menu, :show_menus, :remove_menu, :add_image, :save_sort_image, :update, :destroy, :show]
+  before_action :current_user_owns_business
   
   def index
     @locations = current_user.business.locations
@@ -14,7 +15,7 @@ class LocationsController < ApplicationController
     @location = current_business.locations.new(location_params)
 
     if @location.save
-      redirect_to locations_path, notice: "Location created successfully"
+      redirect_to business_locations_path(current_business), notice: "Location created successfully"
     else
       render :new
     end
@@ -43,7 +44,7 @@ class LocationsController < ApplicationController
     else
       flash.now[:notice] = "Menu was not removed from #{@location.name} due to: #{@location.errors.full_messages}." 
     end
-    redirect_to location_path(@location)
+    redirect_to business_location_path(current_business, @location)
   end
 
   def add_image
@@ -52,9 +53,9 @@ class LocationsController < ApplicationController
     @location_image.display_sequence_number = next_display_sequence_number(@location_image.location_id)
 
     if @location_image.save
-      redirect_to location_path(@location), notice: "Image added successfully"
+      redirect_to business_location_path(current_business, @location), notice: "Image added successfully"
     else
-      redirect_to location_path(@location), notice: "Image wasn't added before upload"
+      redirect_to business_location_path(current_business, @location), notice: "Image wasn't added before upload"
     end
   end
 
@@ -63,7 +64,7 @@ class LocationsController < ApplicationController
     @location = @location_image.location
 
     if @location_image.destroy
-      redirect_to location_path(@location)
+      redirect_to business_location_path(current_business, @location)
       flash.now[:notice] = "Image successfully removed from #{@location.name}"
     end
   end
@@ -73,30 +74,30 @@ class LocationsController < ApplicationController
 
   def update
     if @location.update(location_params)
-      redirect_to location_path(@location), notice: "Location updated"
+      redirect_to business_location_path(current_business, @location), notice: "Location updated"
     else
-      redirect_to location_path(@location)
+      redirect_to business_location_path(current_business, @location)
       flash.now[:alert] = "There was an error"
     end
   end
 
   def destroy    
     @location.destroy
-    redirect_to locations_path, notice: 'Location was successfully destroyed.'
+    redirect_to business_locations_path(current_business), notice: 'Location was successfully destroyed.'
   end
 
   def show
     @location_image  = LocationImage.new
     @location_images = LocationImage.all
     @location_menus  = @location.location_menus
-    @menus           = current_user.business.menus
+    @menus           = @business.menus
   end
 
   def save_sort_image
     if @location.update(location_sort_params)
-      redirect_to location_path(@location), notice: 'Images successfully sorted.'
+      redirect_to business_location_path(current_business, @location), notice: 'Images successfully sorted.'
     else
-      redirect_to location_path(@location), notice: 'Something went wrong.'
+      redirect_to business_location_path(current_business, @location), notice: 'Something went wrong.'
     end
   end
 
@@ -115,13 +116,14 @@ class LocationsController < ApplicationController
         @location_menus_names << location_menu.menu.display_name.titleize
     end
     
-    @menus = current_user.business.menus.select do |menu|
+    @menus = @business.menus.select do |menu|
       LocationMenu.find_by(menu_id: menu.id, location_id: @location.id).present? ? false : true
     end
   end
 
   def set_location
     @location = Location.find(params[:id])
+    @business = @location.business
   end
 
   def location_params

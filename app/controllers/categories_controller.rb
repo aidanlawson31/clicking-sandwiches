@@ -2,7 +2,8 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_category, only: [:edit, :update, :destroy, :show, :sort_category_menu_items, :save_sort_category_menu_items]
   before_action :set_menu
-  
+  before_action :current_user_owns_business
+
   def index
     @categories = Category.all
   end
@@ -36,7 +37,7 @@ class CategoriesController < ApplicationController
 
   def destroy    
     @category.destroy
-    redirect_to menu_path(@category.menu), notice: 'Category was successfully destroyed.'
+    redirect_to business_menu_path(current_business, @category.menu), notice: 'Category was successfully destroyed.'
   end
 
   def show
@@ -47,7 +48,7 @@ class CategoriesController < ApplicationController
 
   def save_sort_category_menu_items
     if @category.update(category_sort_params)
-      redirect_to menu_path(@category.menu), notice: 'Menu Items successfully sorted.'
+      redirect_to business_menu_path(current_business, @category.menu), notice: 'Menu Items successfully sorted.'
     else
       render :sort_category_menu_items
     end

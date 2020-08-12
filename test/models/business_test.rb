@@ -28,15 +28,4 @@ class BusinessTest < ActiveSupport::TestCase
     @business_two.business_url = 'url-two'
     assert @business_two.save
   end
-
-  # test "name is unique for locations in the business" do
-  #   @location.name     = "some name"
-  #   @location.business = businesses(:one)
-  #   assert @location.save
-  #   @second_location    = @location.dup
-  #   @second_location.id = nil
-  #   refute @second_location.valid?
-  #   @second_location.name = "something else"
-  #   assert @second_location.valid?
-  # end
 end

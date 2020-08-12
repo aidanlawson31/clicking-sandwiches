@@ -1,6 +1,6 @@
 <div class="container" style="text-align:center;">
   <h1>Create A Location</h1>
-  <%= simple_form_for @location do |f| %>
+  <%= simple_form_for @location, url: business_locations_path do |f| %>
     <%= f.input :name %>
     <%= f.input :address %>
     <%= f.input :phone_number, label: "Phone Number" %>
@@ -9,5 +9,5 @@
     <br>
     <%= f.button :submit, class: "btn btn-primary", data: { disable_with: "Saving..." } %>
   <% end %><br>
-  <%= link_to "back", locations_path %>
+  <%= link_to "back", business_locations_path %>
 </div>

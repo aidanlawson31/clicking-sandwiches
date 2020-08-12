@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :current_business
+  helper_method :current_user_owns_business
 
   protected
 
@@ -16,6 +17,18 @@ class ApplicationController < ActionController::Base
   end
 
   def current_business
-    current_user ? current_user.business : Business.find_by(business_url: params[:business_url])
+    if    params[:business_url]
+      Business.find_by(business_url: params[:business_url])
+    elsif params[:business_id]
+      Business.find(params[:business_id])
+    elsif params[:id]
+      Business.find(params[:id])
+    end
+  end
+
+  def current_user_owns_business
+    unless current_user.business == current_business
+      render 'shared/not_authorized', layout: false, status: :unauthorized
+    end
   end
 end

@@ -8,13 +8,16 @@
       <%= link_to "User Access", business_business_users_path(current_business), class: "nav-link active" %>
     </li>
     <li class="nav-item">
-      <%= link_to "Locations",locations_path, class: "nav-link active" %>
+      <%= link_to "Locations",business_locations_path(current_business), class: "nav-link active" %>
     </li>
     <li class="nav-item">
-      <%= link_to "Menus", menus_path, class: "nav-link active" %>
-  </li>
-  <li class="nav-item">
-    <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link active" %>
+      <%= link_to "Menus", business_menus_path(current_business), class: "nav-link active" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Tags", business_tags_path(current_business), class: "nav-link active" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link active" %>
     </li>
   <% elsif current_user %>
     <li class="nav-item">

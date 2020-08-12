@@ -1,5 +1,5 @@
 <div class="container">
-  <%= simple_form_for @menu do |f| %>
+  <%= simple_form_for @menu, url: business_menu_path do |f| %>
     <div class="show container">
       <div class="row">
         <h1 class="show-header"><p data-toggle="tooltip" data-placement="right" title="Anyone viewing your menu will see this name."><%= image_tag "tooltip" %></p>
@@ -20,16 +20,16 @@
         <%= f.input :remove_menu_banner, as: :boolean, checked_value: true, unchecked_value: false %>
       <% end %>
       <hr/>
-      <%= link_to "back", menus_path, class: "btn btn-primary btn-sm" %>
+      <%= link_to "back", business_menus_path, class: "btn btn-primary btn-sm" %>
       <%= f.button :submit, class: "btn btn-primary btn-sm" %>
-      <%= link_to "Delete Menu", menu_path(@menu), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure? This action will delete all menu items.' } %>
+      <%= link_to "Delete Menu", business_menu_path(@menu), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure? This action will delete all menu items.' } %>
     </div>
   <% end %>
   <hr/>
 
   <h4><%=@menu.display_name%> Categories</h4>
 
-  <%= link_to "Create Category", new_menu_category_path(@menu.id), { remote: true, class: "btn btn-primary btn-sm", 'data-toggle' => "modal", 'data-target' => "#create-category-modal" } %>
+  <%= link_to "Create Category", new_business_menu_category_path(current_business, @menu.id), { remote: true, class: "btn btn-primary btn-sm", 'data-toggle' => "modal", 'data-target' => "#create-category-modal" } %>
   <div class="modal fade" id="create-category-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content" id="create-category-form-modal-content">
@@ -37,7 +37,7 @@
     </div>
   </div>
   <% if @menu.categories.count > 1 %>
-    <%= link_to "Sort Categories", sort_menu_categories_menu_path(@menu.id), class: "btn btn-primary btn-sm" %>
+    <%= link_to "Sort Categories", sort_menu_categories_business_menu_path(current_business, @menu.id), class: "btn btn-primary btn-sm" %>
   <% end %>
   
   <% if @menu.categories %> 
@@ -46,17 +46,17 @@
         <div class="col">
           <b><%= category.name %></b>
         </div>
-        <%= link_to "Edit Category", edit_menu_category_path(@menu.id, category.id), { remote: true, class: "btn btn-primary btn-sm category-edit-button", 'data-toggle' => "modal", 'data-target' => "#edit-category-modal" } %>
+        <%= link_to "Edit Category", edit_business_menu_category_path(current_business, @menu.id, category.id), { remote: true, class: "btn btn-primary btn-sm category-edit-button", 'data-toggle' => "modal", 'data-target' => "#edit-category-modal" } %>
         <div class="modal fade" id="edit-category-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content" id="edit-category-form-modal-content">
             </div>
           </div>
         </div>
-        <%= link_to "Delete Category", menu_category_path(@menu.id, category.id), method: :DELETE, class: "btn btn-danger btn-sm category-edit-button", data: { confirm: 'Are you sure? This action will delete all category items.' }  %>
-        <%= link_to "Add Menu Item",   new_menu_category_menu_item_path(@menu.id, category.id), class: "btn btn-primary btn-sm category-edit-button" %>
+        <%= link_to "Delete Category", business_menu_category_path(current_business, @menu.id, category.id), method: :DELETE, class: "btn btn-danger btn-sm category-edit-button", data: { confirm: 'Are you sure? This action will delete all category items.' }  %>
+        <%= link_to "Add Menu Item",   new_business_menu_category_menu_item_path(current_business, @menu.id, category.id), class: "btn btn-primary btn-sm category-edit-button" %>
         <% if category.menu_items.count > 1 %>
-          <%= link_to "Sort Menu Items", sort_category_menu_items_menu_category_path(@menu.id, category.id), class: "btn btn-primary btn-sm category-edit-button" %>
+          <%= link_to "Sort Menu Items", sort_category_menu_items_business_menu_category_path(current_business, @menu.id, category.id), class: "btn btn-primary btn-sm category-edit-button" %>
         <% end %>
       </div>
 
@@ -94,13 +94,23 @@
             <% end %>
           </div>
           <div class="col">
+            <% menu_item.menu_item_tags.each do |menu_item_tag| %>
+              <div class="row">
+                <%= menu_item_tag.tag.name %>
+                <% if menu_item_tag.tag.icon.attached? %> 
+                  <%= image_tag(menu_item_tag.tag.sized_icon(size: 50)) %>
+                <% end %>
+              </div >
+            <% end %>
+          </div>
+          <div class="col">
             <% if menu_item.image.attached? %>
               <%= image_tag menu_item.sized_image %>
             <% end %>
           </div>
           <div class="col">
-            <%= link_to "Delete Menu Item", menu_category_menu_item_path(@menu.id, menu_item.category.id, menu_item.id), method: :DELETE, class: "btn btn-danger btn-sm" %>
-            <%= link_to "Update Menu Item", edit_menu_category_menu_item_path(@menu.id, menu_item.category.id, menu_item.id), class: "btn btn-primary btn-sm" %>
+            <%= link_to "Delete Menu Item", business_menu_category_menu_item_path(current_business, @menu.id, menu_item.category.id, menu_item.id), method: :DELETE, class: "btn btn-danger btn-sm" %>
+            <%= link_to "Update Menu Item", edit_business_menu_category_menu_item_path(current_business, @menu.id, menu_item.category.id, menu_item.id), class: "btn btn-primary btn-sm" %>
           </div>
           $<%= menu_item.price %>
         </div>

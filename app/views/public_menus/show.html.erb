@@ -15,14 +15,16 @@ background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: co
     <span style="color: <%= @bda.general_text_color %>"><%= @menu.description.html_safe %></span>
   </div>
 
-  <div class="row">
-    <div class="col-2" id="menu-nav" style="background-color: <%= @bda.card_background_color %>; border: 1px solid <%= @bda.card_border_color %>;">
-      <% @menu.categories.each do |category| %>
-        <div class="row">
-          <a href="#<%=category.name%>"><%= category.name %></a>
+    <div class="row">
+      <% if @menu.categories.count > 1 %>
+        <div class="col-2" id="menu-nav" style="background-color: <%= @bda.card_background_color %>; border: 1px solid <%= @bda.card_border_color %>;">
+          <% @menu.categories.each do |category| %>
+            <div class="row">
+              <a href="#<%=category.name%>" style="color: <%= @bda.general_text_color%>;"><%= category.name %></a>
+            </div>
+          <% end %>
         </div>
       <% end %>
-    </div>
 
     <div class="col">
       <div id="pub-menu">
@@ -44,23 +46,22 @@ background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: co
           <% @menu.categories.each do |category| %>
             <div class="row menu-show-category" style="background-color: <%= @bda.card_background_color %>; border: 1px solid <%= @bda.card_border_color %>;">
               <div class="col" id="<%= category.name %>">
-                <h3 class="category-name" style="color: <%= @bda.general_text_color %>%"><%= category.name %></h3>
+                <h3 class="category-name" style="color: <%= @bda.general_text_color %>"><%= category.name %></h3>
               </div>
             </div>
 
             <% category.menu_items.each do |menu_item| %>
               <div class="row menu-show-menu-item" style="background-color: <%= @bda.card_background_color %>; border: 1px solid <%= @bda.card_border_color %>;">
                 <div class="col-1">
-                  <p style="color: <%= @bda.general_text_color %>%"><%= menu_item.code %></p>
+                  <p style="color: <%= @bda.general_text_color %>;"><%= menu_item.code %></p>
                 </div>
                 <div class="col">
                   <div class="row" style="background-color: <%= @bda.menu_item_header_color %>; padding-left: 5px;">
-                    <h5 style="color: <%= @bda.general_text_color %>%"><%= menu_item.name %></h5>
+                    <h5 style="color: <%= @bda.general_text_color %>;"><%= menu_item.name %></h5>
                   </div>
-                  <p><%= menu_item.description.html_safe %>
-                  </p>
+                  <span style="color: <%= @bda.general_text_color %>"><%= menu_item.description.html_safe %></span>
                   <% if menu_item.item_options %>
-                  <table id="pub-m-table">
+                  <table id="pub-m-table" style="color: <%= @bda.general_text_color %>">
                     <thead>
                       <tr>
                         <th>Options</th>
@@ -83,16 +84,24 @@ background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: co
                 <% end %>
                 </div>
                 <div class="col">
+                  <% menu_item.menu_item_tags.each do |menu_item_tag| %>
+                    <span style="color: <%= @bda.general_text_color %>"><%= menu_item_tag.tag.name %></span>
+                    <% if menu_item_tag.tag.icon.attached? %> 
+                      <%= image_tag(menu_item_tag.tag.sized_icon(size: 50)) %>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="col">
                   <% if menu_item.image.attached? %>
                     <%= image_tag menu_item.sized_image %>
                   <% end %>
                 </div>
-                $<%= menu_item.price %>
+                <span style="color: <%= @bda.general_text_color %>">$<%= menu_item.price %></span>
               </div>
             <% end %>
           <% end %>
         <% else %>
-          <p>No categories yet! </p>
+          <p style="color: <%= @bda.general_text_color %>">No categories yet! </p>
         <% end %>
       </div>
     </div>

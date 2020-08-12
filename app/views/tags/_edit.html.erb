@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLongTitle">Edit Tag</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<%= simple_form_for @tag, url: business_tag_path(@business.id, @tag.id), method: :patch, remote: true do |f| %>
+  <div class="modal-body">
+    <div class="form-block">
+      <%= f.input :name %>
+    </div>
+    <div class="form-block">
+      <%= f.file_field :icon, accept: 'image/png' %>
+    </div>
+    <div class="form-block">
+      <p>Current tag icon:</p>
+      <% if @tag.icon.attached? %>
+        <%= image_tag(@tag.sized_icon(size: 100))%>
+      <% end %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <%= link_to 'back', business_tags_path(@business), class: "btn btn-primary btn-sm"%>
+    <%= f.button :submit, class: "btn btn-primary btn-sm", data: { disable_with: "Saving..." } %>
+  </div>
+<% end %>

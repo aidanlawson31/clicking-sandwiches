@@ -17,6 +17,10 @@ body,
   background-attachment: fixed;
 }
 
+.background {
+  padding-top: 10px;
+}
+
 .card {
   display: block !important;
 }
@@ -47,12 +51,21 @@ div.business-banner {
   padding-top: 20px;
 }
 
+
+.business-hero {
+  width: 100%;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+
 .business-hero-video-container {
   width: 100%;
   height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 #business-hero-video {
@@ -203,10 +216,6 @@ label {
     text-align: center;
   }
 
-  .pub-menu-description {
-    font-size: 30pt;
-    margin-top: 10px;
-  }
 
   .card-title {
     font-size: 40pt;
@@ -482,5 +491,13 @@ label {
   padding-top: 10px;
 }
 
+.form-container {
+  margin-top: 40px;
+}
+
+.form-block {
+  margin: 10px 0px 10px 0px;
+  font-size: 15pt;
+}
 
 /*# sourceMappingURL=public_pages.css.map */

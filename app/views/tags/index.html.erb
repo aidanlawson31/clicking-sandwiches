@@ -1,0 +1,44 @@
+<div class="container form-container">
+  <h1>Available tags</h1>
+  <table class="table table-sm form-block">
+    <thead>
+      <tr>
+        <th>Tag Name</th>
+        <th>Tag Icon</th>
+        <%= link_to "Repopulate default tags", repopulate_tags_business_tag_path(current_business, @business.id), method: :post, class: "btn btn-primary" %>
+      </tr>
+    </thead>
+    <tbody>
+      <% current_business.tags.each do |tag| %>
+        <tr>
+          <td><%= tag.name %></td>
+          <% if tag.icon.attached? %>
+            <td><%= image_tag(tag.sized_icon(size: 100)) %></td>
+          <% else %>
+          <td>None Attached</td>
+          <% end %>
+          <td><%= link_to "Update", edit_business_tag_path(@business.id, tag.id), { remote: true, class: "btn btn-primary tag-edit-button", 'data-toggle' => "modal", 'data-target' => "#edit-tag-modal" } %></td>
+          <div class="modal fade" id="edit-tag-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content" id="edit-tag-form-modal-content">
+              </div>
+            </div>
+          </div>
+          <td><%= link_to "Delete", business_tag_path(@business.id, tag.id), method: :delete, class: "btn btn-danger"%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <hr>
+  <h1>Create your own tags</h1>
+  <%= simple_form_for(@tag, url: business_tags_path(@business.id), method: :post) do |f| %>
+    <div class="form-block">
+      <%= f.input :name %>
+    </div>
+    <div class="form-block">
+      <p>Upload icons with square dimensions for the best results! E.g 300px by 300px</p>
+      <%= f.file_field :icon, accept: 'image/jpeg,image/png'%>
+    </div>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
+</div>

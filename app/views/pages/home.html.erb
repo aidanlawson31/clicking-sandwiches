@@ -1,0 +1,72 @@
+<div class="container">
+  <h1 id="home-title">MenuHive</h1>
+  <div class="home-paragraph">
+    <h2 class="feature-heading">Create responsive, customizable online webpages for your restaurant.</h2>
+    <p>A tool to build online menus that stand out from the rest.</p>
+  </div>
+  <div id="get-started">
+    <%= link_to "Get Started", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+  </div>
+  <hr>
+  <div id="features-list">
+    <h2>Featured</h2>
+    <p class="home-paragraph">Saran Thai's MenuHive Site</p>
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <%= image_tag("saran-thai-location",   alt: "Saran thai location") %>
+        </div>
+        <div class="carousel-item">
+          <%= image_tag("saran-thai-menu",       alt: "Saran thai menu") %>
+        </div>
+        <div class="carousel-item">
+          <%= image_tag("saran-thai-menu-items", alt: "Saran thai menu items") %>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <hr>
+    <div id="customization">
+      <h3 class="feature-heading">Easy Customization</h3>
+      <p class="home-paragraph">MenuHive allows you to thouroghly customize your restaurant's online pages. Fonts, Colors, Images, and Videos can all be added, removed or changed so that you're gauranteed to setup unique online menus with ease.</p>
+      <div class="customization-image-container">
+        <%= image_tag("business-customization-color", alt: "Business customization", style: "max-height:100%;max-width:100%;")%>
+      </div>
+    </div>
+    <hr>
+    <div id="menu-builder">
+      <h3 class="feature-heading">Menu Builder</h3>
+      <p class="home-paragraph">MenuHive comes equiped with a menu builder system that allows you to create menus with sortable categories.</p>
+      <p class="home-paragraph">Menu items can be created and sorted within different categories.</p>
+      <div class="customization-image-container">
+        <%= image_tag("menu-builder", alt: "Business customization", style: "max-height:100%;max-width:100%;")%>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="home-footer">
+  <ul style="list-style: none;">
+    <li class="footer-item">
+      <%= link_to "Get Started", new_user_registration_path, class: "footer-link "%>
+    </li>
+    <li class="footer-item">
+      <%= mail_to "aidanlawson31@gmail.com", "The Creator of MenuHive is desperate for work! Email The Creator", class: "footer-link" %>
+    </i>
+  </ul>
+  <div class="footer-brand">
+    <p>MenuHive</p>
+  </div>
+</div>
