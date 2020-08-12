@@ -25,7 +25,7 @@
                 <li style="margin-bottom: 40px;">
                   <%= image_form.hidden_field :display_sequence_number, class: 'display_sequence_number' %>
                   <%= list_image(image_form.object.sized_image(size: 150), alt: "location image") %>
-                  <%= link_to "Delete Image", remove_image_location_path(image_form.object), method: :delete, class: "btn btn-sm btn-primary" %>
+                  <%= link_to "Delete Image", remove_image_business_location_path(@business, image_form.object), method: :delete, class: "btn btn-sm btn-primary" %>
                 </li>
               <% end %>
               <% if @location.location_images.count > 0 %>
