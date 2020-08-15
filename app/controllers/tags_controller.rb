@@ -1,7 +1,7 @@
 class TagsController < ApplicationController
-  before_action :form_setup, only: [:edit, :index, :create, :destroy]
+  before_action :form_setup, only: [:edit, :index, :create, :destroy, :save_sort_tags]
   before_action :set_tag,    only: [:edit, :update, :destroy]
-  before_action :current_user_owns_business
+  before_action :current_user_belongs_to_business
 
   def index
     @tags = @business.tags.all
@@ -10,8 +10,9 @@ class TagsController < ApplicationController
 
   def create
     @tag = @business.tags.new(tag_params)
-    
+
     if @tag.save
+      @tag.display_sequence_number = next_display_sequence_number
       redirect_to business_tags_path(@business), notice: 'tag created successfully'
     end
   end
@@ -29,7 +30,7 @@ class TagsController < ApplicationController
 
   def destroy
     @tag.destroy
-    redirect_to business_tags_path(@business), notice: 'tag created successfully'
+    redirect_to business_tags_path(@business), notice: 'tag deleted successfully'
   end
 
   def repopulate_tags
@@ -37,7 +38,26 @@ class TagsController < ApplicationController
     redirect_to business_tags_path(params[:id])
   end
 
+  def save_sort_tags
+    puts "ALAL Tag sort #{tag_sort_params.inspect}"
+    puts "ALAL params #{params.inspect}"
+    if @business.update(tag_sort_params)
+      redirect_to business_tags_path(@business), notice: "Tags successfuly sorted"
+    else 
+      redirect_to business_tags_path(@business), notice: "Tags failed to be sorted"
+    end
+  end
+
   private
+
+  def next_display_sequence_number
+    last_tag = @business.tags.last
+    last_tag ? (last_tag.display_sequence_number + 1) : 1
+  end
+
+  def tag_sort_params
+    params[:business].permit(tags_attributes: [:id, :name, :display_sequence_number, :icon])
+  end
 
   def set_tag
     @tag = Tag.find(params[:id])
@@ -50,4 +70,4 @@ class TagsController < ApplicationController
   def tag_params
     params[:tag].permit(:name, :icon)
   end
-end 
+end

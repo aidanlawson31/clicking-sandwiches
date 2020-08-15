@@ -2,7 +2,7 @@ class MenusController < ApplicationController
   before_action :authenticate_user!
   before_action :set_menu, only: [:update, :destroy, :show, :sort_menu_categories, :save_sort_menu_categories]
   before_action :form_setup, only: [:update, :show]
-  before_action :current_user_owns_business
+  before_action :current_user_belong_to_business
 
   def index
     @menus = current_business.menus
@@ -65,7 +65,8 @@ class MenusController < ApplicationController
 
   def menu_params
     params[:menu].permit(:display_name, :internal_name, :image, :remove_menu_banner,
-      :description, :menu_url, categories_attributes: [ :id, :name, :display_sequence_number ])
+      :description, :menu_url, categories_attributes: [ :id, :name, :display_sequence_number ]
+    )
   end
 
   def menu_sort_params

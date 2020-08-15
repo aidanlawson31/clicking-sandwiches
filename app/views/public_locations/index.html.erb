@@ -1,45 +1,45 @@
 <div class="background" style="
-background-color:  <%= @bda.background_color %>;
-font-family:      '<%= @bda.font.name %>';
-background-image:  <%= @bda.background_image.attached? ? "url(#{url_for @bda.sized_background_image(size: 900)})" : 'none' %>;
-background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: cover" %>;"
+background-color:  <%= @business_display_attribute.background_color %>;
+font-family:      '<%= @business_display_attribute.font.name %>';
+background-image:  <%= @business_display_attribute.background_image.attached? ? "url(#{url_for @business_display_attribute.sized_background_image(size: 900)})" : 'none' %>;
+background-repeat: <%= @business_display_attribute.repeat? ? "repeat" : "no-repeat; background-size: cover" %>;"
 >
-  <div class="container" id="index-container" style="background-color: <%= @bda.foreground_rgba(@bda.foreground_color, @bda.foreground_opacity) %>">
-    <% if @bda.sized_banner %>
+  <div class="container" id="index-container" style="background-color: <%= @business_display_attribute.foreground_rgba(@business_display_attribute.foreground_color, @business_display_attribute.foreground_opacity) %>">
+    <% if @business_display_attribute.sized_banner %>
       <div class="business-banner">
-        <%= list_image(@bda.banner, alt: "Image") %>
+        <%= list_image(@business_display_attribute.banner, alt: "Image") %>
       </div>
     <% end %>
 
-    <% if @bda.sized_top_icon %>
+    <% if @business_display_attribute.sized_top_icon %>
       <div class="business-top-ico">
-        <%= list_image(@bda.top_icon, alt: "Image") %>
+        <%= list_image(@business_display_attribute.top_icon, alt: "Image") %>
       </div>
     <% end %>
 
-    <h1 id="index-heading" style="color: <%= @bda.heading_color %>; font-family: <%= @bda.heading_font.name %>"><%= @business.name %></h1>
+    <h1 id="index-heading" style="color: <%= @business_display_attribute.heading_color %>; font-family: <%= @business_display_attribute.heading_font.name %>"><%= @business.name %></h1>
   
-    <% if @bda.hero_image_or_video %>
-      <% if @bda.sized_hero_image %>
+    <% if @business_display_attribute.hero_image_or_video %>
+      <% if @business_display_attribute.sized_hero_image %>
         <div class="business-hero">
-          <%= image_tag(@bda.hero_image, alt: "Image", style: "width:100%;height:100%;") %>
+          <%= image_tag(@business_display_attribute.hero_image, alt: "Image", style: "width:100%;height:100%;") %>
         </div>
       <% end %>
     <% else %>
-      <% if @bda.hero_video.attached? %>
+      <% if @business_display_attribute.hero_video.attached? %>
         <div class="business-hero-video-container">
-          <%= video_tag(url_for(@bda.hero_video), autoplay: 'true', loop: 'true', muted: 'true', id: 'business-hero-video' )%>
+          <%= video_tag(url_for(@business_display_attribute.hero_video), autoplay: 'true', loop: 'true', muted: 'true', id: 'business-hero-video' )%>
         </div>
       <% end %>
     <% end %>
 
-    <div id="index-description" style="color: <%= @bda.general_text_color %> !important">
+    <div id="index-description" style="color: <%= @business_display_attribute.general_text_color %> !important">
       <%= @business.description.html_safe %>
     </div> 
-    <h3  id="index-description" style="color: <%= @bda.general_text_color %>">Locations</h3>
+    <h3  id="index-description" style="color: <%= @business_display_attribute.general_text_color %>">Locations</h3>
     <% unless @locations.empty? %>
       <% @locations.each do |location| %>
-        <div class="card" style="margin:5px; background-color: <%= @bda.card_background_color %>; border: 1px solid <%= @bda.card_border_color%>">
+        <div class="card" style="margin:5px; background-color: <%= @business_display_attribute.card_background_color %>; border: 1px solid <%= @business_display_attribute.card_border_color%>">
           <div class="row" style="padding: 10px; width: 100%;">
             <div class="col" style="margin: 0.5rem;" >
               <% if location.location_images %>
@@ -49,12 +49,12 @@ background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: co
               <% end %>
             </div>
             <div class="col">
-              <h5 id="index-card" style="padding-top: 30px; color: <%= @bda.general_text_color %>"><%= location.name %></h5>
-              <h5 id="index-card" style="margin-top: 5px; color: <%= @bda.general_text_color %>"><%= location.address %></h5>
+              <h5 id="index-card" style="padding-top: 30px; color: <%= @business_display_attribute.general_text_color %>"><%= location.name %></h5>
+              <h5 id="index-card" style="margin-top: 5px; color: <%= @business_display_attribute.general_text_color %>"><%= location.address %></h5>
               <% unless location.open.blank? %>
-                <h5 id="index-card" style="margin-top: 5px; color: <%= @bda.general_text_color %>">open: <%= location.open %></h5>
+                <h5 id="index-card" style="margin-top: 5px; color: <%= @business_display_attribute.general_text_color %>">open: <%= location.open %></h5>
               <% end %>
-              <%= link_to "View location", public_location_path(@business.business_url, location.location_url), class: "btn btn-sm btn-primary custom-btn", style: "background-color: #{@bda.button_color}; border-color: #{@bda.button_color}; color: #{@bda.button_text_color}" %>
+              <%= link_to "View location", public_location_path(@business.business_url, location.location_url), class: "btn btn-sm btn-primary custom-btn", style: "background-color: #{@business_display_attribute.button_color}; border-color: #{@business_display_attribute.button_color}; color: #{@business_display_attribute.button_text_color}" %>
             </div>
             <div class="col">
               <iframe id="index-iframe" width="200" height="200" frameborder="0"

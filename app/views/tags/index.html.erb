@@ -8,24 +8,33 @@
         <%= link_to "Repopulate default tags", repopulate_tags_business_tag_path(current_business, @business.id), method: :post, class: "btn btn-primary" %>
       </tr>
     </thead>
-    <tbody>
-      <% current_business.tags.each do |tag| %>
-        <tr>
-          <td><%= tag.name %></td>
-          <% if tag.icon.attached? %>
-            <td><%= image_tag(tag.sized_icon(size: 100)) %></td>
-          <% else %>
-          <td>None Attached</td>
-          <% end %>
-          <td><%= link_to "Update", edit_business_tag_path(@business.id, tag.id), { remote: true, class: "btn btn-primary tag-edit-button", 'data-toggle' => "modal", 'data-target' => "#edit-tag-modal" } %></td>
-          <div class="modal fade" id="edit-tag-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content" id="edit-tag-form-modal-content">
-              </div>
+    <%= simple_form_for @business, url: save_sort_tags_business_tags_path(current_business) do |f| %>
+      <tbody id="tags-list">
+        <div class="modal fade" id="edit-tag-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" id="edit-tag-form-modal-content">
             </div>
           </div>
-          <td><%= link_to "Delete", business_tag_path(@business.id, tag.id), method: :delete, class: "btn btn-danger"%></td>
-        </tr>
+        </div>
+        <%= f.simple_fields_for :tags do |tag_form| %>
+          <% unless tag_form.object.id == nil %>
+            <tr>
+              <td>
+                <%= tag_form.object.name %>
+                <%= tag_form.text_field :name, style: 'display:none;' %>
+                <%= tag_form.hidden_field :display_sequence_number, class: 'display_sequence_number' %>
+              </td>
+              <% if tag_form.object.icon.attached? %>
+                <td><%= image_tag(tag_form.object.sized_icon(size: 100)) %></td>
+              <% else %>
+                <td>None Attached</td>
+              <% end %>
+              <td><%= link_to "Update", edit_business_tag_path(@business.id, tag_form.object.id), { remote: true, class: "btn btn-primary tag-edit-button", 'data-toggle' => "modal", 'data-target' => "#edit-tag-modal" } %></td>
+              <td><%= link_to "Delete", business_tag_path(@business.id, tag_form.object.id), method: :delete, class: "btn btn-danger", data: { confirm: 'Deleting this tag will remove it from all menu items currently using it.'} %></td>
+            </tr>
+          <% end %>
+        <% end %>
+        <%= f.button :submit, "Save Tag order", class: "btn btn-primary" %>
       <% end %>
     </tbody>
   </table>

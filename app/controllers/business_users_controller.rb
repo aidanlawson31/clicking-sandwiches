@@ -12,43 +12,35 @@ class BusinessUsersController < ApplicationController
     @user             = User.new(user_params)
     @user.business_id = @business.id
 
-    if @user.save
-      redirect_to business_business_users_path(@business)
-    else
-      redirect_to business_business_users_path(@business)
+    unless @user.save
       flash.now[:notice] == "#{@user.errors.full_messages.join(', ')}"
     end
+    redirect_to business_business_users_path(@business)
   end
 
   def destroy
-    if @user.destroy
-      redirect_to business_business_users_path(@business)
-    else
-      redirect_to business_business_users_path(@business)
+    unless @user.destroy
       flash.now[:notice] == "#{@user.errors.full_messages.join(', ')}"
     end
+    redirect_to business_business_users_path(@business)
   end
 
   def remove_admin_privileges
     @user.admin = false
 
-    if @user.save 
-      redirect_to business_business_users_path(@business)
-    else
-      redirect_to business_business_users_path(@business)
+    unless @user.save 
       flash.now[:notice] == "#{@user.errors.full_messages.join(', ')}"
     end
+    redirect_to business_business_users_path(@business)
   end
 
   def grant_admin_privileges
     @user.admin = true
 
-    if @user.save 
-      redirect_to business_business_users_path(@business)
-    else
-      redirect_to business_business_users_path(@business)
+    unless @user.save 
       flash.now[:notice] == "#{@user.errors.full_messages.join(', ')}"
     end
+    redirect_to business_business_users_path(@business)
   end
   
   private

@@ -2,7 +2,7 @@ class MenuItemsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_menu
   before_action :set_menu_item, only: [:edit, :update, :destroy]
-  before_action :current_user_owns_business
+  before_action :current_user_belongs_to_business
 
   def new
     @category  = Category.find(params[:category_id])
@@ -17,7 +17,6 @@ class MenuItemsController < ApplicationController
     if @menu_item.save
       redirect_to business_menu_path(current_business, @menu_item.category.menu), notice: 'Menu item created successfully.'
     else
-      puts "ALAL #{@menu_item.errors.full_messages}"
       render :new
     end
   end
@@ -59,15 +58,11 @@ class MenuItemsController < ApplicationController
     @menu = Menu.find(params[:menu_id])
   end
 
-  def tag_setup
-
-  end
-
   def menu_item_params
     params[:menu_item].permit( 
       :name, :description, :price, :code, :category_id, :image, :display_sequence_number,
       :item_options, :item_tags, tag_ids: [],
-
-      menu_item_options_attributes: [:id, :name, :price, :display_sequence_number, :_destroy])
+      menu_item_options_attributes: [:id, :name, :price, :display_sequence_number, :_destroy]
+    )
   end
 end

@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_location, only: [:add_menu, :show_menus, :remove_menu, :add_image, :save_sort_image, :update, :destroy, :show]
-  before_action :current_user_owns_business
+  before_action :current_user_belongs_to_business
   
   def index
     @locations = current_user.business.locations
@@ -22,10 +22,10 @@ class LocationsController < ApplicationController
   end
 
   def add_menu
-    @added_menu = Menu.find(params[:menu_id])
+    menu = Menu.find(params[:menu_id])
 
-    if @added_menu
-      @location.location_menus.create(menu_id: @added_menu.id)
+    if menu
+      @location.location_menus.create(menu_id: menu.id)
       flash.now[:notice] = "Menus successfully added to location."
     end
     setup_add_menus
@@ -105,9 +105,8 @@ class LocationsController < ApplicationController
 
   def next_display_sequence_number(location_id)
     location            = Location.find(location_id)
-    @location_images    = location.location_images
-    last_location_image = @location_images.last
-    last_location_image ? (last_location_image .display_sequence_number + 1) : 1
+    last_location_image = location.location_images.last
+    last_location_image ? (last_location_image.display_sequence_number + 1) : 1
   end
 
   def setup_add_menus

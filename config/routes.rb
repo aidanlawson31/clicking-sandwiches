@@ -16,6 +16,10 @@ Rails.application.routes.draw do
     end
 
     resources :tags do
+      collection do
+        patch 'save_sort_tags'
+      end
+
       member do
         post 'repopulate_tags'
       end

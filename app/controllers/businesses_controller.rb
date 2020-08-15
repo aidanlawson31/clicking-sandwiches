@@ -1,7 +1,7 @@
 class BusinessesController < ApplicationController
   before_action :authenticate_user!
   before_action :form_setup, only: [:update, :show, :update_business_display_attribute]
-  before_action :current_user_owns_business
+  before_action :current_user_belongs_to_business
 
   def update_business_display_attribute
     if @business_display_attribute.update(business_display_attribute_params)
@@ -19,7 +19,7 @@ class BusinessesController < ApplicationController
     @business = Business.new(business_params)
 
     if @business.save
-      current_user.update_attributes(business_id: @business.id)
+      current_user.update_attributes(business_id: @business.id, admin: true)
       BusinessInitialize.create_menu_item_tags(@business.id)
       redirect_to @business, notice: "Business created successfully."
     else
