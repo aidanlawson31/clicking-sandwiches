@@ -1,33 +1,34 @@
 <div class="background" style="
-background-color: <%= @bda.background_color %>;
-font-family: '<%= @bda.font.name %>';
-background-image: <%= @bda.background_image.attached? ? "url(#{url_for @bda.sized_background_image(size: 900)})" : 'none' %>;
-background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: cover"%>;"
+background-color: <%= @business_display_attribute.background_color %>;
+font-family: '<%= @business_display_attribute.font.name %>';
+background-image: <%= @business_display_attribute.background_image.attached? ? "url(#{url_for @business_display_attribute.sized_background_image(size: 900)})" : 'none' %>;
+background-repeat: <%= @business_display_attribute.repeat? ? "repeat" : "no-repeat; background-size: cover"%>;"
 >
-  <div class="container" id="show-container" style="background-color: <%= @bda.foreground_rgba(@bda.foreground_color, @bda.foreground_opacity) %>;">
+  <div class="container" id="show-container" style="background-color: <%= @business_display_attribute.foreground_rgba(@business_display_attribute.foreground_color, @business_display_attribute.foreground_opacity) %>;">
     <div id="show-title">
       <% if @business.locations.count > 1 %>
-        <h1 class="show-header" style="color: <%= @bda.heading_color %>"><%= @location.name %></h1>
-        <h5 class="show-sub-header" style="color: <%= @bda.heading_color %>"><%= @business.name %> Location</h5><br>
+        <h1 class="show-header" style="color: <%= @business_display_attribute.heading_color %>"><%= @location.name %></h1>
+        <h5 class="show-sub-header" style="color: <%= @business_display_attribute.heading_color %>"><%= @business.name %> Location</h5><br>
         <div style="text-align:left">
-          <%= link_to "Back to #{@business.name}'s page", public_locations_path(@business.business_url), class: "btn custom-btn btn-primary btn-sm btn-custom", id: "back-button", style:"background-color: #{@bda.button_color}; border-color: #{@bda.button_color}; color: #{@bda.button_text_color};" %>
+          <%= link_to "Back to #{@business.name}'s page", public_locations_path(@business.business_url), class: "btn custom-btn btn-primary btn-sm btn-custom", id: "back-button", style:"background-color: #{@business_display_attribute.button_color}; border-color: #{@business_display_attribute.button_color}; color: #{@business_display_attribute.button_text_color};" %>
         </div>
       <% else %>
-        <h1 class="show-header" style="color: <%= @bda.heading_color %>"><%= @business.name %></h1>
-        <h5 class="show-header" style="color: <%= @bda.heading_color %>"><%= @location.name %></h5><br>
+        <h1 class="show-header" style="color: <%= @business_display_attribute.heading_color %>"><%= @business.name %></h1>
+        <h5 class="show-header" style="color: <%= @business_display_attribute.heading_color %>"><%= @location.name %></h5><br>
       <% end %>
     </div>
-    <% if @business.locations.count < 2 %>
-      <% if @bda.hero_image_or_video %>
-        <% if @bda.sized_hero_image %>
+    
+    <% if @business.locations.count <= 1 %>
+      <% if @business_display_attribute.hero_image_or_video %>
+        <% if @business_display_attribute.sized_hero_image %>
           <div class="business-hero">
-            <%= image_tag(@bda.hero_image, alt: "Image", style:"height:100%;width:100%;") %>
+            <%= image_tag(@business_display_attribute.hero_image, alt: "Image", style:"height:100%;width:100%;") %>
           </div>
         <% end %>
       <% else %>
-        <% if @bda.hero_video.attached? %>
+        <% if @business_display_attribute.hero_video.attached? %>
           <div class="business-hero-video-container">
-            <%= video_tag(url_for(@bda.hero_video), autoplay: 'true', loop: 'true', muted: 'true', id: 'business-hero-video' )%>
+            <%= video_tag(url_for(@business_display_attribute.hero_video), autoplay: 'true', loop: 'true', muted: 'true', id: 'business-hero-video' )%>
           </div>
         <% end %>
       <% end %>
@@ -35,18 +36,18 @@ background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: co
 
       <div class="row">
         <div class="col-xs-12 col-sm-12 <%= @location.location_images.blank? ? "col-md-12 col-lg-12" : "col-md-12 col-lg-6" %>">
-          <div class="show-description" style="<%= @location.location_images.blank? && @business.locations.count < 2 ? "text-align:center;" : "" %> background-color: <%= @bda.card_background_color%>; border: 1px solid <%= @bda.card_border_color %>">
-            <div class="card location-show-card" style="background-color: <%= @bda.card_background_color%>; border: none">
-              <p style="color: <%= @bda.general_text_color %>">Address: <%= @location.address %></p>
+          <div class="show-description" style="<%= @location.location_images.blank? && @business.locations.count < 2 ? "text-align:center;" : "" %> background-color: <%= @business_display_attribute.card_background_color%>; border: 1px solid <%= @business_display_attribute.card_border_color %>">
+            <div class="card location-show-card" style="background-color: <%= @business_display_attribute.card_background_color%>; border: none">
+              <p style="color: <%= @business_display_attribute.general_text_color %>">Address: <%= @location.address %></p>
               <% unless @location.open.blank? %>
-                <p style="color: <%= @bda.general_text_color %>">Open: <%= @location.open %></p>
+                <p style="color: <%= @business_display_attribute.general_text_color %>">Open: <%= @location.open %></p>
               <% end %>
               <% if !@location.phone_number.blank? %>
-                <a style="color: <%= @bda.general_text_color %>" href="tel:<%= @location.phone_number %>">Phone number: <%= @location.phone_number %></a>
+                <a style="color: <%= @business_display_attribute.general_text_color %>" href="tel:<%= @location.phone_number %>">Phone number: <%= @location.phone_number %></a>
               <% end %>
               <% if @business.locations.count < 2 %>
                 <div id="b-description-p">
-                  <span style="color:<%= @bda.general_text_color %>" data-trix-color><%= @business.description.html_safe%></span>
+                  <span style="color:<%= @business_display_attribute.general_text_color %>" data-trix-color><%= @business.description.html_safe%></span>
                 </div>
               <% end %>
             </div> 
@@ -83,13 +84,13 @@ background-repeat: <%= @bda.repeat? ? "repeat" : "no-repeat; background-size: co
           <div class="pub-show-menus">
             <% if @location.location_menus %>
               <% @location.location_menus.each do |location_menu| %>
-                <div class="card location-show-card" style="background-color: <%= @bda.card_background_color%>; border: 1px solid <%= @bda.card_border_color%>;">
-                  <h5 class="card-title" style="color: <%= @bda.general_text_color %>"><%= location_menu.menu.display_name %></h5>
-                  <span style="color: <%= @bda.general_text_color %>;"><%= location_menu.menu.description.html_safe %></span>
+                <div class="card location-show-card" style="background-color: <%= @business_display_attribute.card_background_color%>; border: 1px solid <%= @business_display_attribute.card_border_color%>;">
+                  <h5 class="card-title" style="color: <%= @business_display_attribute.general_text_color %>"><%= location_menu.menu.display_name %></h5>
+                  <span style="color: <%= @business_display_attribute.general_text_color %>;"><%= location_menu.menu.description.html_safe %></span>
                   <%= link_to "View Menu", public_menu_path(@location.business.business_url, 
                                                             @location.location_url, 
                                                             location_menu.menu.menu_url), 
-                                                            class: "btn custom-btn btn-primary btn-sm", style:"background-color: #{@bda.button_color}; border-color: #{@bda.button_color}; color: #{@bda.button_text_color}; margin-top: 10px;" %>
+                                                            class: "btn custom-btn btn-primary btn-sm", style:"background-color: #{@business_display_attribute.button_color}; border-color: #{@business_display_attribute.button_color}; color: #{@business_display_attribute.button_text_color}; margin-top: 10px;" %>
                 </div>
               <% end %>
             <% end %>

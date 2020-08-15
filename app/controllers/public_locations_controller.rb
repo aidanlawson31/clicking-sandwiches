@@ -23,6 +23,6 @@ class PublicLocationsController < ApplicationController
   def set_business
     @business = Business.find_by(business_url: params[:business_url])
     render :business_not_found unless @business
-    @bda = @business.business_display_attribute
+    @business_display_attribute = @business.business_display_attribute
   end
 end

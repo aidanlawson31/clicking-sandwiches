@@ -1,5 +1,6 @@
 class LocationImage < ApplicationRecord
-  belongs_to       :location
+  belongs_to :location
+
   has_one_attached :image
 
   default_scope { order(:display_sequence_number) }

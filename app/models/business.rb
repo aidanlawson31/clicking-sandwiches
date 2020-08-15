@@ -6,6 +6,7 @@ class Business < ApplicationRecord
   has_one  :business_display_attribute, dependent: :destroy
   
   accepts_nested_attributes_for :users
+  accepts_nested_attributes_for :tags
 
   before_validation :sanitize_text
   
@@ -14,8 +15,10 @@ class Business < ApplicationRecord
   
   after_create :create_display_attributes
 
+  private
+
   def create_display_attributes
-    self.create_business_display_attribute(
+    create_business_display_attribute(
       font_id: Font.default.id,
       heading_font_id: Font.default.id,
       menu_item_header_color: "#000",
@@ -31,10 +34,8 @@ class Business < ApplicationRecord
       foreground_opacity: "0",
       repeat: "true",
       hero_image_or_video: "true"
-     )
+    )
   end
-
-  private
 
   def sanitize_text
     self.description = Utility.sanitize_rich_text(description)

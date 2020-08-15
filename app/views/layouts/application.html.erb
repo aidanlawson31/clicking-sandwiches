@@ -45,10 +45,10 @@
       }
     });
 
-    $('#default-tags-list').sortable({ 
+    $('#tags-list').sortable({ 
       placeholder: 'ui-state-highlight',
       update: function(event, ui) {
-        $('#default-tags-list tr').each(function (index) { $(this).find(".display_sequence_number").val(index+1) });
+        $('#tags-list tr').each(function (index) { $(this).find(".display_sequence_number").val(index+1) });
       }
     });
 

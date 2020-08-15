@@ -63,10 +63,10 @@ class BusinessDisplayAttribute < ApplicationRecord
     hero_image.variant(resize: "!#{size}%x#{size}").processed if hero_image.attached?
   end
 
-  def purge_top_icon;         top_icon.purge_later;         end
-  def purge_favicon;          favicon.purge_later;          end
-  def purge_background_image; background_image.purge_later; end
-  def purge_banner;           banner.purge_later;           end
-  def purge_hero_image;       hero_image.purge_later;       end
-  def purge_hero_video;       hero_video.purge_later;       end
+  def purge_top_icon         ; top_icon.purge_later         ; end
+  def purge_favicon          ; favicon.purge_later          ; end
+  def purge_background_image ; background_image.purge_later ; end
+  def purge_banner           ; banner.purge_later           ; end
+  def purge_hero_image       ; hero_image.purge_later       ; end
+  def purge_hero_video       ; hero_video.purge_later       ; end
 end
