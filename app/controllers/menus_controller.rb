@@ -2,7 +2,7 @@ class MenusController < ApplicationController
   before_action :authenticate_user!
   before_action :set_menu, only: [:update, :destroy, :show, :sort_menu_categories, :save_sort_menu_categories]
   before_action :form_setup, only: [:update, :show]
-  before_action :current_user_belong_to_business
+  before_action :current_user_belongs_to_business
 
   def index
     @menus = current_business.menus

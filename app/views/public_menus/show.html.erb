@@ -89,11 +89,15 @@ background-repeat: <%= @business_display_attribute.repeat? ? "repeat" : "no-repe
                     <tbody>
                       <% menu_item.menu_item_tags.each do |menu_item_tag| %>
                         <tr>
-                          <td id="pub-m-td"><%= menu_item_tag.tag.name %></td>
                           <td id="pub-m-td">
-                            <% if menu_item_tag.tag.icon.attached? %> 
-                              <%= image_tag(menu_item_tag.tag.sized_icon(size: 50)) %>
-                            <% end %>
+                            <div class="image-wrap">
+                              <div class="tag-name">
+                                <span><%= menu_item_tag.tag.name %></span>
+                              </div>
+                              <% if menu_item_tag.tag.icon.attached? %> 
+                                <%= image_tag(menu_item_tag.tag.sized_icon(size: 40)) %>
+                              <% end %>
+                            </div>
                           </td>
                         </tr>
                       <% end %>
