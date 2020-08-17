@@ -1,0 +1,17 @@
+<% unless tag_form.object.id == nil %>
+  <tr>
+    <td>
+      <%= tag_form.object.name %>
+      <%= tag_form.text_field :name, style: 'display:none;' %>
+      <%= tag_form.hidden_field :display_sequence_number, class: 'display_sequence_number' %>
+    </td>
+    <%= tag_form.hidden_field :id %>
+    <% if tag_form.object.icon.attached? %>
+      <td><%= image_tag(tag_form.object.sized_icon(size: 100)) %></td>
+    <% else %>
+      <td>None Attached</td>
+    <% end %>
+    <td><%= link_to "Update", edit_business_tag_path(@business.id, tag_form.object.id), { remote: true, class: "btn btn-primary tag-edit-button", 'data-toggle' => "modal", 'data-target' => "#edit-tag-modal" } %></td>
+    <td><%= link_to "Delete", business_tag_path(@business.id, tag_form.object.id), method: :delete, class: "btn btn-danger", data: { confirm: 'Deleting this tag will remove it from all menu items currently using it.'} %></td>
+  </tr>
+<% end %>

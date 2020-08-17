@@ -40,7 +40,6 @@ class TagsController < ApplicationController
 
   def save_sort_tags
     puts "ALAL Tag sort #{tag_sort_params.inspect}"
-    puts "ALAL params #{params.inspect}"
     if @business.update(tag_sort_params)
       redirect_to business_tags_path(@business), notice: "Tags successfuly sorted"
     else 
