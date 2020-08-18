@@ -54,7 +54,7 @@ background-repeat: <%= @business_display_attribute.repeat? ? "repeat" : "no-repe
               <% unless location.open.blank? %>
                 <h5 id="index-card" style="margin-top: 5px; color: <%= @business_display_attribute.general_text_color %>">open: <%= location.open %></h5>
               <% end %>
-              <%= link_to "View location", public_location_path(@business.business_url, location.location_url), class: "btn btn-sm btn-primary custom-btn", style: "background-color: #{@business_display_attribute.button_color}; border-color: #{@business_display_attribute.button_color}; color: #{@business_display_attribute.button_text_color}" %>
+              <%= link_to "View location", public_location_path(@business.business_url, location.location_url), id: "view-location-btn",class: "btn btn-sm btn-primary custom-btn", style: "background-color: #{@business_display_attribute.button_color}; border-color: #{@business_display_attribute.button_color}; color: #{@business_display_attribute.button_text_color}" %>
             </div>
             <div class="col">
               <iframe id="index-iframe" width="200" height="200" frameborder="0"

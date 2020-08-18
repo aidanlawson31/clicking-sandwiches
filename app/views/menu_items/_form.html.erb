@@ -47,26 +47,15 @@
     <div class="row" id="item-tag-radio-buttons" style="display: <%= @menu_item.item_tags ? 'block' : 'none' %>">  
       <div class="col">
         <%= f.association :tags, as: :check_boxes,
-                          item_wrapper_tag: :hr,
                           item_wrapper_class: "image-select",
                           :collection => current_business.tags.all,
                           :label => false,
                           :inline_label => false,
                           :include_blank => false,
                           :input_html => {multiple: true},
-                          :label_method => lambda { |tag| "#{tag.name}" } %>
+                          :label_method => lambda { |tag| image_tag(tag.sized_icon(size: 50))  } %>
       </div>
-      <div class="col" id="business-tags-preview-list">
-        <% current_business.tags.each do |tag| %>
-          <%= tag.name %>
-          <% if tag.icon.attached? %>
-            <%= image_tag(tag.sized_icon(size: 100)) %>
-          <% else %>
-            <p>Icon not attached</p>
-          <% end %>
-          <hr>
-        <% end %>
-      </div>
+
 
     <div id="item-tag-radio-no" style="display: <%= @menu_item.item_tags ? 'none' : 'block' %>">
     </div>

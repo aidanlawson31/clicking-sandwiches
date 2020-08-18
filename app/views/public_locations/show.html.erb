@@ -2,7 +2,8 @@
 background-color: <%= @business_display_attribute.background_color %>;
 font-family: '<%= @business_display_attribute.font.name %>';
 background-image: <%= @business_display_attribute.background_image.attached? ? "url(#{url_for @business_display_attribute.sized_background_image(size: 900)})" : 'none' %>;
-background-repeat: <%= @business_display_attribute.repeat? ? "repeat" : "no-repeat; background-size: cover"%>;"
+background-repeat: <%= @business_display_attribute.repeat? ? "repeat" : "no-repeat; background-size: cover;"%>;
+height: 100% !important;"
 >
   <div class="container" id="show-container" style="background-color: <%= @business_display_attribute.foreground_rgba(@business_display_attribute.foreground_color, @business_display_attribute.foreground_opacity) %>;">
     <div id="show-title">
@@ -86,7 +87,7 @@ background-repeat: <%= @business_display_attribute.repeat? ? "repeat" : "no-repe
               <% @location.location_menus.each do |location_menu| %>
                 <div class="card location-show-card" style="background-color: <%= @business_display_attribute.card_background_color%>; border: 1px solid <%= @business_display_attribute.card_border_color%>;">
                   <h5 class="card-title" style="color: <%= @business_display_attribute.general_text_color %>"><%= location_menu.menu.display_name %></h5>
-                  <span style="color: <%= @business_display_attribute.general_text_color %>;"><%= location_menu.menu.description.html_safe %></span>
+                  <span id="menu-description-preview" style="color: <%= @business_display_attribute.general_text_color %>;"><%= location_menu.menu.description.html_safe %></span>
                   <%= link_to "View Menu", public_menu_path(@location.business.business_url, 
                                                             @location.location_url, 
                                                             location_menu.menu.menu_url), 
