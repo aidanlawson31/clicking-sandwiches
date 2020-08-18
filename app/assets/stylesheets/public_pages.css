@@ -8,6 +8,7 @@
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 body,
@@ -19,6 +20,13 @@ body,
 
 .background {
   padding-top: 10px;
+}
+
+@media only screen and (max-device-width: 456px) {
+  body,
+  .background {
+    height: 100%;
+  }
 }
 
 .card {
@@ -379,6 +387,19 @@ label {
 
   .category-name {
     font-size: 40pt;
+  }
+
+  .image-wrap {
+    height: 80px;
+    width: 80px;
+  }
+
+  #menu-description-preview {
+    font-size: 30pt;
+  }
+
+  #view-location-btn {
+    width: 100%;
   }
 }
 
