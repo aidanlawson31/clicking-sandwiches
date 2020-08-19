@@ -8,13 +8,13 @@ height: 100% !important;"
   <div class="container" id="show-container" style="background-color: <%= @business_display_attribute.foreground_rgba(@business_display_attribute.foreground_color, @business_display_attribute.foreground_opacity) %>;">
     <div id="show-title">
       <% if @business.locations.count > 1 %>
-        <h1 class="show-header" style="color: <%= @business_display_attribute.heading_color %>"><%= @location.name %></h1>
+        <h1 class="show-header" style="color: <%= @business_display_attribute.heading_color %>; font-family: <%= @business_display_attribute.heading_font.name %>"><%= @location.name %></h1>
         <h5 class="show-sub-header" style="color: <%= @business_display_attribute.heading_color %>"><%= @business.name %> Location</h5><br>
         <div style="text-align:left">
           <%= link_to "Back to #{@business.name}'s page", public_locations_path(@business.business_url), class: "btn custom-btn btn-primary btn-sm btn-custom", id: "back-button", style:"background-color: #{@business_display_attribute.button_color}; border-color: #{@business_display_attribute.button_color}; color: #{@business_display_attribute.button_text_color};" %>
         </div>
       <% else %>
-        <h1 class="show-header" style="color: <%= @business_display_attribute.heading_color %>"><%= @business.name %></h1>
+        <h1 class="show-header" style="color: <%= @business_display_attribute.heading_color %>; font-family: <%= @business_display_attribute.heading_font.name %>"><%= @business.name %></h1>
         <h5 class="show-header" style="color: <%= @business_display_attribute.heading_color %>"><%= @location.name %></h5><br>
       <% end %>
     </div>
