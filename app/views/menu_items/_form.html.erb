@@ -64,6 +64,15 @@
   <div class="form-block">
     <p>Upload an image of the dish</p>
     <%= f.file_field :image, accept: 'image/png,image/jpeg' %><br><br>
+    <% if @menu_item.image.attached? %>
+      <div class="col">
+        <p>Currently uploaded imaage: </p>
+        <%= image_tag @menu_item.sized_image(size: 150) %>
+      </div>
+      <div class="col">
+        <%= f.input :remove_image, as: :boolean, checked_value: true, unchecked_value: false  %>
+      </div>
+    <% end %>
   </div>
   <%= f.hidden_field :display_sequence_number, value: 0 %>
   <%= f.button :submit, class: "btn btn-primary btn-sm", data: { disable_with: "Saving..." } %>
