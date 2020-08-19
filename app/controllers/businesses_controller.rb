@@ -5,9 +5,9 @@ class BusinessesController < ApplicationController
 
   def update_business_display_attribute
     if @business_display_attribute.update(business_display_attribute_params)
-      redirect_to business_path(@business), notice: "Business display attributes saved successfully."
+      redirect_to business_path(@business), notice: "Business customization saved successfully."
     else
-      redirect_to business_path(@business), notice: "Business display attributes failed to save."
+      redirect_to business_path(@business), notice: "Business customization failed to save."
     end
   end
 

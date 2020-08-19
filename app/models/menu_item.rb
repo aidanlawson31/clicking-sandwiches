@@ -12,6 +12,7 @@ class MenuItem < ApplicationRecord
 
   attribute :item_options, :boolean, default: false
   attribute :item_tags,    :boolean, default: false
+  attribute :remove_image, :boolean, default: false
 
   before_validation :sanitize_text
 
@@ -22,6 +23,13 @@ class MenuItem < ApplicationRecord
   validates :item_tags,               inclusion: { in: [true, false] }
 
   after_save :remove_tags, unless: :item_tags
+  after_save :purge_image, if:     :remove_image
+  
+  attr_accessor :remove_image
+
+  def purge_image
+    image.purge_later
+  end
 
   def remove_tags
     self.menu_item_tags.destroy_all

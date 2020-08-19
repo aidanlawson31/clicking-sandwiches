@@ -104,9 +104,9 @@ background-repeat: <%= @business_display_attribute.repeat? ? "repeat" : "no-repe
                     </tbody>
                   </table>
                 <% end %>
-                <div class="col">
+                <div class="col" id="menu-image-wrapper">
                   <% if menu_item.image.attached? %>
-                    <%= image_tag menu_item.sized_image %>
+                    <%= image_tag(menu_item.sized_image(size: 250), id: "menu-item-image") %>
                   <% end %>
                 </div>
                 <span style="color: <%= @business_display_attribute.general_text_color %>">$<%= menu_item.price %></span>

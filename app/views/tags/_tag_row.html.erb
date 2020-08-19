@@ -13,5 +13,6 @@
     <% end %>
     <td><%= link_to "Update", edit_business_tag_path(@business.id, tag_form.object.id), { remote: true, class: "btn btn-primary tag-edit-button", 'data-toggle' => "modal", 'data-target' => "#edit-tag-modal" } %></td>
     <td><%= link_to "Delete", business_tag_path(@business.id, tag_form.object.id), method: :delete, class: "btn btn-danger", data: { confirm: 'Deleting this tag will remove it from all menu items currently using it.'} %></td>
+    <td><%= image_tag "updown" %></td>
   </tr>
 <% end %>

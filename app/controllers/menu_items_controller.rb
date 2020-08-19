@@ -61,7 +61,7 @@ class MenuItemsController < ApplicationController
   def menu_item_params
     params[:menu_item].permit( 
       :name, :description, :price, :code, :category_id, :image, :display_sequence_number,
-      :item_options, :item_tags, tag_ids: [],
+      :remove_image, :item_options, :item_tags, tag_ids: [],
       menu_item_options_attributes: [:id, :name, :price, :display_sequence_number, :_destroy]
     )
   end
