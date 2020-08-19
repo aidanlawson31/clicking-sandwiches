@@ -1,0 +1,15 @@
+<h2>Cards and buttons</h2>
+<div class="row">
+  <div class="col bda-inputs">
+    <%= f.input :button_text_color, as: :minicolors, input_html: {data: {
+      minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
+    <%= f.input :button_color, as: :minicolors, input_html: {data: {
+      minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
+  </div>
+  <div class="col bda-inputs">
+    <%= f.input :card_background_color, as: :minicolors, input_html: {data: {
+      minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
+    <%= f.input :card_border_color, as: :minicolors, input_html: {data: {
+      minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
+  </div>
+</div>

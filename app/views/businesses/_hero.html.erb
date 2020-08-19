@@ -1,0 +1,24 @@
+<h2>Hero</h2>
+<div class="row" id="hero-buttons">
+  <%= f.input :hero_image_or_video, label: '', as: :radio_buttons, :collection => [['Use Hero Image', true] ,['Use Hero Video', false]] %>
+</div>
+<div class="row">
+  <div class="col bda-inputs" id="use-hero-image" style="display: <%= @business_display_attribute.hero_image_or_video ? 'block' : 'none '%>;">
+    <p>Hero image</p>
+    <%= f.file_field :hero_image %>
+    <%= list_image(@business_display_attribute.sized_hero_image(size: 20), alt: "Image") %>
+    
+    <% if @business_display_attribute.hero_image.attached? %>
+      <%= f.input :remove_hero_image, label: 'Remove Hero Image', as: :boolean, checked_value: true, unchecked_value: false %>
+    <% end %>
+  </div>
+  <div class="col bda-inputs" id="use-hero-video" style="display: <%= @business_display_attribute.hero_image_or_video ? 'none' : 'block'%>;">
+    <p>Hero Video</p>
+    <%= f.file_field :hero_video %>
+
+    <% if @business_display_attribute.hero_video.attached? %>
+      <%= video_tag(url_for(@business_display_attribute.hero_video), controls: '', muted: true, height: '200', width: '200') %>
+      <%= f.input :remove_hero_video, label: 'Remove Hero Video', as: :boolean, checked_value: true, unchecked_value: false %>
+    <% end %>
+  </div>
+</div>

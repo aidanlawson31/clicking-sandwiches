@@ -1,0 +1,11 @@
+      <h2>Colors</h2>
+      <div class="row">
+        <div class="col bda-inputs">
+          <%= f.input :nav_bar_color, as: :minicolors, input_html: {data: {
+                minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors", label: 'Nav Bar colour'} %>
+        </div>
+        <div class="col bda-inputs">
+          <%= f.input :menu_item_header_color, as: :minicolors, input_html: {data: {
+                minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}, label: 'Menu Item heading colour'%>
+        </div>
+      </div>
