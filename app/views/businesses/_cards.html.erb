@@ -1,0 +1,18 @@
+<h2>Cards</h2>
+<div class="row">
+  <div class="col bda-inputs">
+    <%= f.input :card_background_color, as: :minicolors, input_html: {data: {
+      minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
+    <%= f.input :card_border_color, as: :minicolors, input_html: {data: {
+      minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}%>
+    <%= f.input :card_border_radius, label: "Card border radius (1-30)" %>
+  </div>
+  <div class="col">
+    <h4>Preview Card</h4>
+    <div class="card location-show-card" style="border-radius: <%= @business_display_attribute.card_border_radius%>px; background-color: <%= @business_display_attribute.card_background_color%>; border: 1px solid <%= @business_display_attribute.card_border_color%>;">
+      <h5 class="card-title" style="color: <%= @business_display_attribute.general_text_color %>">Lunch</h5>
+      <span id="menu-description-preview" style="color: <%= @business_display_attribute.general_text_color %>;">This is the example description!</span><br>
+      <%= link_to "View Menu", business_path(@business_display_attribute.business) ,class: "btn custom-btn btn-primary btn-sm", style:"background-color: #{@business_display_attribute.button_color}; border-color: #{@business_display_attribute.button_color}; color: #{@business_display_attribute.button_text_color}; margin-top: 10px;" %>
+    </div>
+  </div>
+</div>

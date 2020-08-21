@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_14_040839) do
+ActiveRecord::Schema.define(version: 2020_08_21_011334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(version: 2020_08_14_040839) do
     t.integer "foreground_opacity"
     t.boolean "hero_image_or_video"
     t.integer "heading_font_id"
+    t.boolean "background_image_or_color"
+    t.integer "card_border_radius"
     t.index ["business_id"], name: "index_business_display_attributes_on_business_id"
     t.index ["font_id"], name: "index_business_display_attributes_on_font_id"
   end

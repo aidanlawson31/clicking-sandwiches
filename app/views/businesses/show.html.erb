@@ -39,7 +39,7 @@
       <hr>
       <%= render "text_and_fonts",    business_display_attribute: @business_display_attribute, fonts: @fonts, f: f %>
       <hr>
-      <%= render "cards_and_buttons", business_display_attribute: @business_display_attribute, f: f %>
+      <%= render "cards",             business_display_attribute: @business_display_attribute, f: f %>
     </div>
     <div id="b-show-links">
       <%= f.button :submit, "Update Customization", class: "btn btn-primary", data: { disable_with: "Saving..." } %>

@@ -9,25 +9,22 @@
       <%= f.input :remove_favicon, as: :boolean, checked_value: true, unchecked_value: false %>
     <% end %>
   </div>
-</div>
-<div class="row">
-  <div class="col bda-inputs">
-    <p>Upload a Banner, recommended dimentions are 1250 × 200 </p> 
+  <div class="col">
+    <p>Upload a Banner</p> 
     <%= f.file_field :banner, accept: 'image/png,image/jpeg' %>
     <%= list_image(business_display_attribute.sized_banner(size: 100), alt: "Image") %>
 
     <% if business_display_attribute.banner.attached? %>
-      <%= f.input :remove_banner, label: 'Remove banner', as: :boolean, checked_value: true, unchecked_value: false %>
+      <%= f.input :remove_banner, as: :boolean, checked_value: true, unchecked_value: false %>
     <% end %>
   </div>
-  <br>
-  <div class="col bda-inputs">
+  <div class="col">
     <p>Upload a top icon</p>
     <%= f.file_field :top_icon, accept: 'image/png,image/jpeg' %>
     <%= list_image(business_display_attribute.sized_top_icon(size: 100), alt: "Image") %>
 
     <% if business_display_attribute.top_icon.attached? %>
-      <%= f.input :remove_top_icon, label: 'Remove Top Icon', as: :boolean, checked_value: true, unchecked_value: false %>
+      <%= f.input :remove_top_icon, as: :boolean, checked_value: true, unchecked_value: false %>
     <% end %>
   </div>
 </div>
