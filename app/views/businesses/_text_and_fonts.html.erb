@@ -1,0 +1,13 @@
+<h2>Text and fonts</h2>
+<div class="row">
+  <div class="col bda-inputs">
+    <%= f.association :heading_font, collection: fonts, include_blank: false %>
+    <%= f.input :heading_color, as: :minicolors, input_html: {data: {
+      minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"} %>
+  </div>
+  <div class="col bda-inputs">
+    <%= f.association :font, collection: @fonts, include_blank: false %>
+    <%= f.input :general_text_color, as: :minicolors, input_html: {data: {
+      minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"} %>
+  </div>
+</div>

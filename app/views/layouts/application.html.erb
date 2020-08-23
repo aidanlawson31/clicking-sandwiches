@@ -93,6 +93,17 @@
       }
     })
 
+    $('input:radio[name="business_display_attribute[background_image_or_color]"]').change(function () {
+      if ($('input:radio[name="business_display_attribute[background_image_or_color]"]:checked').val() == 'true') {
+        $("#background-image").slideDown();
+        $("#background-color").slideUp();
+      }  
+      if ($('input:radio[name="business_display_attribute[background_image_or_color]"]:checked').val() == 'false') {
+        $("#background-color").slideDown();
+        $("#background-image").slideUp();
+      }
+    })
+
     $('#location-image-submit').attr('disabled',true);
     $('input:file').change(
     function(){

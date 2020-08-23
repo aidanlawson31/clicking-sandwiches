@@ -1,0 +1,30 @@
+<h2>Background</h2>
+<p>Upload a background image or pattern</p>
+<div class="row">
+  <%= f.input :background_image_or_color, label: '', as: :radio_buttons, :collection => [['Use Background Image', true] ,['Use Background Color', false]] %>
+</div>
+<div class="row">
+  <div class="col" id="background-image" style="display: <%= @business_display_attribute.background_image_or_color ? 'block' : 'none '%>;">
+    <%= f.file_field :background_image, accept: 'image/png,image/jpeg' %>
+    <%= list_image(@business_display_attribute.sized_background_image(size: 100), alt: "Image") %>
+
+    <% if @business_display_attribute.background_image.attached? %>
+      <%= f.input :remove_background_image, as: :boolean, checked_value: true, unchecked_value: false %>
+    <% end %>
+    <%= f.input :repeat, as: :boolean, label: "Repeat background" %>
+  </div>
+  <div class="col bda-inputs" id="background-color" style="display: <%= @business_display_attribute.background_image_or_color ? 'none' : 'block '%>;">
+    <%= f.input :background_color, as: :minicolors, input_html: {data: {
+        minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}, label: 'Background colour' %>
+  </div>
+</div>
+<br>
+<div class="row bda-inputs">
+  <div class="col">
+    <%= f.input :foreground_color, as: :minicolors, input_html: {data: {
+          minicolors: {theme: :bootstrap, position: :right}}, class: "minicolors"}, label: 'Foreground colour'%>
+  </div>
+  <div class="col">
+    <%= f.input :foreground_opacity, label: 'Foreground opacity (1-10)' %>
+  </div>
+</div>

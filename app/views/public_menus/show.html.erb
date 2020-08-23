@@ -18,7 +18,7 @@ background-repeat: <%= @business_display_attribute.repeat? ? "repeat" : "no-repe
 
   <div class="row">
     <% if @menu.categories.count > 1 %>
-      <div class="col-2" id="menu-nav" style="background-color: <%= @business_display_attribute.card_background_color %>; border: 1px solid <%= @business_display_attribute.card_border_color %>;">
+      <div class="col-2" id="menu-nav" style="border-radius: <%= @business_display_attribute.card_border_radius%>px; background-color: <%= @business_display_attribute.card_background_color %>; border: 1px solid <%= @business_display_attribute.card_border_color %>;">
         <% @menu.categories.each do |category| %>
           <div class="row">
             <a href="#<%=category.name%>" style="color: <%= @business_display_attribute.general_text_color%>;"><%= category.name %></a>
@@ -45,14 +45,14 @@ background-repeat: <%= @business_display_attribute.repeat? ? "repeat" : "no-repe
           </div>
         
           <% @menu.categories.each do |category| %>
-            <div class="row menu-show-category" style="background-color: <%= @business_display_attribute.card_background_color %>; border: 1px solid <%= @business_display_attribute.card_border_color %>;">
+            <div class="row menu-show-category" style="border-radius: <%= @business_display_attribute.card_border_radius%>px; background-color: <%= @business_display_attribute.card_background_color %>; border: 1px solid <%= @business_display_attribute.card_border_color %>;">
               <div class="col" id="<%= category.name %>">
                 <h3 class="category-name" style="color: <%= @business_display_attribute.general_text_color %>"><%= category.name %></h3>
               </div>
             </div>
 
             <% category.menu_items.each do |menu_item| %>
-              <div class="row menu-show-menu-item" style="background-color: <%= @business_display_attribute.card_background_color %>; border: 1px solid <%= @business_display_attribute.card_border_color %>;">
+              <div class="row menu-show-menu-item" style="border-radius: <%= @business_display_attribute.card_border_radius%>px; background-color: <%= @business_display_attribute.card_background_color %>; border: 1px solid <%= @business_display_attribute.card_border_color %>;">
                 <div class="col-1">
                   <p style="color: <%= @business_display_attribute.general_text_color %>;"><%= menu_item.code %></p>
                 </div>

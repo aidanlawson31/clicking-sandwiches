@@ -14,6 +14,8 @@ class TagsController < ApplicationController
     if @tag.save
       @tag.display_sequence_number = next_display_sequence_number
       redirect_to business_tags_path(@business), notice: 'tag created successfully'
+    else
+      redirect_to business_tags_path(@business), notice: 'tag failed to be created'
     end
   end
 
@@ -66,6 +68,6 @@ class TagsController < ApplicationController
   end
 
   def tag_params
-    params[:tag].permit(:name, :icon)
+    params[:tag].permit(:name, :display_sequence_number, :icon)
   end
 end

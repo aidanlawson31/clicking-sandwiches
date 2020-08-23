@@ -37,8 +37,8 @@ height: 100% !important;"
 
       <div class="row">
         <div class="col-xs-12 col-sm-12 <%= @location.location_images.blank? ? "col-md-12 col-lg-12" : "col-md-12 col-lg-6" %>">
-          <div class="show-description" style="<%= @location.location_images.blank? && @business.locations.count < 2 ? "text-align:center;" : "" %> background-color: <%= @business_display_attribute.card_background_color%>; border: 1px solid <%= @business_display_attribute.card_border_color %>">
-            <div class="card location-show-card" style="background-color: <%= @business_display_attribute.card_background_color%>; border: none">
+          <div class="show-description" style="border-radius: <%= @business_display_attribute.card_border_radius%>px; <%= @location.location_images.blank? && @business.locations.count < 2 ? "text-align:center;" : "" %> background-color: <%= @business_display_attribute.card_background_color%>; border: 1px solid <%= @business_display_attribute.card_border_color %>">
+            <div class="card location-show-card" style="border-radius: <%= @business_display_attribute.card_border_radius%>px; background-color: <%= @business_display_attribute.card_background_color%>; border: none">
               <p style="color: <%= @business_display_attribute.general_text_color %>">Address: <%= @location.address %></p>
               <% unless @location.open.blank? %>
                 <p style="color: <%= @business_display_attribute.general_text_color %>">Open: <%= @location.open %></p>
@@ -85,7 +85,7 @@ height: 100% !important;"
           <div class="pub-show-menus">
             <% if @location.location_menus %>
               <% @location.location_menus.each do |location_menu| %>
-                <div class="card location-show-card" style="background-color: <%= @business_display_attribute.card_background_color%>; border: 1px solid <%= @business_display_attribute.card_border_color%>;">
+                <div class="card location-show-card" style="border-radius: <%= @business_display_attribute.card_border_radius%>px; background-color: <%= @business_display_attribute.card_background_color%>; border: 1px solid <%= @business_display_attribute.card_border_color%>;">
                   <h5 class="card-title" style="color: <%= @business_display_attribute.general_text_color %>"><%= location_menu.menu.display_name %></h5>
                   <span id="menu-description-preview" style="color: <%= @business_display_attribute.general_text_color %>;"><%= location_menu.menu.description.html_safe %></span>
                   <%= link_to "View Menu", public_menu_path(@location.business.business_url, 

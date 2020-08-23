@@ -10,8 +10,9 @@ class BusinessDisplayAttribute < ApplicationRecord
   has_one_attached :hero_image
   has_one_attached :hero_video
 
-  attribute :repeat,              :boolean, default: false
-  attribute :hero_image_or_video, :boolean, default: true
+  attribute :repeat,                    :boolean, default: false
+  attribute :hero_image_or_video,       :boolean, default: true
+  attribute :background_image_or_color, :boolean, default: true
 
   validates :menu_item_header_color, presence: true
   validates :background_color,       presence: true
@@ -23,8 +24,10 @@ class BusinessDisplayAttribute < ApplicationRecord
   validates :card_background_color,  presence: true
   validates :card_border_color,      presence: true
   validates :foreground_color,       presence: true
+  validates :card_border_radius,     presence: true, inclusion: 1..30
   validates :foreground_opacity,     presence: true, inclusion: 0..10
-  validates :hero_image_or_video,    inclusion: { in: [true, false] }
+  validates :hero_image_or_video,                    inclusion: { in: [true, false] }
+  validates :background_image_or_color,              inclusion: { in: [true, false] }
 
   after_save :purge_favicon,          if: :remove_favicon
   after_save :purge_background_image, if: :remove_background_image
