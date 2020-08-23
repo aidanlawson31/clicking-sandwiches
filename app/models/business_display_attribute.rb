@@ -35,6 +35,7 @@ class BusinessDisplayAttribute < ApplicationRecord
   after_save :purge_banner,           if: :remove_banner
   after_save :purge_hero_image,       if: :remove_hero_image
   after_save :purge_hero_video,       if: :remove_hero_video
+  after_save :purge_background_image, unless: :background_image_or_color
 
   attr_accessor :remove_top_icon, :remove_favicon, :remove_background_image, :remove_banner, :remove_hero_image, :remove_hero_video
 

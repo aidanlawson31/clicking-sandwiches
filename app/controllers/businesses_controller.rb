@@ -55,8 +55,8 @@ class BusinessesController < ApplicationController
     params[:business_display_attribute].permit(:business_id, :menu_item_header_color, :background_color, :font_id, :heading_color, 
       :general_text_color, :nav_bar_color, :button_text_color, :button_color, :card_background_color, :card_border_color, :card_border_radius, 
       :foreground_color, :foreground_opacity, :repeat, :background_color, :banner, :favicon, :background_image, :hero_image, :hero_image_or_video, 
-      :heading_font_id, :hero_video, :remove_hero_video, :top_icon, :remove_hero_image, :remove_top_icon, :remove_background_image, :remove_banner, 
-      :remove_favicon
+      :background_image_or_color, :heading_font_id, :hero_video, :remove_hero_video, :top_icon, :remove_hero_image, :remove_top_icon, :remove_background_image,
+      :remove_banner, :remove_favicon
     )
   end
 
